@@ -1,14 +1,16 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Twitter, Mail, Globe, FileText, Calendar, Coffee } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, Globe, FileText, Calendar, Coffee, Instagram, Facebook } from "lucide-react";
 
 const SocialSidebar = () => {
   const socialLinks = [
-    { icon: Github, label: "GitHub", handle: "@johndoe", url: "https://github.com/johndoe" },
-    { icon: Linkedin, label: "LinkedIn", handle: "John Doe", url: "https://linkedin.com/in/johndoe" },
-    { icon: Twitter, label: "Twitter", handle: "@johndoe_dev", url: "https://twitter.com/johndoe_dev" },
-    { icon: Mail, label: "Email", handle: "john@dev.com", url: "mailto:john@dev.com" }
+    { icon: Github, label: "GitHub", handle: "@riyal-rj", url: "https://github.com/riyal-rj" },
+    { icon: Linkedin, label: "LinkedIn", handle: "Ritankar Jana", url: "https://linkedin.com/in/johndoe" },
+    { icon: Twitter, label: "Twitter", handle: "@jana_ritankar", url: "https://x.com/jana_ritankar" },
+    { icon: Mail, label: "Email", handle: "ritankar.jana.official@gmail.com", url: "mailto:ritankar.jana.official@gmail.com" },
+    {icon:Instagram, label: "Instagram", handle: "@jana_ritankar", url: "https://www.instagram.com/jana_ritankar/" },
+    {icon:Facebook, label: "Facebook", handle: "Ritankar Jana", url: "https://www.facebook.com/janaritankar/" },
   ];
 
   const quickActions = [

@@ -11,7 +11,7 @@ const Header = () => {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 max-w-4xl">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">JD</span>
+            <span className="text-white font-bold text-sm">RJ</span>
           </div>
           <span className="font-semibold text-lg">Portfolio</span>
         </div>
