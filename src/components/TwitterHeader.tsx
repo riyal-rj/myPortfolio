@@ -10,8 +10,8 @@ interface TwitterHeaderProps {
 
 const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
   const { theme, setTheme } = useTheme();
-  
-  const tabs = ["Home", "Projects", "Blog", "About Me", "Contact"];
+
+  const tabs = ["Home", "Projects", "Sneak Peek", "About Me", "Contact"];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -19,12 +19,16 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-8">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">RJ</span>
+              <div className="w-10 h-10 rounded-full  overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
+                <img
+                  src="/profilePic.jpeg"
+                  alt="Ritankar Jana"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <span className="font-bold text-xl hidden sm:block">Developer</span>
+              <span className="font-bold text-xl hidden sm:block">Ritankar Jana</span>
             </div>
-            
+
             <nav className="hidden md:flex items-center space-x-1">
               {tabs.map((tab) => (
                 <Button
@@ -32,11 +36,10 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
                   variant={activeTab === tab ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 ${
-                    activeTab === tab 
-                      ? "bg-primary text-primary-foreground" 
+                  className={`px-4 py-2 ${activeTab === tab
+                      ? "bg-primary text-primary-foreground"
                       : "hover:bg-accent hover:text-accent-foreground"
-                  }`}
+                    }`}
                 >
                   {tab}
                 </Button>
@@ -65,7 +68,7 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
             </Button>
           </div>
         </div>
-        
+
         {/* Mobile Navigation */}
         <div className="md:hidden pb-3">
           <div className="flex space-x-1 overflow-x-auto">
@@ -75,11 +78,10 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
                 variant={activeTab === tab ? "default" : "ghost"}
                 size="sm"
                 onClick={() => setActiveTab(tab)}
-                className={`px-3 py-2 text-xs whitespace-nowrap ${
-                  activeTab === tab 
-                    ? "bg-primary text-primary-foreground" 
+                className={`px-3 py-2 text-xs whitespace-nowrap ${activeTab === tab
+                    ? "bg-primary text-primary-foreground"
                     : "hover:bg-accent hover:text-accent-foreground"
-                }`}
+                  }`}
               >
                 {tab}
               </Button>

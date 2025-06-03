@@ -19,7 +19,7 @@ const ContactSection = () => {
       title: "Schedule a Call",
       description: "Book a 30-min chat",
       action: "Open Calendar",
-      url: "https://calendly.com/johndoe",
+      url: "https://calendly.com/ritankar-jana-official",
       color: "text-blue-500"
     },
   ];
@@ -148,7 +148,7 @@ const ContactSection = () => {
                   </div>
                   <div className="flex items-center space-x-2 text-sm">
                     <Clock className="w-4 h-4 text-muted-foreground" />
-                    <span>Best time: 9 AM - 6 PM PST</span>
+                    <span>Best time: 11 AM - 6 PM IST on Saturday and Sunday</span>
                   </div>
                 </div>
 

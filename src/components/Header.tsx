@@ -10,8 +10,12 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 max-w-4xl">
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">RJ</span>
+          <div className="w-10 h-10 rounded-full  overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
+            <img
+              src="/profilePic.jpeg"
+              alt="Ritankar Jana"
+              className="w-full h-full object-cover"
+            />
           </div>
           <span className="font-semibold text-lg">Portfolio</span>
         </div>

@@ -87,6 +87,16 @@ const SkillMap = () => {
       },
     },
     {
+      id:"java",
+      type: 'skillNode',
+      position: { x: 100, y: 350 },
+      data: { 
+        label: 'Java', 
+        icon: Code,
+        level: 'Expert',
+        description: 'Object-oriented programming language'
+    },},
+    {
       id: 'javascript',
       type: 'skillNode',
       position: { x: 150, y: 350 },
@@ -97,6 +107,7 @@ const SkillMap = () => {
         description: 'Frontend & backend development'
       },
     },
+    // Languages
     // Frameworks
     {
       id: 'frameworks',
@@ -115,7 +126,7 @@ const SkillMap = () => {
       data: { 
         label: 'React', 
         icon: Server,
-        level: 'Expert',
+        level: 'Intermediate',
         description: 'UI library for building interfaces'
       },
     },
@@ -126,18 +137,18 @@ const SkillMap = () => {
       data: { 
         label: 'Node.js', 
         icon: Server,
-        level: 'Advanced',
+        level: 'Intermediate',
         description: 'Server-side JavaScript runtime'
       },
     },
     {
-      id: 'fastapi',
+      id: 'springboot',
       type: 'skillNode',
       position: { x: 500, y: 350 },
       data: { 
-        label: 'FastAPI', 
+        label: 'Spring Boot', 
         icon: Server,
-        level: 'Advanced',
+        level: 'Beginner',
         description: 'Modern Python web framework'
       },
     },
@@ -159,7 +170,7 @@ const SkillMap = () => {
       data: { 
         label: 'PostgreSQL', 
         icon: Database,
-        level: 'Advanced',
+        level: 'Beginner',
         description: 'Relational database'
       },
     },
@@ -225,8 +236,19 @@ const SkillMap = () => {
       data: { 
         label: 'PyTorch', 
         icon: Brain,
-        level: 'Advanced',
+        level: 'Intermediate',
         description: 'Deep learning framework'
+      },
+    },
+    {
+      id: 'tensorflow',
+      type: 'skillNode',
+      position: { x: 600, y: 550 },
+      data: { 
+        label: 'TensorFlow', 
+        icon: Brain,
+        level: 'Intermediate',
+        description: 'Machine learning framework'
       },
     },
     {
@@ -248,17 +270,19 @@ const SkillMap = () => {
     { id: 'e3', source: 'root', target: 'databases', animated: true },
     { id: 'e4', source: 'languages', target: 'python' },
     { id: 'e5', source: 'languages', target: 'javascript' },
-    { id: 'e6', source: 'frameworks', target: 'react' },
-    { id: 'e7', source: 'frameworks', target: 'nodejs' },
-    { id: 'e8', source: 'frameworks', target: 'fastapi' },
-    { id: 'e9', source: 'databases', target: 'postgresql' },
-    { id: 'e10', source: 'databases', target: 'mongodb' },
-    { id: 'e11', source: 'root', target: 'devops', animated: true },
-    { id: 'e12', source: 'root', target: 'aiml', animated: true },
-    { id: 'e13', source: 'devops', target: 'docker' },
-    { id: 'e14', source: 'devops', target: 'git' },
-    { id: 'e15', source: 'aiml', target: 'pytorch' },
-    { id: 'e16', source: 'aiml', target: 'transformers' },
+    { id: 'e6', source: 'languages', target: 'java' },
+    { id: 'e7', source: 'frameworks', target: 'react' },
+    { id: 'e8', source: 'frameworks', target: 'nodejs' },
+    { id: 'e9', source: 'frameworks', target: 'springboot' },
+    { id: 'e10', source: 'databases', target: 'postgresql' },
+    { id: 'e11', source: 'databases', target: 'mongodb' },
+    { id: 'e12', source: 'root', target: 'devops', animated: true },
+    { id: 'e13', source: 'root', target: 'aiml', animated: true },
+    { id: 'e14', source: 'devops', target: 'docker' },
+    { id: 'e15', source: 'devops', target: 'git' },
+    { id: 'e16', source: 'aiml', target: 'pytorch' },
+    { id: 'e17', source: 'aiml', target: 'transformers' },
+    { id: 'e18', source: 'aiml', target: 'tensorflow' },
   ];
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);

@@ -80,7 +80,7 @@ const SocialSidebar = () => {
   const quickActions = [
     { icon: Globe, label: "Portfolio", url: "https://ritankar.tech" },
     { icon: FileText, label: "Resume", url: "/Ritankar_Jana_Resume.pdf" },
-    { icon: Calendar, label: "Schedule Call", url: "https://calendly.com/ritankarjana" },
+    { icon: Calendar, label: "Schedule Call", url: "https://calendly.com/ritankar-jana-official" },
 
   ];
 

@@ -4,6 +4,9 @@ import BlogSection from "@/components/BlogSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import GitHubStats from "@/components/GitHubStats";
+import ProjectsShowcase from "./ProjectsShowcase";
+import SkillMap from "./SkillMap";
+import LearningJourney from "./LearningJourney";
 
 interface FeedContentProps {
   activeTab: string;
@@ -20,8 +23,11 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
           </div>
         );
       case "Projects":
-        return <ProjectsSection />;
-      case "Blog":
+        return (
+        <div className="space-y-0">
+        <ProjectsSection />
+        </div>);
+      case "Sneak Peek":
         return <BlogSection />;
       case "About Me":
         return <AboutSection />;

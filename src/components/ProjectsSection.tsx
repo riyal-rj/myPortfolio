@@ -8,46 +8,89 @@ import LearningJourney from "./LearningJourney";
 
 const ProjectsSection = () => {
   const projects = [
-    {
-      id: 1,
-      name: "AI Code Assistant",
-      description: "A VS Code extension that helps developers write better code using AI. Built with TypeScript and OpenAI API.",
-      tech: ["TypeScript", "Node.js", "OpenAI", "VS Code API"],
-      stars: 234,
-      forks: 45,
-      githubUrl: "https://github.com/johndoe/ai-code-assistant",
-      liveUrl: "https://marketplace.visualstudio.com/items?itemName=johndoe.ai-assistant",
-      featured: true
-    },
-    {
-      id: 2,
-      name: "DevOps Dashboard",
-      description: "Real-time monitoring dashboard for microservices with custom metrics and alerts.",
-      tech: ["React", "Python", "FastAPI", "PostgreSQL"],
-      stars: 156,
-      forks: 23,
-      githubUrl: "https://github.com/johndoe/devops-dashboard",
-      liveUrl: "https://dashboard.johndoe.dev"
-    },
-    {
-      id: 3,
-      name: "Open Source CLI Tool",
-      description: "A command-line tool for automating development workflows and project setup.",
-      tech: ["Python", "Click", "PyPI"],
-      stars: 89,
-      forks: 12,
-      githubUrl: "https://github.com/johndoe/dev-cli"
-    },
-    {
-      id: 4,
-      name: "Machine Learning Pipeline",
-      description: "End-to-end ML pipeline for natural language processing with model versioning.",
-      tech: ["Python", "PyTorch", "MLflow", "Docker"],
-      stars: 67,
-      forks: 8,
-      githubUrl: "https://github.com/johndoe/ml-pipeline"
-    }
-  ];
+  {
+    id: 1,
+    name: "Stokis",
+    description: "AI-powered stock market prediction and sentiment analysis tool built as a final year project. Combines FinBERT-based news sentiment with stock price forecasting via Linear Regression.",
+    tech: ["React", "FastAPI", "FinBERT", "Linear Regression"],
+    githubUrl: "https://github.com/your-username/stokis", // replace if needed
+    featured: true,
+    liveUrl:'',
+    stars: 25,
+    forks: 4,
+  },
+  {
+    id: 2,
+    name: "Advanced Authentication System",
+    description: "Modular, scalable authentication system supporting JWT, 2FA, RBAC, and email verification. Built for easy integration with web/mobile apps.",
+    tech: ["Node.js", "Express", "MongoDB", "JWT", "Nodemailer", "bcrypt"],
+    githubUrl: "https://github.com/your-username/auth-system", // replace if needed
+    liveUrl:'',
+    stars: 17,
+    forks: 2,
+  },
+  {
+    id: 3,
+    name: "Netflix Clone",
+    description: "A video streaming platform inspired by Netflix with JWT auth, responsive design, and dynamic recommendations.",
+    tech: ["MongoDB", "Express", "React", "Node.js"],
+    githubUrl: "https://github.com/your-username/netflix-clone", // replace if needed
+    liveUrl:'',
+    stars: 10,
+    forks: 5,
+  },
+  {
+    id: 4,
+    name: "JetQuest",
+    description: "Tour management app with Mapbox-based route visualization, image uploads, email auth, and MVC backend architecture.",
+    tech: ["Node.js", "Express", "Mapbox", "Multer", "Nodemailer", "Parcel"],
+    githubUrl: "https://github.com/your-username/jetquest", // replace if needed
+    liveUrl:'',
+    stars: 50,
+    forks: 12,
+  },
+  {
+    id: 5,
+    name: "TriNayan",
+    description: "AI-based currency detection using YOLOv8 and Vision Transformers. Built for RBI's HaRBInger-2024 Hackathon.",
+    tech: ["YOLOv8", "Vision Transformers", "OpenCV", "Python"],
+    githubUrl: "https://github.com/your-username/trinayan", // replace if needed
+    liveUrl:'',
+    stars: 30,
+    forks: 8,
+  },
+  {
+    id: 6,
+    name: "Lingua-AI",
+    description: "Personalized English tutor app using Llama 3.1 and Deepgram for interactive speech and conversation training.",
+    tech: ["Llama 3.1", "Deepgram", "Python", "FastAPI"],
+    githubUrl: "https://github.com/your-username/lingua-ai", // replace if needed
+    liveUrl:'',
+    stars:24,
+    forks:5,
+  },
+  {
+    id: 7,
+    name: "WebMeAnything",
+    description: "RAG-based tool for real-time web page analysis using semantic and similarity search. Provides SEO and content insights.",
+    tech: ["Streamlit", "FAISS", "Cohere", "RAG"],
+    githubUrl: "https://github.com/your-username/webmeanything", // replace if needed
+    liveUrl:'',
+    stars:15,
+    forks:3,
+  },
+  {
+    id: 8,
+    name: "QuirkyViz-ML-Chaos-Visualizer",
+    description: "Interactive visualization platform for exploring chaotic behavior in ML models using Plotly and Matplotlib.",
+    tech: ["Python", "Matplotlib", "Plotly"],
+    githubUrl: "https://github.com/your-username/quirkyviz", // replace if needed
+    liveUrl:'',
+    stars:10,
+    forks:2,
+  }
+];
+
 
   return (
     <div className="border-b border-border pb-6">

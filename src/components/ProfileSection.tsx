@@ -18,8 +18,8 @@ const ProfileSection = () => {
   ];
 
   const techStack = [
-    "JavaScript", "TypeScript", "React", "Node.js", "Python",
-    "Docker", "AWS", "GraphQL", "PostgreSQL", "Git"
+    "Java", "JavaScript", "Python", "Node.js", "React",
+    "MongoDB", "Pytorch", "Transformer", "Git"
   ];
 
   useEffect(() => {
@@ -49,12 +49,12 @@ const ProfileSection = () => {
   return (
     <div className="border-b border-border p-6 bg-background">
       <div className="flex items-start space-x-4">
-        <div className="w-28 h-28 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-[3px] flex-shrink-0">
+        <div className="w-28 h-28 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-[3px] flex-shrink-0">
           <div className="w-full h-full rounded-full overflow-hidden bg-background">
             <img
               src="/profilePic.jpeg"
               alt="Ritankar Jana"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover overflow-hidden"
             />
           </div>
         </div>

@@ -7,90 +7,117 @@ import { useState } from "react";
 
 const ProjectsShowcase = () => {
   const [activeFilter, setActiveFilter] = useState("All");
+ const pinnedProjects = [
+  {
+    id: 1,
+    title: "Stokis",
+    description: "AI-powered stock market prediction and sentiment analysis tool built as a final year project. Combines FinBERT-based news sentiment with stock price forecasting via Linear Regression.",
+    tech: ["React", "FastAPI", "FinBERT", "Linear Regression"],
+    githubUrl: "https://github.com/your-username/stokis",
+    isFeatured: true,
+    isPopular: true,
+    category: "AI",
+    stars: 120, // example data
+    forks: 30,
+    gradient: "from-pink-500 to-yellow-400",
+  },
+  {
+    id: 2,
+    title: "Advanced Authentication System",
+    description: "Modular, scalable authentication system supporting JWT, 2FA, RBAC, and email verification. Built for easy integration with web/mobile apps.",
+    tech: ["Node.js", "Express", "MongoDB", "JWT", "Nodemailer", "bcrypt"],
+    githubUrl: "https://github.com/your-username/auth-system",
+    isFeatured: false,
+    isPopular: false,
+    category: "Backend",
+    stars: 75,
+    forks: 15,
+    gradient: "from-blue-600 to-indigo-500",
+  },
+  {
+    id: 3,
+    title: "Netflix Clone",
+    description: "A video streaming platform inspired by Netflix with JWT auth, responsive design, and dynamic recommendations.",
+    tech: ["MongoDB", "Express", "React", "Node.js"],
+    githubUrl: "https://github.com/your-username/netflix-clone",
+    isFeatured: false,
+    isPopular: false,
+    category: "Fullstack",
+    stars: 95,
+    forks: 22,
+    gradient: "from-red-500 to-purple-600",
+  },
+  {
+    id: 4,
+    title: "JetQuest",
+    description: "Tour management app with Mapbox-based route visualization, image uploads, email auth, and MVC backend architecture.",
+    tech: ["Node.js", "Express", "Mapbox", "Multer", "Nodemailer", "Parcel"],
+    githubUrl: "https://github.com/your-username/jetquest",
+    isFeatured: false,
+    isPopular: false,
+    category: "Backend",
+    stars: 40,
+    forks: 8,
+    gradient: "from-green-400 to-blue-500",
+  },
+  {
+    id: 5,
+    title: "TriNayan",
+    description: "AI-based currency detection using YOLOv8 and Vision Transformers. Built for RBI's HaRBInger-2024 Hackathon.",
+    tech: ["YOLOv8", "Vision Transformers", "OpenCV", "Python"],
+    githubUrl: "https://github.com/your-username/trinayan",
+    isPopular: true,
+    isFeatured: true,
+    category: "AI",
+    stars: 140,
+    forks: 35,
+    gradient: "from-yellow-400 to-red-500",
+  },
+  {
+    id: 6,
+    title: "Lingua-AI",
+    description: "Personalized English tutor app using Llama 3.1 and Deepgram for interactive speech and conversation training.",
+    tech: ["Llama 3.1", "Deepgram", "Python", "FastAPI"],
+    githubUrl: "https://github.com/your-username/lingua-ai",
+    liveUrl: "https://lingua-ai.com",
+    isFeatured: false,
+    isPopular: false,
+    category: "AI",
+    stars: 50,
+    forks: 12,
+    gradient: "from-indigo-400 to-purple-600",
+  },
+  {
+    id: 7,
+    title: "WebMeAnything",
+    description: "RAG-based tool for real-time web page analysis using semantic and similarity search. Provides SEO and content insights.",
+    tech: ["Streamlit", "FAISS", "Cohere", "RAG"],
+    githubUrl: "https://github.com/your-username/webmeanything",
+    liveUrl: "https://webmeanything.com",
+    isPopular: true,
+    isFeatured: true,
+    category: "AI",
+    stars: 130,
+    forks: 28,
+    gradient: "from-cyan-400 to-blue-600",
+  },
+  {
+    id: 8,
+    title: "QuirkyViz-ML-Chaos-Visualizer",
+    description: "Interactive visualization platform for exploring chaotic behavior in ML models using Plotly and Matplotlib.",
+    tech: ["Python", "Matplotlib", "Plotly"],
+    githubUrl: "https://github.com/your-username/quirkyviz",
+    liveUrl: "https://quirkyviz.com",
+    isFeatured: false,
+    isPopular: false,
+    category: "AI",
+    stars: 25,
+    forks: 5,
+    gradient: "from-gray-400 to-gray-600",
+  }
+];
 
-  const pinnedProjects = [
-    {
-      id: 1,
-      title: "DevTools Pro",
-      description: "A comprehensive developer toolkit with 20+ utilities for web development. Built with React and TypeScript.",
-      techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-      stars: 342,
-      forks: 56,
-      isPinned: true,
-      isPopular: true,
-      category: "Web",
-      gradient: "from-blue-500/20 to-purple-600/20",
-      githubUrl: "https://github.com/johndoe/devtools-pro",
-      liveUrl: "https://devtools-pro.vercel.app"
-    },
-    {
-      id: 2,
-      title: "API Monitor",
-      description: "Real-time API monitoring and analytics dashboard. Track performance, errors, and usage patterns.",
-      techStack: ["Node.js", "Express", "PostgreSQL", "React"],
-      stars: 218,
-      forks: 34,
-      isPinned: true,
-      isFeatured: true,
-      category: "Backend",
-      gradient: "from-green-500/20 to-teal-600/20",
-      githubUrl: "https://github.com/johndoe/api-monitor",
-      liveUrl: "https://api-monitor.herokuapp.com"
-    },
-    {
-      id: 3,
-      title: "AI Code Assistant",
-      description: "VS Code extension that helps developers write better code using AI. Built with TypeScript and OpenAI API.",
-      techStack: ["Rust", "CLI", "SQLite", "Git"],
-      stars: 456,
-      forks: 67,
-      isPinned: true,
-      isPopular: true,
-      category: "AI",
-      gradient: "from-orange-500/20 to-red-600/20",
-      githubUrl: "https://github.com/johndoe/ai-assistant",
-      liveUrl: null
-    },
-    {
-      id: 4,
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with payment integration, inventory management, and analytics.",
-      techStack: ["Next.js", "Prisma", "Stripe", "PostgreSQL"],
-      stars: 189,
-      forks: 29,
-      isPinned: true,
-      category: "Fullstack",
-      gradient: "from-pink-500/20 to-rose-600/20",
-      githubUrl: "https://github.com/johndoe/ecommerce",
-      liveUrl: "https://shop.johndoe.dev"
-    },
-    {
-      id: 5,
-      title: "ML Pipeline",
-      description: "End-to-end machine learning pipeline for natural language processing with model versioning.",
-      techStack: ["Python", "PyTorch", "MLflow", "Docker"],
-      stars: 167,
-      forks: 23,
-      isPinned: true,
-      category: "AI",
-      gradient: "from-violet-500/20 to-purple-600/20",
-      githubUrl: "https://github.com/johndoe/ml-pipeline",
-      liveUrl: null
-    },
-    {
-      id: 6,
-      title: "React Component Library",
-      description: "Beautiful, accessible React components with TypeScript support and comprehensive documentation.",
-      techStack: ["React", "TypeScript", "Storybook", "CSS"],
-      stars: 234,
-      forks: 45,
-      isPinned: true,
-      category: "Web",
-      gradient: "from-cyan-500/20 to-blue-600/20",
-      githubUrl: "https://github.com/johndoe/react-ui",
-      liveUrl: "https://ui.johndoe.dev"
-    }
-  ];
+
 
   const categories = ["All", "AI", "Web", "Backend", "Fullstack"];
 
@@ -191,7 +218,7 @@ const ProjectsShowcase = () => {
                       {/* Tech Stack */}
                       <div className="space-y-2">
                         <div className="flex flex-wrap gap-2">
-                          {project.techStack.map((tech, index) => (
+                          {project.tech.map((tech, index) => (
                             <Badge 
                               key={index} 
                               variant="outline" 
