@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useMemo } from 'react';
 import {
   ReactFlow,
@@ -53,85 +52,215 @@ const nodeTypes = {
   skillNode: SkillNode,
 };
 
-// Initial nodes data
-const initialNodes: Node[] = [
-  {
-    id: '1',
-    type: 'skillNode',
-    position: { x: 250, y: 0 },
-    data: {
-      label: 'Frontend',
-      icon: Code,
-      level: 'Expert',
-      description: 'React, TypeScript, Next.js, Tailwind CSS'
-    }
-  },
-  {
-    id: '2',
-    type: 'skillNode',
-    position: { x: 100, y: 150 },
-    data: {
-      label: 'Backend',
-      icon: Server,
-      level: 'Advanced',
-      description: 'Node.js, Python, API design'
-    }
-  },
-  {
-    id: '3',
-    type: 'skillNode',
-    position: { x: 400, y: 150 },
-    data: {
-      label: 'Database',
-      icon: Database,
-      level: 'Intermediate',
-      description: 'PostgreSQL, MongoDB, Redis'
-    }
-  },
-  {
-    id: '4',
-    type: 'skillNode',
-    position: { x: 250, y: 300 },
-    data: {
-      label: 'DevOps',
-      icon: GitBranch,
-      level: 'Intermediate',
-      description: 'Docker, CI/CD, AWS'
-    }
-  }
-];
-
-// Initial edges data
-const initialEdges: Edge[] = [
-  {
-    id: 'e1-2',
-    source: '1',
-    target: '2',
-    animated: true,
-    style: { stroke: '#ef4444' }
-  },
-  {
-    id: 'e1-3',
-    source: '1',
-    target: '3',
-    animated: true,
-    style: { stroke: '#ef4444' }
-  },
-  {
-    id: 'e2-4',
-    source: '2',
-    target: '4',
-    style: { stroke: '#ef4444' }
-  },
-  {
-    id: 'e3-4',
-    source: '3',
-    target: '4',
-    style: { stroke: '#ef4444' }
-  }
-];
-
 const SkillMap = () => {
+  const initialNodes: Node[] = [
+    {
+      id: 'root',
+      type: 'skillNode',
+      position: { x: 400, y: 50 },
+      data: { 
+        label: 'My Skill Graph', 
+        icon: Brain,
+        level: 'Overview'
+      },
+    },
+    // Languages
+    {
+      id: 'languages',
+      type: 'skillNode',
+      position: { x: 100, y: 200 },
+      data: { 
+        label: 'Languages', 
+        icon: Code,
+        description: 'Programming languages I work with'
+      },
+    },
+    {
+      id: 'python',
+      type: 'skillNode',
+      position: { x: 50, y: 350 },
+      data: { 
+        label: 'Python', 
+        icon: Code,
+        level: 'Expert',
+        description: 'Backend dev, ML, automation'
+      },
+    },
+    {
+      id: 'javascript',
+      type: 'skillNode',
+      position: { x: 150, y: 350 },
+      data: { 
+        label: 'JavaScript', 
+        icon: Code,
+        level: 'Expert',
+        description: 'Frontend & backend development'
+      },
+    },
+    // Frameworks
+    {
+      id: 'frameworks',
+      type: 'skillNode',
+      position: { x: 400, y: 200 },
+      data: { 
+        label: 'Frameworks', 
+        icon: Server,
+        description: 'Web frameworks and libraries'
+      },
+    },
+    {
+      id: 'react',
+      type: 'skillNode',
+      position: { x: 300, y: 350 },
+      data: { 
+        label: 'React', 
+        icon: Server,
+        level: 'Expert',
+        description: 'UI library for building interfaces'
+      },
+    },
+    {
+      id: 'nodejs',
+      type: 'skillNode',
+      position: { x: 400, y: 350 },
+      data: { 
+        label: 'Node.js', 
+        icon: Server,
+        level: 'Advanced',
+        description: 'Server-side JavaScript runtime'
+      },
+    },
+    {
+      id: 'fastapi',
+      type: 'skillNode',
+      position: { x: 500, y: 350 },
+      data: { 
+        label: 'FastAPI', 
+        icon: Server,
+        level: 'Advanced',
+        description: 'Modern Python web framework'
+      },
+    },
+    // Databases
+    {
+      id: 'databases',
+      type: 'skillNode',
+      position: { x: 700, y: 200 },
+      data: { 
+        label: 'Databases', 
+        icon: Database,
+        description: 'Data storage solutions'
+      },
+    },
+    {
+      id: 'postgresql',
+      type: 'skillNode',
+      position: { x: 650, y: 350 },
+      data: { 
+        label: 'PostgreSQL', 
+        icon: Database,
+        level: 'Advanced',
+        description: 'Relational database'
+      },
+    },
+    {
+      id: 'mongodb',
+      type: 'skillNode',
+      position: { x: 750, y: 350 },
+      data: { 
+        label: 'MongoDB', 
+        icon: Database,
+        level: 'Intermediate',
+        description: 'NoSQL document database'
+      },
+    },
+    // DevOps
+    {
+      id: 'devops',
+      type: 'skillNode',
+      position: { x: 250, y: 500 },
+      data: { 
+        label: 'DevOps', 
+        icon: GitBranch,
+        description: 'Development & deployment tools'
+      },
+    },
+    {
+      id: 'docker',
+      type: 'skillNode',
+      position: { x: 200, y: 650 },
+      data: { 
+        label: 'Docker', 
+        icon: GitBranch,
+        level: 'Advanced',
+        description: 'Containerization platform'
+      },
+    },
+    {
+      id: 'git',
+      type: 'skillNode',
+      position: { x: 300, y: 650 },
+      data: { 
+        label: 'Git', 
+        icon: GitBranch,
+        level: 'Expert',
+        description: 'Version control system'
+      },
+    },
+    // AI/ML
+    {
+      id: 'aiml',
+      type: 'skillNode',
+      position: { x: 550, y: 500 },
+      data: { 
+        label: 'AI/ML', 
+        icon: Brain,
+        description: 'Artificial intelligence & machine learning'
+      },
+    },
+    {
+      id: 'pytorch',
+      type: 'skillNode',
+      position: { x: 500, y: 650 },
+      data: { 
+        label: 'PyTorch', 
+        icon: Brain,
+        level: 'Advanced',
+        description: 'Deep learning framework'
+      },
+    },
+    {
+      id: 'transformers',
+      type: 'skillNode',
+      position: { x: 600, y: 650 },
+      data: { 
+        label: 'Transformers', 
+        icon: Brain,
+        level: 'Intermediate',
+        description: 'NLP model architecture'
+      },
+    },
+  ];
+
+  const initialEdges: Edge[] = [
+    { id: 'e1', source: 'root', target: 'languages', animated: true },
+    { id: 'e2', source: 'root', target: 'frameworks', animated: true },
+    { id: 'e3', source: 'root', target: 'databases', animated: true },
+    { id: 'e4', source: 'languages', target: 'python' },
+    { id: 'e5', source: 'languages', target: 'javascript' },
+    { id: 'e6', source: 'frameworks', target: 'react' },
+    { id: 'e7', source: 'frameworks', target: 'nodejs' },
+    { id: 'e8', source: 'frameworks', target: 'fastapi' },
+    { id: 'e9', source: 'databases', target: 'postgresql' },
+    { id: 'e10', source: 'databases', target: 'mongodb' },
+    { id: 'e11', source: 'root', target: 'devops', animated: true },
+    { id: 'e12', source: 'root', target: 'aiml', animated: true },
+    { id: 'e13', source: 'devops', target: 'docker' },
+    { id: 'e14', source: 'devops', target: 'git' },
+    { id: 'e15', source: 'aiml', target: 'pytorch' },
+    { id: 'e16', source: 'aiml', target: 'transformers' },
+  ];
+
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 

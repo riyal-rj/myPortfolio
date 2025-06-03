@@ -25,25 +25,36 @@ const LearningJourney = () => {
       items: [
         {
           id: '1',
-          title: 'Next.js 14',
-          category: 'Frontend',
-          progress: 65,
-          description: 'Learning App Router and Server Components',
-          emoji: '⚡',
+          title: 'Spring & Spring Boot',
+          category: 'Backend',
+          progress: 40,
+          description: 'Mastering annotations, REST APIs, and security',
+          emoji: '🌱',
           links: [
-            { label: 'Official Docs', url: '#' },
-            { label: 'My Notes', url: '#' }
+            { label: 'Spring Docs', url: '#' },
           ]
         },
         {
           id: '2',
-          title: 'Rust Programming',
-          category: 'Languages',
-          progress: 30,
-          description: 'Systems programming and memory safety',
-          emoji: '🦀',
+          title: 'Generative AI',
+          category: 'AI/ML',
+          progress: 35,
+          description: 'LLMs, RAG pipelines, prompt engineering',
+          emoji: '🧠',
           links: [
-            { label: 'Rust Book', url: '#' }
+            { label: 'Paperspace', url: '#' },
+            { label: 'Colab Projects', url: '#' }
+          ]
+        },
+        {
+          id: '3',
+          title: 'System Design (LLD + HLD)',
+          category: 'Architecture',
+          progress: 20,
+          description: 'Designing scalable systems & object-oriented models',
+          emoji: '🧩',
+          links: [
+            { label: 'System Design Primer', url: '#' }
           ]
         }
       ]
@@ -54,28 +65,44 @@ const LearningJourney = () => {
       icon: CheckCircle2,
       items: [
         {
-          id: '3',
-          title: 'React Hooks',
-          category: 'Frontend',
-          progress: 100,
-          description: 'Advanced patterns and custom hooks',
-          emoji: '⚛️'
-        },
-        {
           id: '4',
-          title: 'PostgreSQL',
-          category: 'Database',
+          title: 'Core Java',
+          category: 'Languages',
           progress: 100,
-          description: 'Complex queries, indexing, and optimization',
-          emoji: '🐘'
+          description: 'OOP, collections, threading, streams',
+          emoji: '☕'
         },
         {
           id: '5',
-          title: 'Docker',
-          category: 'DevOps',
-          progress: 100,
-          description: 'Containerization and orchestration',
-          emoji: '🐳'
+          title: 'JavaScript',
+          category: 'Languages',
+          progress: 70,
+          description: 'ES6+, async/await, DOM, fetch',
+          emoji: '🟨'
+        },
+        {
+          id: '6',
+          title: 'Python',
+          category: 'Languages',
+          progress: 60,
+          description: 'Data handling, scripting, ML basics',
+          emoji: '🐍'
+        },
+        {
+          id: '7',
+          title: 'MySQL',
+          category: 'Database',
+          progress: 80,
+          description: 'Joins, subqueries, indexing',
+          emoji: '🗃️'
+        },
+        {
+          id: '8',
+          title: 'MongoDB',
+          category: 'Database',
+          progress: 70,
+          description: 'CRUD, schema design, aggregation',
+          emoji: '🍃'
         }
       ]
     },
@@ -85,21 +112,30 @@ const LearningJourney = () => {
       icon: BookOpen,
       items: [
         {
-          id: '6',
-          title: 'WebAssembly',
-          category: 'Web Tech',
-          progress: 0,
-          description: 'High-performance web applications',
-          emoji: '🌐'
+          id: '9',
+          title: 'Redis',
+          category: 'Database',
+          progress: 30,
+          description: 'In-memory data store and caching',
+          emoji: '🟥'
         },
         {
-          id: '7',
-          title: 'Kubernetes',
-          category: 'DevOps',
-          progress: 15,
-          description: 'Container orchestration at scale',
-          emoji: '☸️'
-        }
+          id: '10',
+          title: 'PostgreSQL',
+          category: 'Database',
+          progress: 30,
+          description: 'Relational modeling, CTEs, window functions',
+          emoji: '🐘'
+        },
+        {
+          id: '11',
+          title: 'React',
+          category: 'Frontend',
+          progress: 50,
+          description: 'Components, JSX, hooks',
+          emoji: '⚛️'
+        },
+
       ]
     },
     {
@@ -108,24 +144,49 @@ const LearningJourney = () => {
       icon: Lightbulb,
       items: [
         {
-          id: '8',
+          id: '12',
+          title: 'NestJS',
+          category: 'Backend',
+          progress: 0,
+          description: 'Structured backend with decorators and DI',
+          emoji: '🛡️'
+        },
+        {
+          id: '13',
+          title: 'Rust',
+          category: 'Languages',
+          progress: 0,
+          description: 'Memory safety and performance',
+          emoji: '🦀'
+        },
+        {
+          id: '14',
           title: 'Go Language',
           category: 'Languages',
           progress: 0,
-          description: 'Concurrent programming and microservices',
+          description: 'Goroutines and microservices',
           emoji: '🔷'
         },
         {
-          id: '9',
-          title: 'Three.js',
-          category: 'Frontend',
+          id: '15',
+          title: 'Docker and Kubernetes',
+          category: 'DevOps',
           progress: 0,
-          description: '3D graphics and WebGL',
-          emoji: '🎮'
+          description: 'Containerization,Orchestration, Dockerfiles, cluster management and image management',
+          emoji: '🐳'
+        },
+        {
+          id: '16',
+          title: 'AWS Cloud',
+          category: 'Cloud Tech',
+          progress: 0,
+          description: 'EC2, S3, Lambda, IAM, and cloud architecture basics',
+          emoji: '☁️'
         }
       ]
     }
   ];
+
 
   const getCategoryColor = (category: string) => {
     const colors: { [key: string]: string } = {
@@ -171,20 +232,20 @@ const LearningJourney = () => {
                             <h4 className="font-medium text-sm">{item.title}</h4>
                           </div>
                         </div>
-                        
-                        <Badge 
-                          variant="secondary" 
+
+                        <Badge
+                          variant="secondary"
                           className={`text-xs ${getCategoryColor(item.category)}`}
                         >
                           {item.category}
                         </Badge>
-                        
+
                         {item.description && (
                           <p className="text-xs text-muted-foreground">
                             {item.description}
                           </p>
                         )}
-                        
+
                         <div className="space-y-2">
                           <div className="flex items-center justify-between text-xs">
                             <span>Progress</span>
@@ -192,7 +253,7 @@ const LearningJourney = () => {
                           </div>
                           <Progress value={item.progress} className="h-1" />
                         </div>
-                        
+
                         {item.links && item.links.length > 0 && (
                           <div className="flex flex-wrap gap-1">
                             {item.links.map((link, index) => (

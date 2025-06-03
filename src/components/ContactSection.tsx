@@ -9,9 +9,9 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email Me",
-      description: "john@dev.com",
+      description: "ritankar.jana.official@gmail.com",
       action: "Send Email",
-      url: "mailto:john@dev.com",
+      url: "mailto:ritankar.jana.official@gmail.com",
       color: "text-red-500"
     },
     {
@@ -22,14 +22,6 @@ const ContactSection = () => {
       url: "https://calendly.com/johndoe",
       color: "text-blue-500"
     },
-    {
-      icon: Coffee,
-      title: "Buy me a Coffee",
-      description: "Support my work",
-      action: "Support",
-      url: "https://buymeacoffee.com/johndoe",
-      color: "text-orange-500"
-    }
   ];
 
   return (
@@ -37,28 +29,32 @@ const ContactSection = () => {
       {/* Main Contact Post */}
       <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
         <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
-            <span className="text-white font-bold text-sm">JD</span>
+          <div className="w-10 h-10 rounded-full  overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
+            <img
+              src="/profilePic.jpeg"
+              alt="Ritankar Jana"
+              className="w-full h-full object-cover"
+            />
           </div>
-          
+
           <div className="flex-1 min-w-0">
             <div className="flex items-center space-x-2 mb-2">
-              <span className="font-semibold">John Doe</span>
-              <span className="text-muted-foreground text-sm">@johndoe_dev</span>
+              <span className="font-semibold">Ritankar Jana</span>
+              <span className="text-muted-foreground text-sm">@jana_ritankar</span>
               <span className="text-muted-foreground text-sm">·</span>
               <span className="text-muted-foreground text-sm">Pinned</span>
             </div>
-            
+
             <div className="space-y-4">
               <div>
                 <h3 className="font-bold text-xl mb-3">Let's Build Together! 🚀</h3>
                 <div className="space-y-3 text-sm leading-relaxed">
                   <p>
-                    Always excited to collaborate on interesting projects! Whether you have an idea you'd 
-                    like to discuss, need help with a technical challenge, or just want to chat about tech, 
+                    Always excited to collaborate on interesting projects! Whether you have an idea you'd
+                    like to discuss, need help with a technical challenge, or just want to chat about tech,
                     I'm here for it.
                   </p>
-                  
+
                   <p>
                     Currently open to: <Badge variant="secondary" className="mx-1">Freelance</Badge>
                     <Badge variant="secondary" className="mx-1">Consulting</Badge>
@@ -117,21 +113,25 @@ const ContactSection = () => {
       {/* Availability Status */}
       <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
         <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
-            <span className="text-white font-bold text-sm">JD</span>
+          <div className="w-10 h-10 rounded-full  overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
+            <img
+              src="/profilePic.jpeg"
+              alt="Ritankar Jana"
+              className="w-full h-full object-cover"
+            />
           </div>
-          
+
           <div className="flex-1 min-w-0">
             <div className="flex items-center space-x-2 mb-3">
-              <span className="font-semibold">John Doe</span>
-              <span className="text-muted-foreground text-sm">@johndoe_dev</span>
+              <span className="font-semibold">Ritankar Jana</span>
+              <span className="text-muted-foreground text-sm">@jana_ritankar</span>
               <span className="text-muted-foreground text-sm">·</span>
               <span className="text-muted-foreground text-sm">2h</span>
             </div>
-            
+
             <div className="space-y-4">
               <h3 className="font-bold text-lg">Current Availability 📅</h3>
-              
+
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
@@ -144,7 +144,7 @@ const ContactSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="flex items-center space-x-2 text-sm">
                     <MapPin className="w-4 h-4 text-muted-foreground" />
-                    <span>San Francisco, CA (PST)</span>
+                    <span>Kolkata, West Bengal, India</span>
                   </div>
                   <div className="flex items-center space-x-2 text-sm">
                     <Clock className="w-4 h-4 text-muted-foreground" />
@@ -158,6 +158,7 @@ const ContactSection = () => {
                     <ul className="text-sm space-y-1 text-muted-foreground">
                       <li>• Challenging full-stack projects</li>
                       <li>• Open-source collaborations</li>
+                      <li>• Unique Software Development Projects</li>
                       <li>• Technical consulting opportunities</li>
                       <li>• Speaking engagements</li>
                     </ul>

@@ -1,46 +1,105 @@
-
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Heart, Repeat2 } from "lucide-react";
 
 const GitHubStats = () => {
-  const stats = {
-    totalCommits: 1247,
-    publicRepos: 42,
-    followers: 156,
-    following: 89,
-    currentStreak: 23,
-    longestStreak: 87,
-    totalContributions: 2156
-  };
+  const username = "riyal-rj";
 
-  const languages = [
-    { name: "JavaScript", percentage: 35, color: "bg-yellow-500" },
-    { name: "TypeScript", percentage: 28, color: "bg-blue-500" },
-    { name: "Python", percentage: 18, color: "bg-green-500" },
-    { name: "Rust", percentage: 12, color: "bg-orange-500" },
-    { name: "Other", percentage: 7, color: "bg-gray-500" }
-  ];
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({
+    totalCommits: 0,
+    publicRepos: 0,
+    followers: 0,
+    following: 0,
+    currentStreak: 0,
+    longestStreak: 1,
+    totalContributions: 0,
+  });
+  const [languages, setLanguages] = useState([]);
+
+  useEffect(() => {
+    async function fetchGitHubData() {
+      try {
+        // Fetch user info
+        const userRes = await fetch(`https://api.github.com/users/${username}`);
+        const userData = await userRes.json();
+
+        // Fetch repos info
+        const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+        const reposData = await reposRes.json();
+
+        // Aggregate languages from repos
+        const langCount = {};
+        for (const repo of reposData) {
+          if (repo.language) {
+            langCount[repo.language] = (langCount[repo.language] || 0) + 1;
+          }
+        }
+
+        // Sort and compute percentages for top 5 languages
+        if (!langCount || typeof langCount !== 'object') return [];
+
+        const totalLangs = Object.values(langCount).reduce((a, b) => a + Number(b), 0);
+        if (totalLangs === 0) return [];
+
+        const sortedLangs = Object.entries(langCount)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 5)
+          .map(([name, count]) => ({
+            name,
+            percentage: Math.round((count / totalLangs) * 100),
+            color: getLanguageColor(name),
+          }));
+
+        setStats({
+          totalCommits: 0, // GitHub REST API doesn't provide total commits easily
+          publicRepos: userData.public_repos,
+          followers: userData.followers,
+          following: userData.following,
+          currentStreak: 0, // Placeholder — would need GraphQL API to get real streak
+          longestStreak: 1,
+          totalContributions: 0, // Placeholder — would need GraphQL API
+        });
+
+        setLanguages(sortedLangs);
+      } catch (error) {
+        console.error("Error fetching GitHub data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchGitHubData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
+  // Fallback initials from your name or username for avatar circle
+  const initials = "RJ";
 
   return (
     <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
       <div className="flex items-start space-x-3">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
-          <span className="text-white font-bold text-sm">JD</span>
-        </div>
-        
+       <div className="w-10 h-10 rounded-full  overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
+            <img
+              src="/profilePic.jpeg"
+              alt="Ritankar Jana"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
         <div className="flex-1 min-w-0">
           <div className="flex items-center space-x-2 mb-2">
-            <span className="font-semibold">John Doe</span>
-            <span className="text-muted-foreground text-sm">@johndoe_dev</span>
+            <span className="font-semibold">Ritankar Jana</span>
+            <span className="text-muted-foreground text-sm">@{username}</span>
             <span className="text-muted-foreground text-sm">·</span>
-            <span className="text-muted-foreground text-sm">6h</span>
+            <span className="text-muted-foreground text-sm">Live</span>
           </div>
-          
+
           <div className="space-y-4">
             <div>
-              <h3 className="font-bold text-lg mb-1">GitHub Wrapped 2024 📊</h3>
+              <h3 className="font-bold text-lg mb-1">GitHub Wrapped 2025 📊</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 This year has been incredible! Here's my coding journey in numbers 🚀
               </p>
@@ -87,9 +146,12 @@ const GitHubStats = () => {
                       <span>Current</span>
                       <span className="font-semibold">{stats.currentStreak} days</span>
                     </div>
-                    <Progress value={(stats.currentStreak / stats.longestStreak) * 100} className="h-2" />
+                    <Progress
+                      value={(stats.currentStreak / stats.longestStreak) * 100}
+                      className="h-2"
+                    />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs">
                       <span>Best</span>
@@ -105,7 +167,7 @@ const GitHubStats = () => {
                   <CardTitle className="text-sm">💻 Top Languages</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  {languages.slice(0, 3).map((lang, index) => (
+                  {languages.map((lang, index) => (
                     <div key={index} className="space-y-1">
                       <div className="flex justify-between text-xs">
                         <div className="flex items-center space-x-2">
@@ -133,7 +195,7 @@ const GitHubStats = () => {
                 </Button>
                 <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-red-500">
                   <Heart className="w-4 h-4 mr-1" />
-                  <span className="text-xs">156</span>
+                  <span className="text-xs">{stats.followers}</span>
                 </Button>
               </div>
             </div>
@@ -143,5 +205,23 @@ const GitHubStats = () => {
     </div>
   );
 };
+
+// Utility: map language names to colors (simple example)
+function getLanguageColor(name) {
+  switch (name.toLowerCase()) {
+    case "javascript":
+      return "bg-yellow-500";
+    case "typescript":
+      return "bg-blue-500";
+    case "python":
+      return "bg-green-500";
+    case "rust":
+      return "bg-orange-500";
+    case "java":
+      return "bg-red-600";
+    default:
+      return "bg-gray-500";
+  }
+}
 
 export default GitHubStats;
