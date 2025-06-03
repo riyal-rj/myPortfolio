@@ -77,9 +77,10 @@ const ProfileSection = () => {
             </div>
 
             <p className="text-sm leading-relaxed">
-              Building amazing web experiences & contributing to OSS 🌍 •
-              Currently @TechCorp • Love: AI, Web3, DevTools ⚡
+              I wrangle backend logic and tame rogue LLMs for fun — still waiting for an AI to do my laundry.
+              Currently open to work, mildly caffeinated, and occasionally productive 🤖☕
             </p>
+
 
             <div className="flex items-center space-x-4 text-sm text-muted-foreground">
               <div className="flex items-center space-x-1">
@@ -92,8 +93,8 @@ const ProfileSection = () => {
               </div>
               <div className="flex items-center space-x-1">
                 <Link className="w-4 h-4" />
-                <a href="https://johndoe.dev" className="text-blue-500 hover:underline">
-                  johndoe.dev
+                <a href="https://github.com/riyal-rj" className="text-blue-500 hover:underline">
+                  riyalRJ.dev
                 </a>
               </div>
             </div>

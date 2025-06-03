@@ -21,7 +21,7 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
             <div className="flex items-center space-x-2">
               <div className="w-10 h-10 rounded-full  overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
                 <img
-                  src="/profilePic.jpeg"
+                  src="/Blue-Modern-Personal-Logo.svg"
                   alt="Ritankar Jana"
                   className="w-full h-full object-cover"
                 />
