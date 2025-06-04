@@ -15,14 +15,14 @@ const AboutSection = () => {
     {
       degree: "ISC - Class XII",
       institution: "W.W.A Cossipore English School",
-      period: "2019 - 2021",
+      period: "2019 - 2020",
       description:
         "Scored 89.5% while geeking out on Physics, Chemistry, and Math. 📐 Biology? We kept a polite distance. 😎 Math was my playground — logic puzzles that felt like games. Physics sparked cosmic curiosity, and Organic Chemistry? Doodling molecules was my jam. 🧬 CS sealed the deal, blending logic with creativity. ✨",
     },
     {
       degree: "LKG to Class X (ICSE)",
       institution: "W.W.A Cossipore English School",
-      period: "2006 - 2019",
+      period: "2006 - 2018",
       description:
         "W.W.A CES was my second home. From LKG scribbles to Class 10 Java sparks, I grew up here. 💻 That first line of code in Class 9? Pure magic. Quizzes, IT fests, and stage moments fueled my curiosity. 🧠 It wasn’t just school — it was where I discovered tech and myself. 🌟",
     },
