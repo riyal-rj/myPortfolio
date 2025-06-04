@@ -169,15 +169,15 @@ const SocialSidebar = () => {
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur-md shadow-md">
         <div className="flex justify-around items-center py-2 px-4">
           {[
-            { icon: FaGithub, label: "GitHub", url: "https://github.com/riyal-rj" },
-            { icon: FaLinkedin, label: "LinkedIn", url: "https://linkedin.com/in/riyal-rj" },
-            { icon: FaTwitter, label: "Twitter", url: "https://x.com/jana_ritankar" },
-            { icon: FaFacebook, label: "Facebook", url: "https://www.facebook.com/janaritankar/" },
-            { icon: FaInstagram, label: "Instagram", url: "https://www.instagram.com/jana_ritankar/" },
-            { icon: SiLeetcode, label: "LeetCode", url: "https://leetcode.com/u/logiknest-RJ/" },
-            { icon: Globe, label: "Portfolio", url: "https://ritankar.tech" },
-            { icon: Calendar, label: "Schedule", url: "https://calendly.com/ritankar-jana-official" },
-            { icon: Mail, label: "Email", url: "mailto:ritankar.jana.official@gmail.com" },
+            { icon: FaGithub,  url: "https://github.com/riyal-rj" },
+            { icon: FaLinkedin,  url: "https://linkedin.com/in/riyal-rj" },
+            { icon: FaTwitter,  url: "https://x.com/jana_ritankar" },
+            { icon: FaFacebook,  url: "https://www.facebook.com/janaritankar/" },
+            { icon: FaInstagram,  url: "https://www.instagram.com/jana_ritankar/" },
+            { icon: SiLeetcode,  url: "https://leetcode.com/u/logiknest-RJ/" },
+            { icon: Globe,  url: "https://ritankar.tech" },
+            { icon: Calendar,  url: "https://calendly.com/ritankar-jana-official" },
+            { icon: Mail,  url: "mailto:ritankar.jana.official@gmail.com" },
           ].map((item, index) => {
             const Icon = item.icon;
             return (
@@ -189,7 +189,6 @@ const SocialSidebar = () => {
                 className="flex flex-col items-center text-xs text-muted-foreground hover:text-foreground"
               >
                 <Icon className="w-5 h-5 mb-0.5" />
-                <span>{item.label}</span>
               </a>
             );
           })}
