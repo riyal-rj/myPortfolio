@@ -70,8 +70,7 @@ const SocialSidebar = () => {
   ];
 
   const quickActions = [
-    { icon: Globe, label: "Portfolio", url: "https://ritankar.tech" },
-    { icon: FileText, label: "Resume", url: "/Ritankar_Jana_Resume.pdf" },
+    { icon: FileText, label: "Resume", url: "/resume.pdf" },
     { icon: Calendar, label: "Schedule", url: "https://calendly.com/ritankar-jana-official" },
   ];
 
