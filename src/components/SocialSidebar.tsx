@@ -172,11 +172,8 @@ const SocialSidebar = () => {
             { icon: FaGithub,  url: "https://github.com/riyal-rj" },
             { icon: FaLinkedin,  url: "https://linkedin.com/in/riyal-rj" },
             { icon: FaTwitter,  url: "https://x.com/jana_ritankar" },
-            { icon: FaFacebook,  url: "https://www.facebook.com/janaritankar/" },
             { icon: FaInstagram,  url: "https://www.instagram.com/jana_ritankar/" },
             { icon: SiLeetcode,  url: "https://leetcode.com/u/logiknest-RJ/" },
-            { icon: Globe,  url: "https://ritankar.tech" },
-            { icon: Calendar,  url: "https://calendly.com/ritankar-jana-official" },
             { icon: Mail,  url: "mailto:ritankar.jana.official@gmail.com" },
           ].map((item, index) => {
             const Icon = item.icon;
