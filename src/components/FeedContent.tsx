@@ -15,8 +15,8 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
       case "Home":
         return (
           <div className="space-y-0">
-            <GitHubStats />
             <ProjectsSection />
+            <GitHubStats />
           </div>
         );
       case "Projects":

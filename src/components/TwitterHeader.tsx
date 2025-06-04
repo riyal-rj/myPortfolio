@@ -97,7 +97,7 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
           >
-            {[Search, Bell, Mail].map((Icon, i) => (
+            {/* {[Search, Bell, Mail].map((Icon, i) => (
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.15 }}
@@ -105,7 +105,7 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
               >
                 <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
               </motion.div>
-            ))}
+            ))} */}
             <motion.div whileTap={{ rotate: 90 }}>
               <Button
                 variant="ghost"
