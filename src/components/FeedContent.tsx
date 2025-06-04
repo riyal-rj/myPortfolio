@@ -4,9 +4,6 @@ import BlogSection from "@/components/BlogSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import GitHubStats from "@/components/GitHubStats";
-import ProjectsShowcase from "./ProjectsShowcase";
-import SkillMap from "./SkillMap";
-import LearningJourney from "./LearningJourney";
 
 interface FeedContentProps {
   activeTab: string;

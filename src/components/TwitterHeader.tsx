@@ -27,10 +27,11 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
       className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/30 dark:bg-black/30 backdrop-blur-xl shadow-md"
     >
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
+        {/* Main Layout */}
+        <div className="flex flex-wrap items-center justify-between gap-y-3 py-3">
+          {/* Logo Section */}
           <motion.div
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 min-w-0"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
@@ -42,12 +43,12 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="font-bold text-xl hidden sm:block bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-pink-500">
+            <span className="truncate font-bold text-lg sm:text-xl hidden sm:block bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-pink-500">
               Ritankar Jana
             </span>
           </motion.div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Tabs */}
           <motion.nav
             className="hidden md:flex items-center space-x-2 relative"
             initial="hidden"
@@ -71,7 +72,7 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
                   hidden: { opacity: 0, y: 10 },
                   visible: { opacity: 1, y: 0 },
                 }}
-                className={`relative px-4 py-2 text-sm font-semibold rounded-md transition-all ${
+                className={`relative px-3 py-2 text-sm font-semibold rounded-md transition-all ${
                   activeTab === tab
                     ? "text-white dark:text-blue-300 scale-[1.05]"
                     : "text-gray-700 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white"
@@ -89,9 +90,9 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
             ))}
           </motion.nav>
 
-          {/* Icons */}
+          {/* Icons and Theme Toggle */}
           <motion.div
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 sm:space-x-3"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
@@ -100,9 +101,9 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.15 }}
-                className="hidden sm:flex p-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition"
+                className="flex p-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition"
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
               </motion.div>
             ))}
             <motion.div whileTap={{ rotate: 90 }}>
@@ -118,24 +119,24 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
           </motion.div>
         </div>
 
-        {/* Mobile Nav */}
+        {/* Mobile Tabs */}
         <motion.div
-          className="md:hidden pt-2 overflow-x-auto scroll-smooth px-1"
+          className="md:hidden pt-2 overflow-x-auto scroll-smooth px-1 max-w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <div className="flex space-x-2">
+          <div className="flex space-x-2 w-max">
             {tabs.map((tab) => (
               <motion.button
                 key={tab}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 text-xs font-semibold rounded-md transition-colors ${
+                className={`px-4 py-2 text-sm font-semibold whitespace-nowrap rounded-md transition-colors ${
                   activeTab === tab
                     ? "bg-gradient-to-r from-indigo-500 to-pink-500 text-white shadow"
-                    : "text-gray-600 dark:text-gray-300 hover:bg-white/10"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-white/10"
                 }`}
               >
                 {tab}
