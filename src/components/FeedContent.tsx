@@ -15,14 +15,14 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
       case "Home":
         return (
           <div className="space-y-0">
-            <ProjectsSection />
+            <ProjectsSection showFeaturedOnly={true}/>
             <GitHubStats />
           </div>
         );
       case "Projects":
         return (
         <div className="space-y-0">
-        <ProjectsSection />
+        <ProjectsSection showFeaturedOnly={false} />
         </div>);
       case "Sneak Peek":
         return <BlogSection />;

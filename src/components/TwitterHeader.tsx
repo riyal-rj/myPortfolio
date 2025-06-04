@@ -30,23 +30,26 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
         {/* Main Layout */}
         <div className="flex flex-wrap items-center justify-between gap-y-1 py-1.5 sm:py-3">
           {/* Logo Section */}
-          <motion.div
-            className="flex items-center space-x-1 min-w-0"
-            initial={{ opacity: 0, x: -15 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-md ring-1 ring-white/20">
-              <img
-                src="/Blue-Modern-Personal-Logo.svg"
-                alt="Ritankar Jana"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <span className="truncate font-bold text-sm sm:text-base md:text-lg hidden xs:block bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-pink-500">
-              Ritankar Jana
-            </span>
-          </motion.div>
+         <motion.div
+      className="flex items-center space-x-2 min-w-0"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+      whileHover={{ scale: 1.05 }}
+      role="banner"
+      aria-label="Profile header with name and logo"
+    >
+      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center shadow-lg ring-2 ring-white/30 transition-transform duration-300 hover:ring-indigo-400">
+        <img
+          src="/Blue-Modern-Personal-Logo.svg"
+          alt="Ritankar Jana's logo"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <span className="font-bold text-sm sm:text-base md:text-lg truncate bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-600 transition-colors duration-300 hover:text-indigo-400">
+        Ritankar Jana
+      </span>
+    </motion.div>
 
           {/* Desktop Tabs */}
           <motion.nav
@@ -72,11 +75,10 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
                   hidden: { opacity: 0, y: 8 },
                   visible: { opacity: 1, y: 0 },
                 }}
-                className={`relative px-2 py-1 text-xs md:text-sm font-semibold rounded-md transition-all ${
-                  activeTab === tab
+                className={`relative px-2 py-1 text-xs md:text-sm font-semibold rounded-md transition-all ${activeTab === tab
                     ? "text-white dark:text-blue-300 scale-[1.03]"
                     : "text-gray-700 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white"
-                }`}
+                  }`}
               >
                 {tab}
                 {activeTab === tab && (
@@ -125,11 +127,10 @@ const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.92 }}
                 onClick={() => setActiveTab(tab)}
-                className={`px-2.5 py-1 text-[10px] xs:text-xs sm:text-sm font-medium whitespace-nowrap rounded-md transition-colors touch-manipulation ${
-                  activeTab === tab
+                className={`px-2.5 py-1 text-[10px] xs:text-xs sm:text-sm font-medium whitespace-nowrap rounded-md transition-colors touch-manipulation ${activeTab === tab
                     ? "bg-gradient-to-r from-indigo-500 to-pink-500 text-white shadow-sm"
                     : "text-gray-700 dark:text-gray-300 hover:bg-white/10"
-                }`}
+                  }`}
               >
                 {tab}
               </motion.button>

@@ -10,34 +10,33 @@ const AboutSection = () => {
       institution: "Academy of Technology",
       period: "2021 - Present",
       description:
-        "When I first walked into college, I was the classic introvert — quiet, observant, and always calculating the right moment to speak. But somewhere between classes, compiler errors, and canteen breaks, I slowly erupted like a volcano. 🌋 The once-quiet guy found his groove in the last three benches — where ideas, jokes, and dreams flowed freely. 💬✨ Whether it was dissecting algorithms or just pulling each other’s legs, those backbench moments with my close friends made the journey unforgettable. Sure, I came here to study code, but I also ended up decoding friendship, growth, and a whole lot of laughter."
+        "Started as the quiet kid in the back, but college flipped the script. 🌋 From compiler crashes to canteen banter, I found my tribe in the last three benches. 💬 Coding algorithms and cracking jokes — those moments shaped me as much as the degree. Friendship, growth, and a whole lot of laughs? Nailed it. 🚀",
     },
     {
       degree: "ISC - Class XII",
       institution: "W.W.A Cossipore English School",
       period: "2019 - 2021",
       description:
-        "Graduated with 89.5%, immersed in the trio of Physics, Chemistry, and Mathematics. 🧪⚛️ I wouldn’t call myself a Biology hater — just shared a respectful distance with it. 😅 Math, on the other hand, was a world I truly enjoyed — clean logic, structured thinking, and puzzles that felt like games. 📐✨ I had a slight inclination towards Physics too — especially the parts that made you pause and think about how the universe works. 🌌 And then there was Organic Chemistry, where I’d often catch myself doodling molecular structures in the margins — almost like drawing little logic maps with atoms. 🧬🖊️ CS was the cherry on top — the place where logic met creativity."
+        "Scored 89.5% while geeking out on Physics, Chemistry, and Math. 📐 Biology? We kept a polite distance. 😎 Math was my playground — logic puzzles that felt like games. Physics sparked cosmic curiosity, and Organic Chemistry? Doodling molecules was my jam. 🧬 CS sealed the deal, blending logic with creativity. ✨",
     },
     {
       degree: "LKG to Class X (ICSE)",
       institution: "W.W.A Cossipore English School",
       period: "2006 - 2019",
       description:
-        "W.W.A CES wasn’t just the place I went to school — it was where I *grew up*. From scribbling alphabets in LKG ✏️ to solving math problems in Class 10, every hallway, every classroom felt like a second home. It was in Class 9 where I first wrote a line of Java code — a moment that lit a spark 💻 in me that still burns bright. I had no idea those curly braces would shape my future, but they did. That was my gateway into programming, logic, and problem-solving — and the beginning of a beautiful bond with tech.\n\nI wasn’t just a classroom kid either. I dove headfirst into quizzes, IT fests, and competitions that stretched my brain and confidence alike. 🧠✨ Whether it was tech quizzes or school events, I loved soaking in knowledge and the thrill of being on stage. Those years weren't just about grades; they were about discovery, curiosity, and an emotional connection that’s hard to put into words."
-    }
-
+        "W.W.A CES was my second home. From LKG scribbles to Class 10 Java sparks, I grew up here. 💻 That first line of code in Class 9? Pure magic. Quizzes, IT fests, and stage moments fueled my curiosity. 🧠 It wasn’t just school — it was where I discovered tech and myself. 🌟",
+    },
   ];
 
   const achievements = [
-  "🎯 Tried my hands at a little bit of everything — from quizzes to hackathons to open source.",
-  "🏆 Made it to the TCS ITWiz 2017 regional rounds — my first taste of tech on stage.",
-  "🧠 Led Kodenza, our interschool coding hackathon, in 2019 — learned more organizing it than any textbook ever taught me.",
-  "💡 Participated in the RBI Hackathon mamed HaRBInger-2k24 with 'TriNayan' — built an AI-powered solution to solve real-world currency detection problems.",
-  "🛠️ Part of Smart India Hackathon (SIH) 2024 — loved the chaos, the ideas, the code sprints.",
-  "🌱 Started open source contributions — did some experimental doodling in Hugging Face (still learning, still loving it).",
-  "📜 Earned my Full Stack Java Developer certificate from Wipro TalentNext — more than a badge, a small milestone in my dev journey."
-];
+    "1. Jack-of-all-trades? Nailed quizzes, hackathons, and open-source sprints. 🎯",
+    "2. Rocked the TCS ITWiz 2017 regional stage — my first tech spotlight moment. 🏆",
+    "3. Led Kodenza 2019, our interschool coding hackathon — organizing taught me more than any textbook. 🧠",
+    "4. Built 'TriNayan' for RBI’s HaRBInger-2k24 — AI-powered currency detection to solve real-world problems. 💡",
+    "5. Thrived in the chaos of Smart India Hackathon 2024 — code, ideas, and adrenaline. 🛠️",
+    "6. Dipped my toes in open source — doodling with Hugging Face and loving the learning curve. 🌱",
+    "7. Snagged Wipro TalentNext’s Full Stack Java Developer cert — a badge, a milestone, a vibe. 📜",
+  ];
 
   return (
     <div className="space-y-0">
@@ -60,31 +59,38 @@ const AboutSection = () => {
               <div className="rounded-lg overflow-hidden border border-border">
                 <img src="RITANKAR JANA CASUAL PHOTO.jpg" alt="Captured moment by Ritankar" className="w-200 h-200" />
               </div>
-              <div className="space-y-3 text-sm leading-relaxed">
-                <p>
-                  Hey there! 👋 I’m Ritankar Jana, currently in my final year of B.Tech in Computer Science and Engineering at the Academy of Technology, holding a GPA of 8.99. My world revolves around the fascinating intersection of Generative AI, Artificial Intelligence, and Software Development Technologies — fields that constantly challenge me to grow, experiment, and push boundaries.
+              <div className="space-y-4 text-sm leading-relaxed max-w-2xl mx-auto">
+                <p className="text-gray-800 dark:text-gray-200 font-medium transition-transform duration-300 hover:scale-105">
+                  Yo, I’m Ritankar Jana! 👋 Final-year B.Tech CSE student at Academy of Technology, rocking a 8.99 GPA. My playground? The wild world of Generative AI and software dev. 🌟
                 </p>
-                <p>
-                  I don’t claim to be a “pro developer” (yet), but I bring a mindset tuned for steady learning and sustainable growth. I like to think of myself as a lifelong learner with an optimal “learning rate,” carefully balancing the desire to grow fast while avoiding the pitfalls of overfitting — the trap of getting too narrow or rigid in skill development. This philosophy keeps me curious and adaptable, always open to exploring new ideas and perspectives.
+                <p className="text-gray-700 dark:text-gray-300 italic hover:text-indigo-500 transition-colors duration-200">
+                  Not a pro coder (yet), but I’m wired for learning. Think of me as a neural net with a killer learning rate — fast enough to grow, slow enough to avoid overfitting. 🚀
                 </p>
-                <p>
-                  What truly lights me up is going beyond just writing code — I love diving into the heart of the technologies I work with, unraveling the elegant logic, architecture, and design patterns that make software both powerful and resilient. I often find myself lost in complex concepts, breaking them down into simple, clear ideas, and imagining how those pieces come together to solve real-world problems. This deeper way of thinking helps me build software that’s not just functional, but thoughtfully crafted, scalable, and built to stand the test of time.
+                <p className="text-gray-800 dark:text-gray-200 font-medium transition-transform duration-300 hover:scale-105">
+                  I don’t just code — I dissect tech. Unraveling logic, design patterns, and architecture to build software that’s scalable and timeless is my jam. 💻✨
                 </p>
-                <p>
-                  Beyond the academic grind, I’m a creative soul who loves to balance logic with play. ⚽️ I’m still a newbie on the field, but there’s something magical about the pure joy of chasing the ball 🏃‍♂️, the rush of energy, and the camaraderie that comes with every sprint and pass. For me, it’s never about skill alone — it’s all about the fun and connection that football brings.
+                <p className="text-gray-700 dark:text-gray-300 hover:text-green-500 transition-colors duration-200">
+                  Off the keyboard, I’m a rookie footballer chasing the ball with pure joy. ⚽️ It’s less about skill, more about the vibe and camaraderie. 🏃‍♂️
                 </p>
-                <p>
-                  Photography is a passion that truly defines a part of who I am. 📸 With my trusty Canon 200D Mark II always in hand, I’m on a constant hunt for light and stories — whether it’s the golden glow of a sunset 🌅 or the quiet emotions dancing across someone’s face. For me, photography isn’t just a hobby; it’s a wordless way to tell stories, a creative outlet that perfectly balances my analytical mind and brings a sense of harmony to my world. 🎨✨
+                <p className="text-gray-800 dark:text-gray-200 font-medium transition-transform duration-300 hover:scale-105">
+                  Photography’s my soul food. 📸 Armed with my Canon 200D Mark II, I hunt sunsets 🌅 and fleeting emotions, weaving stories without words. 🎨
                 </p>
-                <p>
-                  If you’re curious about AI 🤖, passionate about photography 📸, or just want to chat about software development 💻, coding 🧑‍💻, tech ⚙️, or even football ⚽️ (where I’m happy just to run around and kick the ball at random 🏃‍♂️🔥), or the perfect playlist for a rainy day 🎶☔, I’m always up for a conversation. Let’s connect, share ideas, and create something amazing together.
+                <p className="text-gray-700 dark:text-gray-300 italic hover:text-blue-500 transition-colors duration-200">
+                  Love AI 🤖, photography 📸, coding 💻, or just random football kicks ⚽️? Hit me up — let’s spark ideas and build something epic! 🎶
                 </p>
               </div>
 
-              <div className="flex gap-2">
-                <Button size="sm" variant="outline">
-                  <Download className="w-4 h-4 mr-2" />
-                  Download Resume
+              <div className="flex justify-center items-center gap-2 py-4">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="flex items-center gap-2 text-gray-800 dark:text-gray-200 hover:bg-indigo-500 hover:text-white transition-colors duration-300"
+                  asChild
+                >
+                  <a href="/resume.pdf" download="Ritankar_Jana_Resume.pdf">
+                    <Download className="w-4 h-4" />
+                    Grab My Resume
+                  </a>
                 </Button>
               </div>
               <div className="flex items-center justify-between pt-3 border-t border-border/50">
@@ -187,7 +193,7 @@ const AboutSection = () => {
           <div className="flex-1 min-w-0">
             <div className="flex items-center space-x-2 mb-3">
               <span className="font-semibold">Ritankar Jana</span>
-              <span className="text-muted-foreground text-sm">@jana</span>
+              <span className="text-muted-foreground text-sm">@jana_ritankar</span>
               <span className="text-muted-foreground text-sm">·</span>
               <span className="text-muted-foreground text-sm">1w</span>
             </div>

@@ -15,7 +15,6 @@ import {
   FaGithub,
   FaLinkedin,
   FaTwitter,
-  FaEnvelope,
   FaPhone,
   FaFacebook,
   FaInstagram,
@@ -41,12 +40,6 @@ const SocialSidebar = () => {
       label: "Twitter",
       handle: "@jana_ritankar",
       url: "https://x.com/jana_ritankar",
-    },
-    {
-      icon: FaFacebook,
-      label: "Facebook",
-      handle: "Ritankar Jana",
-      url: "https://www.facebook.com/janaritankar/",
     },
     {
       icon: FaInstagram,

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { MapPin, Calendar, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
+import { motion } from "framer-motion";
 const ProfileSection = () => {
   const [currentRole, setCurrentRole] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -66,11 +66,26 @@ const ProfileSection = () => {
               <h1 className="text-lg sm:text-xl font-bold">Ritankar Jana</h1>
               <Badge variant="secondary" className="text-[10px] sm:text-xs">PRO</Badge>
             </div>
-            <Button 
-              className="px-3 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
             >
-              Follow
-            </Button>
+              <Button
+                asChild
+                className="px-3 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold text-[#1DA1F2] bg-white border border-[#1DA1F2] hover:bg-[#E8F5FE] hover:text-[#0C7ABF] dark:bg-gray-900 dark:text-[#1DA1F2] dark:border-[#1DA1F2] dark:hover:bg-gray-800 dark:hover:text-[#4AB3F4] rounded-full shadow-sm transition-all duration-200"
+                aria-label="Follow Ritankar Jana on X"
+              >
+                <a
+                  href="https://www.linkedin.com/in/riyal-rj/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Follow
+                </a>
+              </Button>
+            </motion.div>
           </div>
           <p className="text-muted-foreground text-xs sm:text-sm mt-1">@riyal-RJ</p>
 
