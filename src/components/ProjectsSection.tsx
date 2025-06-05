@@ -5,7 +5,7 @@ import { ExternalLink, Github, Star, GitFork } from "lucide-react";
 import SkillMap from "./SkillMap";
 import LearningJourney from "./LearningJourney";
 
-const ProjectsSection = ({ showFeaturedOnly = false }) => {
+const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false , showLearningJourney=false}) => {
   const projects = [
     {
       id: 1,
@@ -111,10 +111,20 @@ const ProjectsSection = ({ showFeaturedOnly = false }) => {
   return (
     <div className="border-b border-border pb-6">
       {/* Skill Map Section */}
-      <SkillMap />
+      {
+        showSkillMap && (
+          <SkillMap />
+        )
+      }
+
 
       {/* Learning Journey Section */}
-      <LearningJourney />
+      {
+        showLearningJourney && (
+          <LearningJourney />
+        )
+      }
+      
 
       {/* Projects Section */}
       <Card>
