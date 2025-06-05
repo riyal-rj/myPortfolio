@@ -4,11 +4,53 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Heart, Repeat2 } from "lucide-react";
 
+// Type definitions for GitHub API responses
+interface ContributionDay {
+  date: string;
+  contributionCount: number;
+}
+
+interface ContributionWeek {
+  contributionDays: ContributionDay[];
+}
+
+interface ContributionCalendar {
+  totalContributions: number;
+  weeks: ContributionWeek[];
+}
+
+interface GraphQLResponse {
+  data?: {
+    user?: {
+      contributionsCollection?: {
+        contributionCalendar: ContributionCalendar;
+      };
+    };
+  };
+  errors?: { message: string }[];
+}
+
+interface Language {
+  name: string;
+  percentage: number;
+  color: string;
+}
+
+interface Stats {
+  totalCommits: number;
+  publicRepos: number;
+  followers: number;
+  following: number;
+  currentStreak: number;
+  longestStreak: number;
+  totalContributions: number;
+}
+
 const GitHubStats = () => {
   const username = "riyal-rj";
   const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
   const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState({
+  const [stats, setStats] = useState<Stats>({
     totalCommits: 0,
     publicRepos: 0,
     followers: 0,
@@ -17,37 +59,38 @@ const GitHubStats = () => {
     longestStreak: 0,
     totalContributions: 0,
   });
-  const [languages, setLanguages] = useState([]);
-  const [error, setError] = useState(null);
-const ShimmerCard = () => (
-  <Card className="animate-pulse">
-    <CardContent className="p-3 space-y-2">
-      <div className="h-5 bg-muted rounded w-1/2 mx-auto"></div>
-      <div className="h-3 bg-muted rounded w-1/3 mx-auto"></div>
-    </CardContent>
-  </Card>
-);
+  const [languages, setLanguages] = useState<Language[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-const ShimmerProgress = () => (
-  <div className="space-y-3">
-    <div className="h-4 bg-muted rounded w-2/3"></div>
-    <div className="h-2 bg-muted rounded w-full"></div>
-  </div>
-);
+  const ShimmerCard = () => (
+    <Card className="animate-pulse">
+      <CardContent className="p-3 space-y-2">
+        <div className="h-5 bg-muted rounded w-1/2 mx-auto"></div>
+        <div className="h-3 bg-muted rounded w-1/3 mx-auto"></div>
+      </CardContent>
+    </Card>
+  );
+
+  const ShimmerProgress = () => (
+    <div className="space-y-3">
+      <div className="h-4 bg-muted rounded w-2/3"></div>
+      <div className="h-2 bg-muted rounded w-full"></div>
+    </div>
+  );
 
   // Function to get commits for a specific repository
-  const getRepoCommits = async (repoName) => {
+  const getRepoCommits = async (repoName: string): Promise<number> => {
     try {
       const response = await fetch(
         `https://api.github.com/repos/${username}/${repoName}/commits?author=${username}&per_page=100`,
         {
           headers: {
-            'Accept': 'application/vnd.github.v3+json',
-            'Authorization': GITHUB_TOKEN ? `token ${GITHUB_TOKEN}` : ''
-          }
+            Accept: "application/vnd.github.v3+json",
+            Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : "",
+          },
         }
       );
-      
+
       if (!response.ok) {
         if (response.status === 403) {
           console.warn(`Rate limited or forbidden for repo: ${repoName}`);
@@ -55,7 +98,7 @@ const ShimmerProgress = () => (
         }
         throw new Error(`Failed to fetch commits for ${repoName}`);
       }
-      
+
       const commits = await response.json();
       return Array.isArray(commits) ? commits.length : 0;
     } catch (error) {
@@ -65,22 +108,22 @@ const ShimmerProgress = () => (
   };
 
   // Function to get repository languages
-  const getRepoLanguages = async (repoName) => {
+  const getRepoLanguages = async (repoName: string): Promise<Record<string, number>> => {
     try {
       const response = await fetch(
         `https://api.github.com/repos/${username}/${repoName}/languages`,
         {
           headers: {
-            'Accept': 'application/vnd.github.v3+json',
-            'Authorization': GITHUB_TOKEN ? `token ${GITHUB_TOKEN}` : ''
-          }
+            Accept: "application/vnd.github.v3+json",
+            Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : "",
+          },
         }
       );
-      
+
       if (!response.ok) {
         return {};
       }
-      
+
       return await response.json();
     } catch (error) {
       console.error(`Error fetching languages for ${repoName}:`, error);
@@ -88,160 +131,238 @@ const ShimmerProgress = () => (
     }
   };
 
-  // Simulate streak calculation (since we can't easily get contribution graph without GraphQL)
-  const simulateStreakData = (repos) => {
-    // This is a simulation based on recent repository activity
-    // In a real scenario, you'd need GitHub GraphQL API with authentication
-    const now = new Date();
-    const recentRepos = repos.filter(repo => {
-      const updatedDate = new Date(repo.updated_at);
-      const daysDiff = (now - updatedDate) / (1000 * 60 * 60 * 24);
-      return daysDiff <= 30; // repos updated in last 30 days
-    });
+  // Calculate streak data using GraphQL
+  const calculateStreakData = async (username: string, token: string) => {
+    const query = `
+      query($username: String!) {
+        user(login: $username) {
+          contributionsCollection {
+            contributionCalendar {
+              totalContributions
+              weeks {
+                contributionDays {
+                  date
+                  contributionCount
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
 
-    // Simulate current streak based on recent activity
-    const currentStreak = Math.min(recentRepos.length * 2, 15);
-    const longestStreak = Math.max(currentStreak, Math.floor(repos.length / 2));
-    
-    return { current: currentStreak, longest: longestStreak };
+    try {
+      if (!token) {
+        throw new Error("GITHUB_TOKEN is missing. Set VITE_GITHUB_TOKEN in .env.");
+      }
+
+      console.log("Fetching streak data for:", username, "Token:", token.slice(0, 4) + "...");
+      const response = await fetch("https://api.github.com/graphql", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query,
+          variables: { username },
+        }),
+      });
+
+      console.log("GraphQL Response Status:", response.status);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("GraphQL Error Response:", errorText);
+        if (response.status === 401) {
+          throw new Error("Unauthorized: Invalid or expired GitHub token. Regenerate token with 'user' scope.");
+        }
+        if (response.status === 403) {
+          console.warn("Rate limit hit, retrying after 1 second...");
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          return await calculateStreakData(username, token);
+        }
+        throw new Error(`GraphQL request failed: ${response.status} - ${errorText}`);
+      }
+
+      const result: GraphQLResponse = await response.json();
+      console.log("GraphQL Result:", JSON.stringify(result, null, 2));
+      if (result.errors) {
+        console.error("GraphQL Errors:", result.errors);
+        throw new Error(`GraphQL errors: ${result.errors.map((e) => e.message).join(", ")}`);
+      }
+
+      const contributionDays =
+        result.data?.user?.contributionsCollection?.contributionCalendar?.weeks?.flatMap(
+          (week) => week.contributionDays
+        ) || [];
+      console.log("Contribution Days:", contributionDays);
+
+      let currentStreak = 0;
+      let longestStreak = 0;
+      let tempStreak = 0;
+      const today = new Date().toISOString().split("T")[0];
+      console.log("Today (UTC):", today);
+
+      for (const day of contributionDays) {
+        console.log(`Day: ${day.date}, Contributions: ${day.contributionCount}`);
+        if (day.contributionCount > 0) {
+          tempStreak++;
+          if (day.date === today) {
+            currentStreak = tempStreak;
+          }
+        } else {
+          longestStreak = Math.max(longestStreak, tempStreak);
+          tempStreak = 0;
+        }
+      }
+      longestStreak = Math.max(longestStreak, tempStreak);
+
+      return {
+        current: currentStreak,
+        longest: longestStreak,
+        totalContributions:
+          result.data?.user?.contributionsCollection?.contributionCalendar?.totalContributions || 0,
+      };
+    } catch (error: any) {
+      console.error("Error fetching streak data:", error.message);
+      throw error;
+    }
   };
 
   useEffect(() => {
     async function fetchGitHubData() {
       try {
         setError(null);
-        
-        // Fetch user info
+
+        console.log("GITHUB_TOKEN:", GITHUB_TOKEN ? "Loaded" : "Missing");
+
         const userResponse = await fetch(`https://api.github.com/users/${username}`, {
           headers: {
-            'Accept': 'application/vnd.github.v3+json',
-            'Authorization': GITHUB_TOKEN ? `token ${GITHUB_TOKEN}` : ''
-          }
+            Accept: "application/vnd.github.v3+json",
+            Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : "",
+          },
         });
-        
+
         if (!userResponse.ok) {
           throw new Error(`Failed to fetch user data: ${userResponse.status}`);
         }
-        
-        const userData = await userResponse.json();
-        console.log('User data:', userData);
 
-        // Fetch repositories
+        const userData = await userResponse.json();
+
         const reposResponse = await fetch(
           `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`,
           {
             headers: {
-              'Accept': 'application/vnd.github.v3+json',
-              'Authorization': GITHUB_TOKEN ? `token ${GITHUB_TOKEN}` : ''
-            }
+              Accept: "application/vnd.github.v3+json",
+              Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : "",
+            },
           }
         );
-        
+
         if (!reposResponse.ok) {
           throw new Error(`Failed to fetch repositories: ${reposResponse.status}`);
         }
-        
-        const reposData = await reposResponse.json();
-        console.log('Repos data:', reposData);
 
-        // Calculate total commits (limit to first 5 repos to avoid rate limiting)
+        const reposData = await reposResponse.json();
+
         let totalCommits = 0;
-        const activeRepos = reposData.filter(repo => !repo.fork).slice(0, 5);
-        
+        const activeRepos = reposData.filter((repo: any) => !repo.fork).slice(0, 5);
         for (const repo of activeRepos) {
           const commits = await getRepoCommits(repo.name);
           totalCommits += commits;
-          // Add delay to avoid rate limiting
-          await new Promise(resolve => setTimeout(resolve, 100));
+          await new Promise((resolve) => setTimeout(resolve, 100));
         }
 
-        // Aggregate languages from repositories
-        const languageStats = {};
-        const languagePromises = activeRepos.slice(0, 10).map(async (repo) => {
+        const streakData = await calculateStreakData(username, GITHUB_TOKEN);
+
+        const languageStats: Record<string, number> = {};
+        const languagePromises = activeRepos.slice(0, 10).map(async (repo: any) => {
           const languages = await getRepoLanguages(repo.name);
           return languages;
         });
 
         const languageResults = await Promise.all(languagePromises);
-        
-        languageResults.forEach(languages => {
+        languageResults.forEach((languages) => {
           Object.entries(languages).forEach(([lang, bytes]) => {
-            languageStats[lang] = (languageStats[lang] || 0) + bytes;
+            languageStats[lang] = (languageStats[lang] || 0) + (bytes as number);
           });
         });
 
-        // Use your actual language stats from GitHub
-        const topLanguages = [
-          { name: "Jupyter Notebook", percentage: 84, color: "bg-orange-500" },
-          { name: "Python", percentage: 1, color: "bg-green-500" },
-          { name: "JavaScript", percentage: 11, color: "bg-yellow-500" },
-          { name: "CSS", percentage: 1, color: "bg-blue-600" },
-          { name: "TypeScript", percentage: 1, color: "bg-blue-500" },
-          { name: "HTML", percentage: 1, color: "bg-orange-600" }
-        ];
+        const totalBytes = Object.values(languageStats).reduce((sum, bytes) => sum + bytes, 0);
+        const topLanguages = Object.entries(languageStats)
+          .map(([name, bytes]) => ({
+            name,
+            percentage: totalBytes ? Number(((bytes / totalBytes) * 100).toFixed(0)) : 0,
+            color: getLanguageColor(name),
+          }))
+          .sort((a, b) => b.percentage - a.percentage)
+          .slice(0, 6);
 
-        // Use your actual GitHub stats
         setStats({
           totalCommits,
           publicRepos: userData.public_repos || 0,
           followers: userData.followers || 0,
           following: userData.following || 0,
-          currentStreak: 1, // From your GitHub: Current Streak = 1
-          longestStreak: 6, // From your GitHub: Longest Streak = 6
-          totalContributions: 366, // From your GitHub: Total Contributions = 366
+          currentStreak: streakData.current,
+          longestStreak: streakData.longest,
+          totalContributions: streakData.totalContributions,
         });
 
         setLanguages(topLanguages);
-
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching GitHub data:", error);
-        setError(error.message);
+        setError(
+          error.message.includes("GITHUB_TOKEN")
+            ? "Missing GitHub token. Set VITE_GITHUB_TOKEN in .env."
+            : error.message.includes("Unauthorized")
+            ? "Invalid or expired GitHub token. Regenerate token with 'user' scope."
+            : error.message
+        );
       } finally {
         setLoading(false);
       }
     }
 
     fetchGitHubData();
-  }, []);
+  }, [username, GITHUB_TOKEN]);
 
- if (loading) {
-  return (
-    <div className="border-b border-border p-6">
-      <div className="space-y-4">
-        <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 rounded-full bg-muted animate-pulse flex-shrink-0"></div>
-          <div className="space-y-2 w-full">
-            <div className="h-4 bg-muted rounded w-1/4"></div>
-            <div className="h-3 bg-muted rounded w-1/3"></div>
-            <div className="h-3 bg-muted rounded w-1/6"></div>
+  if (loading) {
+    return (
+      <div className="border-b border-border p-6">
+        <div className="space-y-4">
+          <div className="flex items-start space-x-3">
+            <div className="w-10 h-10 rounded-full bg-muted animate-pulse flex-shrink-0"></div>
+            <div className="space-y-2 w-full">
+              <div className="h-4 bg-muted rounded w-1/4"></div>
+              <div className="h-3 bg-muted rounded w-1/3"></div>
+              <div className="h-3 bg-muted rounded w-1/6"></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[...Array(4)].map((_, i) => (
+              <ShimmerCard key={i} />
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card className="animate-pulse p-4 space-y-4">
+              <ShimmerProgress />
+              <ShimmerProgress />
+            </Card>
+            <Card className="animate-pulse p-4 space-y-4">
+              {[...Array(3)].map((_, i) => (
+                <div key={i}>
+                  <div className="h-3 bg-muted rounded w-3/4 mb-1"></div>
+                  <div className="h-1 bg-muted rounded w-full"></div>
+                </div>
+              ))}
+            </Card>
           </div>
         </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {[...Array(4)].map((_, i) => (
-            <ShimmerCard key={i} />
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card className="animate-pulse p-4 space-y-4">
-            <ShimmerProgress />
-            <ShimmerProgress />
-          </Card>
-          <Card className="animate-pulse p-4 space-y-4">
-            {[...Array(3)].map((_, i) => (
-              <div key={i}>
-                <div className="h-3 bg-muted rounded w-3/4 mb-1"></div>
-                <div className="h-1 bg-muted rounded w-full"></div>
-              </div>
-            ))}
-          </Card>
-        </div>
       </div>
-    </div>
-  );
-}
-
+    );
+  }
 
   if (error) {
     return (
@@ -249,9 +370,25 @@ const ShimmerProgress = () => (
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
             <div className="text-red-500 mb-2">⚠️ Error loading GitHub data</div>
-            <div className="text-sm text-muted-foreground">{error}</div>
-            <Button 
-              onClick={() => window.location.reload()} 
+            <div className="text-sm text-muted-foreground">
+              {error}
+              {error.includes("token") && (
+                <p>
+                  Visit{" "}
+                  <a
+                    href="https://github.com/settings/tokens"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 underline"
+                  >
+                    GitHub Settings
+                  </a>{" "}
+                  to generate a token with 'user' and 'repo' scopes.
+                </p>
+              )}
+            </div>
+            <Button
+              onClick={() => window.location.reload()}
               className="mt-4"
               size="sm"
             >
@@ -271,7 +408,6 @@ const ShimmerProgress = () => (
             src={`https://github.com/${username}.png?size=40`}
             alt="Ritankar Jana"
             className="w-full h-full object-cover"
-           
           />
         </div>
 
@@ -399,8 +535,8 @@ const ShimmerProgress = () => (
 };
 
 // Utility: map language names to colors
-function getLanguageColor(name) {
-  const colors = {
+function getLanguageColor(name: string): string {
+  const colors: Record<string, string> = {
     javascript: "bg-yellow-500",
     typescript: "bg-blue-500",
     python: "bg-green-500",
@@ -420,9 +556,9 @@ function getLanguageColor(name) {
     dockerfile: "bg-blue-800",
     yaml: "bg-red-400",
     json: "bg-gray-400",
-    markdown: "bg-gray-700"
+    markdown: "bg-gray-700",
   };
-  
+
   return colors[name.toLowerCase()] || "bg-gray-500";
 }
 
