@@ -49,6 +49,7 @@ interface Stats {
 const GitHubStats = () => {
   const username = "riyal-rj";
   const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+  const includeForks = false; // Set to true to include forked repos in commit count
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<Stats>({
     totalCommits: 0,
@@ -78,32 +79,42 @@ const GitHubStats = () => {
     </div>
   );
 
-  // Function to get commits for a specific repository with exponential backoff
+  // Function to get commits for a specific repository with pagination and exponential backoff
   const getRepoCommits = async (repoName: string, retries = 3, delay = 1000): Promise<number> => {
     try {
-      const response = await fetch(
-        `https://api.github.com/repos/${username}/${repoName}/commits?author=${username}&per_page=100`,
-        {
-          headers: {
-            Accept: "application/vnd.github.v3+json",
-            Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : "",
-          },
+      let allCommits: any[] = [];
+      let page = 1;
+      while (true) {
+        const response = await fetch(
+          `https://api.github.com/repos/${username}/${repoName}/commits?author=${username}&per_page=100&page=${page}`,
+          {
+            headers: {
+              Accept: "application/vnd.github.v3+json",
+              Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : "",
+            },
+          }
+        );
+
+        if (response.status === 403 && retries > 0) {
+          console.warn(`Rate limited for ${repoName}, retrying after ${delay}ms...`);
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          return await getRepoCommits(repoName, retries - 1, delay * 2);
         }
-      );
 
-      if (response.status === 403 && retries > 0) {
-        console.warn(`Rate limited for ${repoName}, retrying after ${delay}ms...`);
-        await new Promise((resolve) => setTimeout(resolve, delay));
-        return await getRepoCommits(repoName, retries - 1, delay * 2);
+        if (!response.ok) {
+          console.warn(`Failed to fetch commits for ${repoName}: ${response.status}`);
+          return allCommits.length;
+        }
+
+        const commits = await response.json();
+        if (!Array.isArray(commits) || commits.length === 0) break;
+        allCommits = [...allCommits, ...commits];
+        page++;
+        await new Promise((resolve) => setTimeout(resolve, 100)); // Rate limit buffer
       }
 
-      if (!response.ok) {
-        console.warn(`Failed to fetch commits for ${repoName}: ${response.status}`);
-        return 0;
-      }
-
-      const commits = await response.json();
-      return Array.isArray(commits) ? commits.length : 0;
+      console.log(`Commits for ${repoName}: ${allCommits.length}`);
+      return allCommits.length;
     } catch (error) {
       console.error(`Error fetching commits for ${repoName}:`, error);
       return 0;
@@ -269,14 +280,18 @@ const GitHubStats = () => {
           await new Promise((resolve) => setTimeout(resolve, 100)); // Rate limit buffer
         }
 
-        // Filter non-fork repos and get commits
-        const activeRepos = repos.filter((repo: any) => !repo.fork);
+        // Filter repos based on includeForks flag
+        const activeRepos = includeForks ? repos : repos.filter((repo: any) => !repo.fork);
+        console.log(`Active repos (${includeForks ? "including" : "excluding"} forks):`, activeRepos.map(r => r.name));
+
+        // Get commits from all active repos
         let totalCommits = 0;
-        for (const repo of activeRepos.slice(0, 5)) {
+        for (const repo of activeRepos) {
           const commits = await getRepoCommits(repo.name);
           totalCommits += commits;
           await new Promise((resolve) => setTimeout(resolve, 100));
         }
+        console.log(`Total commits: ${totalCommits}`);
 
         // Fetch streak data
         const streakData = await calculateStreakData(username, GITHUB_TOKEN);
