@@ -113,7 +113,7 @@ const ProfileSection = () => {
               </div>
               <div className="flex items-center space-x-1">
                 <Link className="w-3 h-3 sm:w-4 sm:h-4" />
-                <a href="https://github.com/riyal-rj" className="text-blue-500 hover:underline">
+                <a href="https://x.com/jana_ritankar" className="text-blue-500 hover:underline">
                   riyalRJ.dev
                 </a>
               </div>
