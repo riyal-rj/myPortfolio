@@ -51,12 +51,12 @@ const AboutSection = () => {
               <span className="font-semibold">Ritankar Jana</span>
               <span className="text-muted-foreground text-sm">@jana_ritankar</span>
               <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">June 05, 2025</span>
+              <span className="text-muted-foreground text-sm">June , 2025</span>
             </div>
             <div className="space-y-4">
               <h3 className="font-bold text-lg mb-3">About Me 👨‍💻</h3>
               <div className="rounded-lg overflow-hidden border border-border">
-                <img src="RITANKAR JANA CASUAL PHOTO.jpg" alt="Captured moment by Ritankar" className="w-full h-64 object-cover" />
+                <img src="RITANKAR JANA CASUAL PHOTO.jpg" alt="Captured moment by Ritankar" className="w-100 h-90 object-cover" />
               </div>
               <div className="space-y-3 text-sm leading-relaxed max-w-2xl mx-auto">
                 <p className="text-gray-800 dark:text-gray-200 font-medium transition-transform duration-300 hover:scale-105">
