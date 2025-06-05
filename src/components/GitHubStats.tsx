@@ -78,8 +78,8 @@ const GitHubStats = () => {
     </div>
   );
 
-  // Function to get commits for a specific repository
-  const getRepoCommits = async (repoName: string): Promise<number> => {
+  // Function to get commits for a specific repository with exponential backoff
+  const getRepoCommits = async (repoName: string, retries = 3, delay = 1000): Promise<number> => {
     try {
       const response = await fetch(
         `https://api.github.com/repos/${username}/${repoName}/commits?author=${username}&per_page=100`,
@@ -91,12 +91,15 @@ const GitHubStats = () => {
         }
       );
 
+      if (response.status === 403 && retries > 0) {
+        console.warn(`Rate limited for ${repoName}, retrying after ${delay}ms...`);
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        return await getRepoCommits(repoName, retries - 1, delay * 2);
+      }
+
       if (!response.ok) {
-        if (response.status === 403) {
-          console.warn(`Rate limited or forbidden for repo: ${repoName}`);
-          return 0;
-        }
-        throw new Error(`Failed to fetch commits for ${repoName}`);
+        console.warn(`Failed to fetch commits for ${repoName}: ${response.status}`);
+        return 0;
       }
 
       const commits = await response.json();
@@ -107,8 +110,8 @@ const GitHubStats = () => {
     }
   };
 
-  // Function to get repository languages
-  const getRepoLanguages = async (repoName: string): Promise<Record<string, number>> => {
+  // Function to get repository languages with exponential backoff
+  const getRepoLanguages = async (repoName: string, retries = 3, delay = 1000): Promise<Record<string, number>> => {
     try {
       const response = await fetch(
         `https://api.github.com/repos/${username}/${repoName}/languages`,
@@ -120,19 +123,28 @@ const GitHubStats = () => {
         }
       );
 
+      if (response.status === 403 && retries > 0) {
+        console.warn(`Rate limited for ${repoName}, retrying after ${delay}ms...`);
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        return await getRepoLanguages(repoName, retries - 1, delay * 2);
+      }
+
       if (!response.ok) {
+        console.warn(`Failed to fetch languages for ${repoName}: ${response.status}`);
         return {};
       }
 
-      return await response.json();
+      const languages = await response.json();
+      console.log(`Languages for ${repoName}:`, languages);
+      return languages;
     } catch (error) {
       console.error(`Error fetching languages for ${repoName}:`, error);
       return {};
     }
   };
 
-  // Calculate streak data using GraphQL
-  const calculateStreakData = async (username: string, token: string) => {
+  // Calculate streak data using GraphQL with exponential backoff
+  const calculateStreakData = async (username: string, token: string, retries = 3, delay = 1000) => {
     const query = `
       query($username: String!) {
         user(login: $username) {
@@ -153,10 +165,9 @@ const GitHubStats = () => {
 
     try {
       if (!token) {
-        throw new Error("GITHUB_TOKEN is missing. Set VITE_GITHUB_TOKEN in .env.");
+        throw new Error("GITHUB_TOKEN is missing. Please set VITE_GITHUB_TOKEN in your .env file.");
       }
 
-      console.log("Fetching streak data for:", username, "Token:", token.slice(0, 4) + "...");
       const response = await fetch("https://api.github.com/graphql", {
         method: "POST",
         headers: {
@@ -169,25 +180,18 @@ const GitHubStats = () => {
         }),
       });
 
-      console.log("GraphQL Response Status:", response.status);
+      if (response.status === 403 && retries > 0) {
+        console.warn(`Rate limit hit for GraphQL, retrying after ${delay}ms...`);
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        return await calculateStreakData(username, token, retries - 1, delay * 2);
+      }
+
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error("GraphQL Error Response:", errorText);
-        if (response.status === 401) {
-          throw new Error("Unauthorized: Invalid or expired GitHub token. Regenerate token with 'user' scope.");
-        }
-        if (response.status === 403) {
-          console.warn("Rate limit hit, retrying after 1 second...");
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-          return await calculateStreakData(username, token);
-        }
-        throw new Error(`GraphQL request failed: ${response.status} - ${errorText}`);
+        throw new Error(`GraphQL request failed: ${response.status}`);
       }
 
       const result: GraphQLResponse = await response.json();
-      console.log("GraphQL Result:", JSON.stringify(result, null, 2));
       if (result.errors) {
-        console.error("GraphQL Errors:", result.errors);
         throw new Error(`GraphQL errors: ${result.errors.map((e) => e.message).join(", ")}`);
       }
 
@@ -195,16 +199,13 @@ const GitHubStats = () => {
         result.data?.user?.contributionsCollection?.contributionCalendar?.weeks?.flatMap(
           (week) => week.contributionDays
         ) || [];
-      console.log("Contribution Days:", contributionDays);
 
       let currentStreak = 0;
       let longestStreak = 0;
       let tempStreak = 0;
       const today = new Date().toISOString().split("T")[0];
-      console.log("Today (UTC):", today);
 
       for (const day of contributionDays) {
-        console.log(`Day: ${day.date}, Contributions: ${day.contributionCount}`);
         if (day.contributionCount > 0) {
           tempStreak++;
           if (day.date === today) {
@@ -234,8 +235,7 @@ const GitHubStats = () => {
       try {
         setError(null);
 
-        console.log("GITHUB_TOKEN:", GITHUB_TOKEN ? "Loaded" : "Missing");
-
+        // Fetch user data
         const userResponse = await fetch(`https://api.github.com/users/${username}`, {
           headers: {
             Accept: "application/vnd.github.v3+json",
@@ -249,54 +249,73 @@ const GitHubStats = () => {
 
         const userData = await userResponse.json();
 
-        const reposResponse = await fetch(
-          `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`,
-          {
-            headers: {
-              Accept: "application/vnd.github.v3+json",
-              Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : "",
-            },
-          }
-        );
-
-        if (!reposResponse.ok) {
-          throw new Error(`Failed to fetch repositories: ${reposResponse.status}`);
+        // Fetch all repositories
+        let repos: any[] = [];
+        let page = 1;
+        while (true) {
+          const response = await fetch(
+            `https://api.github.com/users/${username}/repos?per_page=100&page=${page}`,
+            {
+              headers: {
+                Accept: "application/vnd.github.v3+json",
+                Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : "",
+              },
+            }
+          );
+          const data = await response.json();
+          if (!data.length) break;
+          repos = [...repos, ...data];
+          page++;
+          await new Promise((resolve) => setTimeout(resolve, 100)); // Rate limit buffer
         }
 
-        const reposData = await reposResponse.json();
-
+        // Filter non-fork repos and get commits
+        const activeRepos = repos.filter((repo: any) => !repo.fork);
         let totalCommits = 0;
-        const activeRepos = reposData.filter((repo: any) => !repo.fork).slice(0, 5);
-        for (const repo of activeRepos) {
+        for (const repo of activeRepos.slice(0, 5)) {
           const commits = await getRepoCommits(repo.name);
           totalCommits += commits;
           await new Promise((resolve) => setTimeout(resolve, 100));
         }
 
+        // Fetch streak data
         const streakData = await calculateStreakData(username, GITHUB_TOKEN);
 
+        // Fetch languages from all non-fork repos
         const languageStats: Record<string, number> = {};
-        const languagePromises = activeRepos.slice(0, 10).map(async (repo: any) => {
+        const languagePromises = activeRepos.map(async (repo: any) => {
           const languages = await getRepoLanguages(repo.name);
-          return languages;
+          return { repoName: repo.name, languages };
         });
 
         const languageResults = await Promise.all(languagePromises);
-        languageResults.forEach((languages) => {
+        languageResults.forEach(({ repoName, languages }) => {
+          if (Object.keys(languages).length === 0) {
+            console.warn(`No language data for repo ${repoName}`);
+            return;
+          }
           Object.entries(languages).forEach(([lang, bytes]) => {
             languageStats[lang] = (languageStats[lang] || 0) + (bytes as number);
           });
         });
 
         const totalBytes = Object.values(languageStats).reduce((sum, bytes) => sum + bytes, 0);
-        const topLanguages = Object.entries(languageStats)
-          .map(([name, bytes]) => ({
-            name,
-            percentage: totalBytes ? Number(((bytes / totalBytes) * 100).toFixed(0)) : 0,
-            color: getLanguageColor(name),
-          }))
-          .sort((a, b) => b.percentage - a.percentage)
-          .slice(0, 6);
+        console.log("Aggregated language stats:", languageStats);
+        console.log("Total bytes:", totalBytes);
+
+        let topLanguages: Language[] = [];
+        if (totalBytes > 0) {
+          topLanguages = Object.entries(languageStats)
+            .map(([name, bytes]) => ({
+              name,
+              percentage: Number(((bytes / totalBytes) * 100).toFixed(2)),
+              color: getLanguageColor(name),
+            }))
+            .filter((lang) => lang.percentage >= 0.1) // Filter out insignificant languages
+            .sort((a, b) => b.percentage - a.percentage)
+            .slice(0, 6);
+        }
+        console.log("Top languages:", topLanguages);
 
         setStats({
           totalCommits,
@@ -313,10 +332,10 @@ const GitHubStats = () => {
         console.error("Error fetching GitHub data:", error);
         setError(
           error.message.includes("GITHUB_TOKEN")
-            ? "Missing GitHub token. Set VITE_GITHUB_TOKEN in .env."
+            ? "Missing GitHub token. Please set VITE_GITHUB_TOKEN in your .env file with 'repo' and 'user' scopes."
             : error.message.includes("Unauthorized")
-            ? "Invalid or expired GitHub token. Regenerate token with 'user' scope."
-            : error.message
+            ? "Invalid or expired GitHub token. Regenerate a token with 'repo' and 'user' scopes at https://github.com/settings/tokens."
+            : `Failed to fetch data: ${error.message}`
         );
       } finally {
         setLoading(false);
@@ -383,15 +402,11 @@ const GitHubStats = () => {
                   >
                     GitHub Settings
                   </a>{" "}
-                  to generate a token with 'user' and 'repo' scopes.
+                  to generate a token with 'repo' and 'user' scopes.
                 </p>
               )}
             </div>
-            <Button
-              onClick={() => window.location.reload()}
-              className="mt-4"
-              size="sm"
-            >
+            <Button onClick={() => window.location.reload()} className="mt-4" size="sm">
               Retry
             </Button>
           </div>
@@ -504,7 +519,7 @@ const GitHubStats = () => {
                     ))
                   ) : (
                     <div className="text-xs text-muted-foreground text-center py-2">
-                      Loading language data...
+                      No language data available.
                     </div>
                   )}
                 </CardContent>
@@ -515,11 +530,11 @@ const GitHubStats = () => {
               <div className="flex items-center space-x-6">
                 <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-blue-500">
                   <MessageCircle className="w-4 h-4 mr-1" />
-                  <span className="text-xs">32</span>
+                  <span className="text-xs">Comment</span>
                 </Button>
                 <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-green-500">
                   <Repeat2 className="w-4 h-4 mr-1" />
-                  <span className="text-xs">28</span>
+                  <span className="text-xs">Retweet</span>
                 </Button>
                 <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-red-500">
                   <Heart className="w-4 h-4 mr-1" />
@@ -536,6 +551,7 @@ const GitHubStats = () => {
 
 // Utility: map language names to colors
 function getLanguageColor(name: string): string {
+  const normalizedName = name.toLowerCase().replace(/\s+/g, "");
   const colors: Record<string, string> = {
     javascript: "bg-yellow-500",
     typescript: "bg-blue-500",
@@ -544,7 +560,7 @@ function getLanguageColor(name: string): string {
     java: "bg-red-600",
     html: "bg-orange-600",
     css: "bg-blue-600",
-    "c++": "bg-blue-700",
+    cpp: "bg-blue-700",
     c: "bg-gray-600",
     go: "bg-cyan-500",
     php: "bg-indigo-500",
@@ -557,9 +573,9 @@ function getLanguageColor(name: string): string {
     yaml: "bg-red-400",
     json: "bg-gray-400",
     markdown: "bg-gray-700",
+    jupyternotebook: "bg-purple-600",
   };
-
-  return colors[name.toLowerCase()] || "bg-gray-500";
+  return colors[normalizedName] || "bg-gray-500";
 }
 
 export default GitHubStats;
