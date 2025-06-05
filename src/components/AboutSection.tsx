@@ -39,11 +39,10 @@ const AboutSection = () => {
   ];
 
   return (
-    <div className="space-y-0">
+    <div className="space-y-4">
       {/* About Me Section */}
       <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
         <div className="flex items-start space-x-3">
-          {/* First Profile Image */}
           <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
             <img src="/profilePic.jpeg" alt="Ritankar Jana" className="w-full h-full object-cover" />
           </div>
@@ -52,14 +51,14 @@ const AboutSection = () => {
               <span className="font-semibold">Ritankar Jana</span>
               <span className="text-muted-foreground text-sm">@jana_ritankar</span>
               <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">Pinned</span>
+              <span className="text-muted-foreground text-sm">June 05, 2025</span>
             </div>
             <div className="space-y-4">
               <h3 className="font-bold text-lg mb-3">About Me 👨‍💻</h3>
               <div className="rounded-lg overflow-hidden border border-border">
-                <img src="RITANKAR JANA CASUAL PHOTO.jpg" alt="Captured moment by Ritankar" className="w-200 h-200" />
+                <img src="RITANKAR JANA CASUAL PHOTO.jpg" alt="Captured moment by Ritankar" className="w-full h-64 object-cover" />
               </div>
-              <div className="space-y-4 text-sm leading-relaxed max-w-2xl mx-auto">
+              <div className="space-y-3 text-sm leading-relaxed max-w-2xl mx-auto">
                 <p className="text-gray-800 dark:text-gray-200 font-medium transition-transform duration-300 hover:scale-105">
                   Yo, I’m Ritankar Jana! 👋 Final-year B.Tech CSE student at Academy of Technology, rocking a 8.99 GPA. My playground? The wild world of Generative AI and software dev. 🌟
                 </p>
@@ -93,8 +92,8 @@ const AboutSection = () => {
                   </a>
                 </Button>
               </div>
-              <div className="flex items-center justify-between pt-3 border-t border-border/50">
-                <div className="flex items-center space-x-6">
+              <div className="flex items-center justify-start pt-3 border-t border-border/50">
+                <div className="flex items-center space-x-6 sm:space-x-8">
                   <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-blue-500">
                     <MessageCircle className="w-4 h-4 mr-1" />
                     <span className="text-xs">28</span>
@@ -112,31 +111,26 @@ const AboutSection = () => {
             </div>
           </div>
         </div>
-
-        {/* Second Profile Image & Post Section */}
-
       </div>
 
-
-      {/* Experience - Loading State */}
+      {/* Experience Section */}
       <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
         <div className="flex items-start space-x-3">
           <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
             <img src="/profilePic.jpeg" alt="Ritankar Jana" className="w-full h-full object-cover" />
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center space-x-2 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <span className="font-semibold">Ritankar Jana</span>
               <span className="text-muted-foreground text-sm">@jana_ritankar</span>
               <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">Thread</span>
+              <span className="text-muted-foreground text-sm">June, 2025</span>
             </div>
             <div className="space-y-4">
               <h3 className="font-bold text-lg">Work Experience 💼</h3>
-              {/* Skeleton Placeholder */}
               <div className="space-y-4">
                 {[1, 2, 3].map((_, i) => (
-                  <div key={i} className="animate-pulse space-y-2 p-4 border border-border rounded-lg bg-muted">
+                  <div key={i} className="animate-pulse space-y-2 p-3 border border-border rounded-lg bg-muted">
                     <div className="h-4 bg-gray-300 rounded w-1/3"></div>
                     <div className="h-3 bg-gray-300 rounded w-1/4"></div>
                     <div className="h-3 bg-gray-300 rounded w-2/3"></div>
@@ -155,11 +149,11 @@ const AboutSection = () => {
             <img src="/profilePic.jpeg" alt="Ritankar Jana" className="w-full h-full object-cover" />
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center space-x-2 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <span className="font-semibold">Ritankar Jana</span>
               <span className="text-muted-foreground text-sm">@jana_ritankar</span>
               <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">Education</span>
+              <span className="text-muted-foreground text-sm">June , 2025</span>
             </div>
             <div className="space-y-4">
               <h3 className="font-bold text-lg">Education 🎓</h3>
@@ -191,23 +185,23 @@ const AboutSection = () => {
             <img src="/profilePic.jpeg" alt="Ritankar Jana" className="w-full h-full object-cover" />
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center space-x-2 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <span className="font-semibold">Ritankar Jana</span>
               <span className="text-muted-foreground text-sm">@jana_ritankar</span>
               <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">1w</span>
+              <span className="text-muted-foreground text-sm">1y ago</span>
             </div>
             <div className="space-y-4">
               <h3 className="font-bold text-lg">Key Achievements 🎯</h3>
               <div className="grid gap-2">
                 {achievements.map((achievement, index) => (
-                  <div key={index} className="flex items-center space-x-2 p-2 rounded hover:bg-accent/50">
+                  <div key={index} className="flex items-center space-x-2 p-3 rounded hover:bg-accent/50">
                     <span className="text-sm">{achievement}</span>
                   </div>
                 ))}
               </div>
-              <div className="flex items-center justify-between pt-3 border-t border-border/50">
-                <div className="flex items-center space-x-6">
+              <div className="flex items-center justify-start pt-3 border-t border-border/50">
+                <div className="flex items-center space-x-6 sm:space-x-8">
                   <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-blue-500">
                     <MessageCircle className="w-4 h-4 mr-1" />
                     <span className="text-xs">18</span>
