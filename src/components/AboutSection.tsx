@@ -13,9 +13,9 @@ const AboutSection = () => {
         "Started as the quiet kid in the back, but college flipped the script. 🌋 From compiler crashes to canteen banter, I found my tribe in the last three benches. 💬 Coding algorithms and cracking jokes — those moments shaped me as much as the degree. Friendship, growth, and a whole lot of laughs? Nailed it. 🚀",
     },
     {
-      degree: "ISC - Class XII",
+      degree: "ISC - Class XI to XII",
       institution: "W.W.A Cossipore English School",
-      period: "2019 - 2020",
+      period: "2018 - 2020",
       description:
         "Scored 89.5% while geeking out on Physics, Chemistry, and Math. 📐 Biology? We kept a polite distance. 😎 Math was my playground — logic puzzles that felt like games. Physics sparked cosmic curiosity, and Organic Chemistry? Doodling molecules was my jam. 🧬 CS sealed the deal, blending logic with creativity. ✨",
     },
