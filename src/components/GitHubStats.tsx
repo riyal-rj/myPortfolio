@@ -156,7 +156,7 @@ const GitHubStats = () => {
         throw new Error("GITHUB_TOKEN is missing. Set VITE_GITHUB_TOKEN in .env.");
       }
 
-      console.log("Fetching streak data for:", username, "Token:", token.slice(0, 4) + "...");
+      //console.log("Fetching streak data for:", username, "Token:", token.slice(0, 4) + "...");
       const response = await fetch("https://api.github.com/graphql", {
         method: "POST",
         headers: {
@@ -185,7 +185,7 @@ const GitHubStats = () => {
       }
 
       const result: GraphQLResponse = await response.json();
-      console.log("GraphQL Result:", JSON.stringify(result, null, 2));
+      //console.log("GraphQL Result:", JSON.stringify(result, null, 2));
       if (result.errors) {
         console.error("GraphQL Errors:", result.errors);
         throw new Error(`GraphQL errors: ${result.errors.map((e) => e.message).join(", ")}`);
@@ -195,16 +195,16 @@ const GitHubStats = () => {
         result.data?.user?.contributionsCollection?.contributionCalendar?.weeks?.flatMap(
           (week) => week.contributionDays
         ) || [];
-      console.log("Contribution Days:", contributionDays);
+      //console.log("Contribution Days:", contributionDays);
 
       let currentStreak = 0;
       let longestStreak = 0;
       let tempStreak = 0;
       const today = new Date().toISOString().split("T")[0];
-      console.log("Today (UTC):", today);
+      //console.log("Today (UTC):", today);
 
       for (const day of contributionDays) {
-        console.log(`Day: ${day.date}, Contributions: ${day.contributionCount}`);
+        //console.log(`Day: ${day.date}, Contributions: ${day.contributionCount}`);
         if (day.contributionCount > 0) {
           tempStreak++;
           if (day.date === today) {
@@ -234,7 +234,7 @@ const GitHubStats = () => {
       try {
         setError(null);
 
-        console.log("GITHUB_TOKEN:", GITHUB_TOKEN ? "Loaded" : "Missing");
+        //console.log("GITHUB_TOKEN:", GITHUB_TOKEN ? "Loaded" : "Missing");
 
         const userResponse = await fetch(`https://api.github.com/users/${username}`, {
           headers: {
