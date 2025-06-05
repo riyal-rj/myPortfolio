@@ -1,20 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Star, GitFork } from "lucide-react";
+import { ExternalLink, Github, Star, GitFork, FileText } from "lucide-react";
 import SkillMap from "./SkillMap";
 import LearningJourney from "./LearningJourney";
 
-const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false , showLearningJourney=false}) => {
+const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showLearningJourney = false }) => {
   const projects = [
     {
       id: 1,
       name: "Stokis",
-      description: "AI-powered stock market prediction and sentiment analysis tool built as a final year project. Combines FinBERT-based news sentiment with stock price forecasting via Linear Regression.",
-      tech: ["React", "FastAPI", "FinBERT", "Linear Regression"],
-      githubUrl: "https://github.com/your-username/stokis",
+      description: "AI-powered stock market prediction and sentiment analysis tool built as a final year project. Combines FinBERT-based news sentiment with stock price forecasting via CNN-BiLSTM.",
+      tech: ["Next.js", "FastAPI", "FinBERT", "CNN-BiLSTM", "MongoDB", "Tailwind CSS", "Huggingface", "Trandformers"],
+      githubUrl: "https://github.com/Ankit-AP-Paul/Stock-Price-Prediction-and-Forecasting",
       featured: true,
-      liveUrl: "",
+      liveUrl: "https://stokis-client-dashboard.vercel.app/",
+      reportUrl: "https://btech-final-year-project-2k25.vercel.app/",
       stars: 25,
       forks: 4,
     },
@@ -43,7 +44,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false , show
       id: 4,
       name: "JetQuest",
       description: "Tour management app with Mapbox-based route visualization, image uploads, email auth, and MVC backend architecture.",
-      tech: ["Node.js", "Express", "Mapbox", "Multer", "Nodemailer", "Parcel"],
+      tech: ["Node.js", "Express", "Mapbox", "Multer", "Nodemailer", "Parcel", " MongoDB", "EJS"],
       githubUrl: "https://github.com/riyal-rj/jetQuest",
       liveUrl: "",
       stars: 50,
@@ -53,7 +54,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false , show
       id: 5,
       name: "TriNayan",
       description: "AI-based currency detection using YOLOv8 and Vision Transformers. Built for RBI's HaRBInger-2024 Hackathon.",
-      tech: ["YOLOv8", "Vision Transformers", "OpenCV", "Python"],
+      tech: ["YOLOv8", "Vision Transformers", "OpenCV", "Python", "Streamlit"],
       githubUrl: "https://github.com/riyal-rj/identifier",
       liveUrl: "",
       featured: true,
@@ -64,7 +65,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false , show
       id: 6,
       name: "Lingua-AI",
       description: "Personalized English tutor app using Llama 3.1 and Deepgram for interactive speech and conversation training.",
-      tech: ["Llama 3.1", "Deepgram", "Python", "FastAPI"],
+      tech: ["Llama 3.1", "Deepgram", "Python", "Streamlit", "LangChain"],
       githubUrl: "https://github.com/riyal-rj/Lingua-AI",
       liveUrl: "",
       stars: 24,
@@ -74,7 +75,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false , show
       id: 7,
       name: "WebMeAnything",
       description: "RAG-based tool for real-time web page analysis using semantic and similarity search. Provides SEO and content insights.",
-      tech: ["Streamlit", "FAISS", "Cohere", "RAG"],
+      tech: ["Streamlit", "FAISS", "Cohere", "RAG", "Llama 3", "Python", "LangChain"],
       githubUrl: "https://github.com/riyal-rj/WebMeAnything-RAG",
       liveUrl: "",
       stars: 15,
@@ -84,7 +85,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false , show
       id: 8,
       name: "QuirkyViz-ML-Chaos-Visualizer",
       description: "Interactive visualization platform for exploring chaotic behavior in ML models using Plotly and Matplotlib.",
-      tech: ["Python", "Matplotlib", "Plotly"],
+      tech: ["Python", "Matplotlib", "Plotly", "Scikit-learn", "NumPy", "Pandas", "Streamlit"],
       githubUrl: "https://github.com/riyal-rj/QuirkyViz-ML-Chaos-Visualizer",
       liveUrl: "",
       stars: 10,
@@ -94,13 +95,35 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false , show
       id: 9,
       name: "GradgyHub",
       description: "It is a modern e-commerce platform dedicated to selling electronic products. Built with a React frontend and an Express backend, it offers a seamless user experience and robust backend functionality. This project incorporates advanced technologies like Redis for caching and Cloudinary for image uploads to ensure scalability and performance",
-      tech: ["React", "Tailwind CSS", "Next.js"],
+      tech: ["React", "Tailwind CSS", "Cloudinary", "Express", "Redis", "MongoDB", "Node.js", "Stripe", "Mongoose", "Axios", "JWT"],
       githubUrl: "https://github.com/riyal-rj/gadgyHub",
       liveUrl: "",
       stars: 20,
       forks: 10,
       featured: true,
     },
+    {
+      id: 10,
+      name: "Stock News Scraper Microservice",
+      description: "A FastAPI-based microservice that scrapes, filters, and summarizes stock market news for a specified company using SerpAPI, Playwright, and CrewAI. Built with a modular MVS architecture, it leverages MongoDB for persistent storage and integrates OpenAI GPT-4o for intelligent summarization.",
+      tech: ["FastAPI", "Python", "MongoDB", "Playwright", "CrewAI", "OpenAI", "SerpAPI",  "Uvicorn"],
+      githubUrl: "https://github.com/riyal-rj/newsScrapper",
+      liveUrl: "",
+      stars: 1,
+      forks: 0,
+      featured: true
+    },
+    {
+      id: 11,
+      name: "GitRepView",
+      description: "A GitHub-like application designed to fetch and display public repositories of any GitHub user. Built with a modern UI, it allows users to explore repo details such as stars, forks, and descriptions. Note: This app is read-only — users cannot upload or create files.",
+      tech: ["React", "Tailwind CSS", "Axios", "GitHub API", "TypeScript", "Passport", "Express", "Node.js"],
+      githubUrl: "https://github.com/riyal-rj/github-clone",
+      liveUrl: "",
+      stars: 2,
+      forks: 1,
+      featured: false
+    }
   ];
 
   // Filter projects based on showFeaturedOnly prop
@@ -111,20 +134,10 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false , show
   return (
     <div className="border-b border-border pb-6">
       {/* Skill Map Section */}
-      {
-        showSkillMap && (
-          <SkillMap />
-        )
-      }
-
+      {showSkillMap && <SkillMap />}
 
       {/* Learning Journey Section */}
-      {
-        showLearningJourney && (
-          <LearningJourney />
-        )
-      }
-      
+      {showLearningJourney && <LearningJourney />}
 
       {/* Projects Section */}
       <Card>
@@ -186,6 +199,13 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false , show
                           <Button size="sm" asChild>
                             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                               <ExternalLink className="w-4 h-4" />
+                            </a>
+                          </Button>
+                        )}
+                        {project.reportUrl && (
+                          <Button size="sm" variant="outline" asChild>
+                            <a href={project.reportUrl} target="_blank" rel="noopener noreferrer">
+                              <FileText className="w-4 h-4" />
                             </a>
                           </Button>
                         )}
