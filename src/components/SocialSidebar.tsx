@@ -16,7 +16,6 @@ import {
   FaLinkedin,
   FaTwitter,
   FaPhone,
-  FaFacebook,
   FaInstagram,
 } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
@@ -89,21 +88,22 @@ const SocialSidebar = () => {
                 <Button
                   key={index}
                   variant="ghost"
-                  className="w-full justify-start px-3 py-2 hover:bg-muted/10 dark:hover:bg-muted/20"
+                  className="group w-full justify-start px-3 py-2 transition duration-300 ease-in-out transform hover:scale-[1.01] hover:bg-muted/10 dark:hover:bg-muted/20"
                   asChild
                 >
+
                   <a href={link.url || "#"} target="_blank" rel="noopener noreferrer">
                     <div className="flex items-start space-x-3">
-                      <Icon className="w-5 h-5 mt-1 text-muted-foreground" />
+                      <Icon className="w-5 h-5 mt-1 text-muted-foreground transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />
                       <div>
                         <div className="font-medium text-sm">{link.label}</div>
                         <div className="text-xs text-muted-foreground">
                           {link.handles
                             ? link.handles.map((phone, idx) => (
-                                <div key={idx}>
-                                  <a href={phone.url} className="hover:underline">{phone.number}</a>
-                                </div>
-                              ))
+                              <div key={idx}>
+                                <a href={phone.url} className="hover:underline">{phone.number}</a>
+                              </div>
+                            ))
                             : link.handle}
                         </div>
                       </div>
@@ -161,12 +161,12 @@ const SocialSidebar = () => {
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur-md shadow-md">
         <div className="flex justify-around items-center py-2 px-4">
           {[
-            { icon: FaGithub,  url: "https://github.com/riyal-rj" },
-            { icon: FaLinkedin,  url: "https://linkedin.com/in/riyal-rj" },
-            { icon: FaTwitter,  url: "https://x.com/jana_ritankar" },
-            { icon: FaInstagram,  url: "https://www.instagram.com/jana_ritankar/" },
-            { icon: SiLeetcode,  url: "https://leetcode.com/u/logiknest-RJ/" },
-            { icon: Mail,  url: "mailto:ritankar.jana.official@gmail.com" },
+            { icon: FaGithub, url: "https://github.com/riyal-rj" },
+            { icon: FaLinkedin, url: "https://linkedin.com/in/riyal-rj" },
+            { icon: FaTwitter, url: "https://x.com/jana_ritankar" },
+            { icon: FaInstagram, url: "https://www.instagram.com/jana_ritankar/" },
+            { icon: SiLeetcode, url: "https://leetcode.com/u/logiknest-RJ/" },
+            { icon: Mail, url: "mailto:ritankar.jana.official@gmail.com" },
           ].map((item, index) => {
             const Icon = item.icon;
             return (
@@ -177,7 +177,7 @@ const SocialSidebar = () => {
                 rel="noopener noreferrer"
                 className="flex flex-col items-center text-xs text-muted-foreground hover:text-foreground"
               >
-                <Icon className="w-5 h-5 mb-0.5" />
+                <Icon className="w-5 h-5 mb-0.5 transition-transform duration-300 hover:scale-110 hover:text-primary" />
               </a>
             );
           })}
