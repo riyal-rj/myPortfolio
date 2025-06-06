@@ -339,7 +339,7 @@ const GitHubStats = () => {
           <Card className="border border-border bg-background rounded-lg">
             <CardHeader className="pb-2 sm:pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Activity className="w-4 h-4" />
+                <Activity className="w-4 h-4 text-teal-500" />
                 Contribution Overview 🔥
               </CardTitle>
             </CardHeader>
@@ -369,7 +369,7 @@ const GitHubStats = () => {
 
               {/* Total contributions */}
               <div className="pt-3 border-t border-border text-center pb-4">
-                <div className="text-xl font-bold">{stats.totalContributions.toLocaleString()}</div>
+                <div className="text-xl font-bold text-fuchsia-500">{stats.totalContributions.toLocaleString()}</div>
                 <div className="text-sm text-muted-foreground">Total Contributions</div>
               </div>
             </CardContent>
