@@ -324,7 +324,7 @@ const GitHubStats = () => {
               <span className="text-muted-foreground text-sm">@{username}</span>
             </div>
             <h3 className="font-bold text-lg sm:text-xl mt-1 sm:mt-2">GitHub Analytics Dashboard 📊</h3>
-            <p className="text-muted-foreground text-sm italic">This dashboard provides a summary of your GitHub activity.</p>
+            <p className="text-muted-foreground text-sm italic">This dashboard provides a summary of my GitHub activity.</p>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
