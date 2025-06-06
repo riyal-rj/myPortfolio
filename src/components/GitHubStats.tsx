@@ -336,14 +336,14 @@ const GitHubStats = () => {
             <StatCard icon={UserCheck} value={stats.followers} label="Followers" color="text-pink-500" txtColor="text-orange-500"/>
           </div>
 
-          <Card className="border border-border bg-background rounded-lg">
+          <Card className="border border-border bg-background rounded-lg mb-6">
             <CardHeader className="pb-2 sm:pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Activity className="w-4 h-4 text-teal-500" />
                 Contribution Overview 🔥
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 pb-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {/* Current streak */}
                 <div>
