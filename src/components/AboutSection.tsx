@@ -201,20 +201,7 @@ const AboutSection = () => {
                 ))}
               </div>
               <div className="flex items-center justify-start pt-3 border-t border-border/50">
-                <div className="flex items-center space-x-6 sm:space-x-8">
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-blue-500">
-                    <MessageCircle className="w-4 h-4 mr-1" />
-                    <span className="text-xs">18</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-green-500">
-                    <Repeat2 className="w-4 h-4 mr-1" />
-                    <span className="text-xs">12</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-red-500">
-                    <Heart className="w-4 h-4 mr-1" />
-                    <span className="text-xs">45</span>
-                  </Button>
-                </div>
+                
               </div>
             </div>
           </div>

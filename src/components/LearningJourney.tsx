@@ -29,7 +29,7 @@ const LearningJourney = () => {
           category: 'Backend',
           progress: 40,
           description: 'Mastering annotations, REST APIs, and security',
-          emoji: '🌱',
+          emoji: '/logos/spring.svg',
           links: [
             { label: 'Spring Docs', url: '#' },
           ]
@@ -40,7 +40,7 @@ const LearningJourney = () => {
           category: 'AI/ML',
           progress: 35,
           description: 'LLMs, RAG pipelines, prompt engineering',
-          emoji: '🧠',
+          emoji: '/logos/genai.png',
           links: [
             { label: 'Paperspace', url: '#' },
             { label: 'Colab Projects', url: '#' }
@@ -52,7 +52,7 @@ const LearningJourney = () => {
           category: 'Architecture',
           progress: 20,
           description: 'Designing scalable systems & object-oriented models',
-          emoji: '🧩',
+          emoji: '/logos/system.png',
           links: [
             { label: 'System Design Primer', url: '#' }
           ]
@@ -70,7 +70,7 @@ const LearningJourney = () => {
           category: 'Languages',
           progress: 100,
           description: 'OOP, collections, threading, streams',
-          emoji: '☕'
+          emoji: '/logos/java.svg'
         },
         {
           id: '5',
@@ -78,7 +78,7 @@ const LearningJourney = () => {
           category: 'Languages',
           progress: 70,
           description: 'ES6+, async/await, DOM, fetch',
-          emoji: '🟨'
+          emoji: '/logos/javascript.svg'
         },
         {
           id: '6',
@@ -86,7 +86,7 @@ const LearningJourney = () => {
           category: 'Languages',
           progress: 60,
           description: 'Data handling, scripting, ML basics',
-          emoji: '🐍'
+          emoji: '/logos/python.svg'
         },
         {
           id: '7',
@@ -94,7 +94,7 @@ const LearningJourney = () => {
           category: 'Database',
           progress: 80,
           description: 'Joins, subqueries, indexing',
-          emoji: '🗃️'
+          emoji: '/logos/mysql.svg'
         },
         {
           id: '8',
@@ -102,7 +102,7 @@ const LearningJourney = () => {
           category: 'Database',
           progress: 70,
           description: 'CRUD, schema design, aggregation',
-          emoji: '🍃'
+          emoji: '/logos/mongodb.svg'
         }
       ]
     },
@@ -117,15 +117,15 @@ const LearningJourney = () => {
           category: 'Database',
           progress: 30,
           description: 'In-memory data store and caching',
-          emoji: '🟥'
+          emoji: '/logos/redis.svg'
         },
         {
           id: '10',
           title: 'PostgreSQL',
           category: 'Database',
-          progress: 30,
+          progress: 10,
           description: 'Relational modeling, CTEs, window functions',
-          emoji: '🐘'
+          emoji: '/logos/postgresql.png'
         },
         {
           id: '11',
@@ -133,7 +133,7 @@ const LearningJourney = () => {
           category: 'Frontend',
           progress: 50,
           description: 'Components, JSX, hooks',
-          emoji: '⚛️'
+          emoji: '/logos/react.svg',
         },
 
       ]
@@ -149,7 +149,7 @@ const LearningJourney = () => {
           category: 'Backend',
           progress: 0,
           description: 'Structured backend with decorators and DI',
-          emoji: '🛡️'
+          emoji: '/logos/nest.png'
         },
         {
           id: '13',
@@ -157,7 +157,7 @@ const LearningJourney = () => {
           category: 'Languages',
           progress: 0,
           description: 'Memory safety and performance',
-          emoji: '🦀'
+          emoji: '/logos/rust.png'
         },
         {
           id: '14',
@@ -165,7 +165,7 @@ const LearningJourney = () => {
           category: 'Languages',
           progress: 0,
           description: 'Goroutines and microservices',
-          emoji: '🔷'
+          emoji: '/logos/golang.svg'
         },
         {
           id: '15',
@@ -173,7 +173,7 @@ const LearningJourney = () => {
           category: 'DevOps',
           progress: 0,
           description: 'Containerization,Orchestration, Dockerfiles, cluster management and image management',
-          emoji: '🐳'
+          emoji: '/logos/docker.svg'
         },
         {
           id: '16',
@@ -181,7 +181,7 @@ const LearningJourney = () => {
           category: 'Cloud Tech',
           progress: 0,
           description: 'EC2, S3, Lambda, IAM, and cloud architecture basics',
-          emoji: '☁️'
+          emoji: '/logos/aws.png'
         }
       ]
     }
@@ -228,7 +228,7 @@ const LearningJourney = () => {
                       <div className="space-y-3">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-2">
-                            <span className="text-lg">{item.emoji}</span>
+                            <img src={item.emoji} alt={item.title} className="w-6 h-6" />
                             <h4 className="font-medium text-sm">{item.title}</h4>
                           </div>
                         </div>

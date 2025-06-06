@@ -90,20 +90,7 @@ const ContactSection = () => {
               </div>
 
               <div className="flex items-center justify-between pt-2 sm:pt-3 border-t border-border/50">
-                <div className="flex items-center space-x-4 sm:space-x-6">
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-blue-500">
-                    <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                    <span className="text-xs">42</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-green-500">
-                    <Repeat2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                    <span className="text-xs">18</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-red-500">
-                    <Heart className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                    <span className="text-xs">89</span>
-                  </Button>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -167,20 +154,7 @@ const ContactSection = () => {
               </div>
 
               <div className="flex items-center justify-between pt-2 sm:pt-3 border-t border-border/50">
-                <div className="flex items-center space-x-4 sm:space-x-6">
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-blue-500">
-                    <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                    <span className="text-xs">15</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-green-500">
-                    <Repeat2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                    <span className="text-xs">7</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-red-500">
-                    <Heart className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                    <span className="text-xs">23</span>
-                  </Button>
-                </div>
+                
               </div>
             </div>
           </div>
