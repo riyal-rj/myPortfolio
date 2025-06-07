@@ -35,18 +35,6 @@ const LearningJourney = () => {
           ]
         },
         {
-          id: '2',
-          title: 'Generative AI',
-          category: 'AI/ML',
-          progress: 35,
-          description: 'LLMs, RAG pipelines, prompt engineering',
-          emoji: '/logos/genai.png',
-          links: [
-            { label: 'Paperspace', url: '#' },
-            { label: 'Colab Projects', url: '#' }
-          ]
-        },
-        {
           id: '3',
           title: 'System Design (LLD + HLD)',
           category: 'Architecture',
@@ -56,7 +44,23 @@ const LearningJourney = () => {
           links: [
             { label: 'System Design Primer', url: '#' }
           ]
-        }
+        },
+        {
+          id: '16',
+          title: 'AWS Cloud',
+          category: 'Cloud Tech',
+          progress: 0,
+          description: 'EC2, S3, Lambda, IAM, and cloud architecture basics',
+          emoji: '/logos/aws.png'
+        },
+        {
+          id: '14',
+          title: 'Go Language',
+          category: 'Languages',
+          progress: 0,
+          description: 'Goroutines and microservices',
+          emoji: '/logos/golang.svg'
+        },
       ]
     },
     {
@@ -135,6 +139,18 @@ const LearningJourney = () => {
           description: 'Components, JSX, hooks',
           emoji: '/logos/react.svg',
         },
+        {
+          id: '2',
+          title: 'Generative AI',
+          category: 'AI/ML',
+          progress: 35,
+          description: 'LLMs, RAG pipelines, prompt engineering',
+          emoji: '/logos/genai.png',
+          links: [
+            { label: 'Paperspace', url: '#' },
+            { label: 'Colab Projects', url: '#' }
+          ]
+        },
 
       ]
     },
@@ -160,14 +176,6 @@ const LearningJourney = () => {
           emoji: '/logos/rust.png'
         },
         {
-          id: '14',
-          title: 'Go Language',
-          category: 'Languages',
-          progress: 0,
-          description: 'Goroutines and microservices',
-          emoji: '/logos/golang.svg'
-        },
-        {
           id: '15',
           title: 'Docker and Kubernetes',
           category: 'DevOps',
@@ -175,14 +183,7 @@ const LearningJourney = () => {
           description: 'Containerization,Orchestration, Dockerfiles, cluster management and image management',
           emoji: '/logos/docker.svg'
         },
-        {
-          id: '16',
-          title: 'AWS Cloud',
-          category: 'Cloud Tech',
-          progress: 0,
-          description: 'EC2, S3, Lambda, IAM, and cloud architecture basics',
-          emoji: '/logos/aws.png'
-        }
+
       ]
     }
   ];
