@@ -16,7 +16,9 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
         return (
           <div className="space-y-0">
             <ProjectsSection showFeaturedOnly={true} showSkillMap={false} showLearningJourney={true}/>
-            <GitHubStats />
+            <div className="mb-4">
+              <GitHubStats />
+            </div>
           </div>
         );
       case "Projects":

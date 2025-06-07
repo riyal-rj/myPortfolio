@@ -10,7 +10,20 @@ interface GitHubUser {
   avatarUrl: string;
   followers: { totalCount: number };
   following: { totalCount: number };
-  repositories: { totalCount: number };
+  repositories: { 
+    totalCount: number;
+    nodes: Array<{
+      languages: {
+        edges: Array<{
+          size: number;
+          node: {
+            name: string;
+            color: string;
+          };
+        }>;
+      };
+    }>;
+  };
   contributionsCollection: {
     totalCommitContributions: number;
     totalPullRequestContributions: number;
@@ -45,6 +58,13 @@ interface Stats {
   totalContributions: number;
 }
 
+interface Language {
+  name: string;
+  color: string;
+  percentage: number;
+  size: number;
+}
+
 const GitHubStats = () => {
   const username = "riyal-rj";
   const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
@@ -60,9 +80,10 @@ const GitHubStats = () => {
     longestStreak: 0,
     totalContributions: 0,
   });
+  const [topLanguages, setTopLanguages] = useState<Language[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  const StatCard = ({ icon: Icon, value, label, color,txtColor }: {
+  const StatCard = ({ icon: Icon, value, label, color, txtColor }: {
     icon: any;
     value: string | number;
     label: string;
@@ -70,15 +91,15 @@ const GitHubStats = () => {
     txtColor?: string;
   }) => (
     <Card className="border border-border bg-background hover:shadow-md transition-shadow">
-      <CardContent className="p-3 sm:p-4">
+      <CardContent className="p-2.5 sm:p-4">
         <div className="flex items-center justify-between">
-          <div>
-            <div className={`text-xl sm:text-2xl font-bold ${txtColor ?? "text-foreground"}`}>
+          <div className="min-w-0 flex-1">
+            <div className={`text-base sm:text-lg md:text-xl font-bold ${txtColor ?? "text-foreground"} truncate`}>
               {typeof value === "number" ? value.toLocaleString() : value}
             </div>
-            <div className="text-xs sm:text-sm text-muted-foreground">{label}</div>
+            <div className="text-[10px] sm:text-xs text-muted-foreground truncate">{label}</div>
           </div>
-          <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${color ?? "text-muted-foreground"}`} />
+          <Icon className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${color ?? "text-muted-foreground"}`} />
         </div>
       </CardContent>
     </Card>
@@ -97,8 +118,19 @@ const GitHubStats = () => {
           following {
             totalCount
           }
-          repositories(privacy: PUBLIC) {
+          repositories(privacy: PUBLIC, first: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {
             totalCount
+            nodes {
+              languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+                edges {
+                  size
+                  node {
+                    name
+                    color
+                  }
+                }
+              }
+            }
           }
           contributionsCollection {
             totalCommitContributions
@@ -157,6 +189,37 @@ const GitHubStats = () => {
       console.error("Error fetching GitHub data:", error);
       throw error;
     }
+  };
+
+  const calculateLanguageStats = (repositories: GitHubUser['repositories']) => {
+    const languageMap = new Map<string, { size: number; color: string }>();
+    let totalSize = 0;
+
+    repositories.nodes.forEach(repo => {
+      repo.languages.edges.forEach(edge => {
+        const { name, color } = edge.node;
+        const { size } = edge;
+        
+        if (languageMap.has(name)) {
+          languageMap.get(name)!.size += size;
+        } else {
+          languageMap.set(name, { size, color });
+        }
+        totalSize += size;
+      });
+    });
+
+    const languages: Language[] = Array.from(languageMap.entries())
+      .map(([name, data]) => ({
+        name,
+        color: data.color,
+        size: data.size,
+        percentage: (data.size / totalSize) * 100,
+      }))
+      .sort((a, b) => b.size - a.size)
+      .slice(0, 5); // Top 5 languages
+
+    return languages;
   };
 
   const calculateStreakData = (contributionDays: Array<{ date: string; contributionCount: number }>) => {
@@ -232,6 +295,7 @@ const GitHubStats = () => {
           .flatMap(week => week.contributionDays);
 
         const { currentStreak, longestStreak } = calculateStreakData(contributionDays);
+        const languages = calculateLanguageStats(userData.repositories);
 
         const totalContributions = userData.contributionsCollection.contributionCalendar.totalContributions;
 
@@ -244,6 +308,7 @@ const GitHubStats = () => {
           currentStreak,
           longestStreak,
           totalContributions,
+          languages,
         });
 
         setStats({
@@ -256,6 +321,8 @@ const GitHubStats = () => {
           longestStreak,
           totalContributions,
         });
+
+        setTopLanguages(languages);
       } catch (error: any) {
         console.error("Error fetching GitHub data:", error);
         setError(error.message);
@@ -269,17 +336,22 @@ const GitHubStats = () => {
 
   if (loading) {
     return (
-      <div className="border-b border-border p-4 sm:p-6">
-        <div className="flex items-start space-x-3 sm:space-x-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-muted animate-pulse flex-shrink-0"></div>
+      <div className="border-b border-border p-3 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
+          <div className="w-12 h-12 sm:w-12 sm:h-12 rounded-full bg-muted animate-pulse flex-shrink-0 mx-auto sm:mx-0"></div>
           <div className="flex-1 space-y-3 sm:space-y-4">
-            <div className="space-y-2">
-              <div className="h-4 bg-muted rounded w-1/3 sm:w-1/4 animate-pulse"></div>
-              <div className="h-3 bg-muted rounded w-1/4 sm:w-1/5 animate-pulse"></div>
+            <div className="space-y-2 text-center sm:text-left">
+              <div className="h-4 bg-muted rounded w-2/3 sm:w-1/3 animate-pulse mx-auto sm:mx-0"></div>
+              <div className="h-3 bg-muted rounded w-1/2 sm:w-1/4 animate-pulse mx-auto sm:mx-0"></div>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-16 sm:h-20 bg-muted rounded-lg animate-pulse"></div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="h-14 sm:h-16 bg-muted rounded-lg animate-pulse"></div>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[...Array(2)].map((_, i) => (
+                <div key={i} className="h-32 bg-muted rounded-lg animate-pulse"></div>
               ))}
             </div>
           </div>
@@ -290,10 +362,10 @@ const GitHubStats = () => {
 
   if (error) {
     return (
-      <div className="border-b border-border p-4 sm:p-6">
+      <div className="border-b border-border p-3 sm:p-6">
         <div className="flex items-center justify-center py-6 sm:py-8">
           <div className="text-center space-y-2">
-            <div className="text-destructive text-xs sm:text-sm">⚠️ {error}</div>
+            <div className="text-destructive text-xs sm:text-sm max-w-xs mx-auto">⚠️ {error}</div>
             <Button onClick={() => window.location.reload()} size="sm" variant="outline">
               Retry
             </Button>
@@ -304,76 +376,138 @@ const GitHubStats = () => {
   }
 
   return (
-    <div className="border-b border-border p-4 sm:p-6 pb-8">
-      <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-4 space-y-4 sm:space-y-0">
-        <div className="relative self-center sm:self-start flex-shrink-0">
-          <div className="w-16 h-16 sm:w-12 sm:h-12 rounded-full overflow-y:auto border border-border">
+    <div className="border-b border-border p-3 sm:p-6 ">
+      <div className="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-4">
+        <div className="relative flex-shrink-0 mx-auto sm:mx-0">
+          <div className="w-14 h-14 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-border">
             <img
-              src={`https://github.com/${username}.png?size=48`}
+              src={`https://github.com/${username}.png?size=64`}
               alt="Profile"
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-cover"
             />
           </div>
-          <div className="absolute -bottom-1 -right-0 w-4 h-4 sm:w-3 sm:h-3 bg-green-500 rounded-full border-2 border-background"></div>
+          <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 sm:w-3 sm:h-3 bg-green-500 rounded-full border-2 border-background"></div>
         </div>
 
-        <div className="flex-1 min-w-0 space-y-4 sm:space-y-6">
+        <div className="flex-1 min-w-0 space-y-4 sm:space-y-5">
           <div className="text-center sm:text-left">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-              <span className="font-bold text-lg sm:text-xl">Ritankar Jana</span>
-              <span className="text-muted-foreground text-sm">@{username}</span>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2 space-y-0.5 sm:space-y-0">
+              <span className="font-bold text-base sm:text-lg lg:text-xl">Ritankar Jana</span>
+              <span className="text-muted-foreground text-xs sm:text-sm">@{username}</span>
             </div>
-            <h3 className="font-bold text-lg sm:text-xl mt-1 sm:mt-2">GitHub Analytics Dashboard 📊</h3>
-            <p className="text-muted-foreground text-sm italic">This dashboard provides a summary of my GitHub activity.</p>
+            <h3 className="font-bold text-base sm:text-lg lg:text-xl mt-1 sm:mt-2">GitHub Analytics Dashboard 📊</h3>
+            <p className="text-muted-foreground text-xs sm:text-sm italic mt-1">
+             Live stats from my GitHub profile, updated in real-time.            
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            <StatCard icon={GitBranch} value={stats.totalCommits} label="Total Commits" color="text-red-500" txtColor="text-blue-500" />
-            <StatCard icon={Star} value={stats.publicRepos} label="Repositories" color="text-yellow-500" txtColor="text-green-500" />
-            {/* <StatCard icon={Activity} value={stats.totalIssues} label="Issues Created" color="text-red-500" /> */}
-            {/* <StatCard icon={Calendar} value={stats.currentStreak} label="Current Streak" color="text-purple-500" /> */}
-            <StatCard icon={UserPlus} value={stats.following} label="Following" color="text-green-500" txtColor="text-purple-500" />
-            <StatCard icon={UserCheck} value={stats.followers} label="Followers" color="text-pink-500" txtColor="text-orange-500"/>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+            <StatCard 
+              icon={GitBranch} 
+              value={stats.totalCommits} 
+              label="Total Commits" 
+              color="text-red-500" 
+              txtColor="text-blue-500" 
+            />
+            <StatCard 
+              icon={Star} 
+              value={stats.publicRepos} 
+              label="Repositories" 
+              color="text-yellow-500" 
+              txtColor="text-green-500" 
+            />
+            <StatCard 
+              icon={UserPlus} 
+              value={stats.following} 
+              label="Following" 
+              color="text-green-500" 
+              txtColor="text-purple-500" 
+            />
+            <StatCard 
+              icon={UserCheck} 
+              value={stats.followers} 
+              label="Followers" 
+              color="text-pink-500" 
+              txtColor="text-orange-500"
+            />
           </div>
 
-          <Card className="border border-border bg-background rounded-lg mb-6">
-            <CardHeader className="pb-2 sm:pb-3">
-              <CardTitle className="text-sm flex items-center gap-2">
-                <Activity className="w-4 h-4 text-teal-500" />
-                Contribution Overview 🔥
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 pb-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {/* Current streak */}
-                <div>
-                  <div className="flex items-center justify-between text-sm mb-1">
-                    <span>Current Streak</span>
-                    <span className="font-semibold">{stats.currentStreak} days</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
+            {/* Contribution Overview */}
+            <Card className="border border-border bg-background">
+              <CardHeader className="pb-2 sm:pb-3">
+                <CardTitle className="text-sm sm:text-base flex items-center gap-2">
+                  <Activity className="w-4 h-4 text-teal-500" />
+                  Contribution Overview 🔥
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 sm:space-y-4">
+                <div className="space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between text-xs sm:text-sm mb-1">
+                      <span>Current Streak</span>
+                      <span className="font-semibold">{stats.currentStreak} days</span>
+                    </div>
+                    <Progress
+                      value={stats.longestStreak > 0 ? (stats.currentStreak / stats.longestStreak) * 100 : 0}
+                      className="h-2"
+                    />
                   </div>
-                  <Progress
-                    value={stats.longestStreak > 0 ? (stats.currentStreak / stats.longestStreak) * 100 : 0}
-                    className="h-2"
-                  />
+
+                  <div>
+                    <div className="flex items-center justify-between text-xs sm:text-sm mb-1">
+                      <span>Longest Streak</span>
+                      <span className="font-semibold">{stats.longestStreak} days</span>
+                    </div>
+                    <Progress value={100} className="h-2" />
+                  </div>
                 </div>
 
-                {/* Longest streak */}
-                <div>
-                  <div className="flex items-center justify-between text-sm mb-1">
-                    <span>Longest Streak</span>
-                    <span className="font-semibold">{stats.longestStreak} days</span>
+                <div className="pt-2 border-t border-border text-center">
+                  <div className="text-lg sm:text-xl font-bold text-fuchsia-500">
+                    {stats.totalContributions.toLocaleString()}
                   </div>
-                  <Progress value={100} className="h-2" />
+                  <div className="text-xs text-muted-foreground">Total Contributions This Year</div>
                 </div>
-              </div>
+              </CardContent>
+            </Card>
 
-              {/* Total contributions */}
-              <div className="pt-3 border-t border-border text-center pb-4">
-                <div className="text-xl font-bold text-fuchsia-500">{stats.totalContributions.toLocaleString()}</div>
-                <div className="text-sm text-muted-foreground">Total Contributions</div>
-              </div>
-            </CardContent>
-          </Card>
+            {/* Top Languages */}
+            <Card className="border border-border bg-background">
+              <CardHeader className="pb-2 sm:pb-3">
+                <CardTitle className="text-sm sm:text-base flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-blue-500" />
+                  Top Languages 💻
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2 sm:space-y-3 pb-4">
+                {topLanguages.length > 0 ? (
+                  topLanguages.map((language, index) => (
+                    <div key={language.name} className="space-y-1">
+                      <div className="flex items-center justify-between text-xs sm:text-sm">
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                          <div 
+                            className="w-3 h-3 rounded-full flex-shrink-0" 
+                            style={{ backgroundColor: language.color || '#888' }}
+                          ></div>
+                          <span className="font-medium truncate">{language.name}</span>
+                        </div>
+                        <span className="text-muted-foreground flex-shrink-0 ml-2">
+                          {language.percentage.toFixed(1)}%
+                        </span>
+                      </div>
+                      <Progress value={language.percentage} className="h-1.5" />
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-center text-xs sm:text-sm text-muted-foreground py-4">
+                    No language data available
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+            <div className="h-8 sm:h-12" />
+          </div>
         </div>
       </div>
     </div>

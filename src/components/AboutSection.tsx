@@ -93,7 +93,7 @@ const AboutSection = () => {
                 </Button>
               </div>
               <div className="flex items-center justify-start pt-3 border-t border-border/50">
-                <div className="flex items-center space-x-6 sm:space-x-8">
+                {/* <div className="flex items-center space-x-6 sm:space-x-8">
                   <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-blue-500">
                     <MessageCircle className="w-4 h-4 mr-1" />
                     <span className="text-xs">28</span>
@@ -106,7 +106,7 @@ const AboutSection = () => {
                     <Heart className="w-4 h-4 mr-1" />
                     <span className="text-xs">67</span>
                   </Button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

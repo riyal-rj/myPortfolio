@@ -7,6 +7,7 @@ import LearningJourney from "./LearningJourney";
 
 const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showLearningJourney = false }) => {
   const projects = [
+    // ... keep existing code (all project data)
     {
       id: 1,
       name: "Stokis",
@@ -141,75 +142,79 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
 
       {/* Projects Section */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Github className="w-5 h-5" />
+        <CardHeader className="p-4 sm:p-6">
+          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+            <Github className="w-4 h-4 sm:w-5 sm:h-5" />
             {showFeaturedOnly ? "Featured Projects" : "All Projects"}
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <CardContent className="p-4 sm:p-6 pt-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
             {displayedProjects.map((project) => (
-              <Card key={project.id} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-4">
+              <Card key={project.id} className="hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-4 sm:p-6">
                   <div className="space-y-4">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h3 className="font-semibold flex items-center gap-2">
-                          {project.name}
+                    <div className="space-y-2">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                        <h3 className="font-semibold text-base sm:text-lg flex flex-col sm:flex-row sm:items-center gap-2">
+                          <span className="break-words">{project.name}</span>
                           {project.featured && (
-                            <Badge variant="secondary" className="text-xs">
+                            <Badge variant="secondary" className="text-xs w-fit">
                               Featured
                             </Badge>
                           )}
                         </h3>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {project.description}
-                        </p>
                       </div>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {project.description}
+                      </p>
                     </div>
 
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-1.5">
                       {project.tech.map((tech) => (
-                        <Badge key={tech} variant="outline" className="text-xs">
+                        <Badge key={tech} variant="outline" className="text-xs px-2 py-1">
                           {tech}
                         </Badge>
                       ))}
                     </div>
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2">
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
-                          <Star className="w-4 h-4" />
-                          {project.stars}
+                          <Star className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <span className="text-xs sm:text-sm">{project.stars}</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <GitFork className="w-4 h-4" />
-                          {project.forks}
+                          <GitFork className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <span className="text-xs sm:text-sm">{project.forks}</span>
                         </div>
-                      </div>
-
-                      <div className="flex gap-2">
-                        <Button size="sm" variant="outline" asChild>
+                         <div className="flex gap-2 flex-wrap -mr-2">
+                        <Button size="sm" variant="outline" asChild className="h-8 px-3 bg-purple-500 text-white">
                           <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                            <Github className="w-4 h-4" />
+                            <Github className="w-3 h-3 sm:w-4 sm:h-4" />
+                            {/* <span className="hidden sm:inline ml-1">Code</span> */}
                           </a>
                         </Button>
                         {project.liveUrl && (
-                          <Button size="sm" asChild>
+                          <Button size="sm" asChild className="h-8 px-3 bg-green-500">
                             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="w-4 h-4" />
+                              <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                              {/* <span className="hidden sm:inline ml-1">Live</span> */}
                             </a>
                           </Button>
                         )}
                         {project.reportUrl && (
-                          <Button size="sm" variant="outline" asChild>
+                          <Button size="sm" variant="outline" asChild className="h-8 px-3 bg-blue-600 text-white">
                             <a href={project.reportUrl} target="_blank" rel="noopener noreferrer">
-                              <FileText className="w-4 h-4" />
+                              <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
+                              {/* <span className="hidden sm:inline ml-1">Report</span> */}
                             </a>
                           </Button>
                         )}
                       </div>
+                      </div>
+
+                     
                     </div>
                   </div>
                 </CardContent>

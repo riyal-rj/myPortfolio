@@ -10,6 +10,7 @@ import {
   Globe,
   FileText,
   Calendar,
+  File,
 } from "lucide-react";
 import {
   FaGithub,
@@ -167,6 +168,7 @@ const SocialSidebar = () => {
             { icon: FaInstagram, url: "https://www.instagram.com/jana_ritankar/" },
             { icon: SiLeetcode, url: "https://leetcode.com/u/logiknest-RJ/" },
             { icon: Mail, url: "mailto:ritankar.jana.official@gmail.com" },
+            {icon:File, url: "/resume.pdf" },
           ].map((item, index) => {
             const Icon = item.icon;
             return (
