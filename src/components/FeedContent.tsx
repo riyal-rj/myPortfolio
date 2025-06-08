@@ -1,9 +1,10 @@
-
+import React from "react";
 import ProjectsSection from "@/components/ProjectsSection";
 import BlogSection from "@/components/BlogSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import GitHubStats from "@/components/GitHubStats";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface FeedContentProps {
   activeTab: string;
@@ -15,7 +16,7 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
       case "Home":
         return (
           <div className="space-y-0">
-            <ProjectsSection showFeaturedOnly={true} showSkillMap={false} showLearningJourney={true}/>
+            <ProjectsSection showFeaturedOnly={true} showSkillMap={false} showLearningJourney={true} />
             <div className="mb-4">
               <GitHubStats />
             </div>
@@ -23,9 +24,10 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
         );
       case "Projects":
         return (
-        <div className="space-y-0">
-        <ProjectsSection showFeaturedOnly={false} showSkillMap={true}  showLearningJourney={false}/>
-        </div>);
+          <div className="space-y-0">
+            <ProjectsSection showFeaturedOnly={false} showSkillMap={true} showLearningJourney={false} />
+          </div>
+        );
       case "Sneak Peek":
         return <BlogSection />;
       case "About Me":
@@ -44,7 +46,17 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
 
   return (
     <div className="min-h-screen">
-      {renderContent()}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTab} // forces animation on tab change
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          {renderContent()}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

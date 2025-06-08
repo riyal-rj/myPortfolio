@@ -5,7 +5,7 @@ import { ExternalLink, Github, Star, GitFork, FileText } from "lucide-react";
 import SkillMap from "./SkillMap";
 import LearningJourney from "./LearningJourney";
 
-const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showLearningJourney = false }) => {
+const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showLearningJourney = false}) => {
   const projects = [
     // ... keep existing code (all project data)
     {
