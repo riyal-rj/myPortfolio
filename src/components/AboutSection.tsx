@@ -180,7 +180,7 @@ const AboutSection = () => {
 
       {/* Achievements Section */}
       <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
-        <div className="flex items-start space-x-3">
+        {/* <div className="flex items-start space-x-3">
           <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
             <img src="/profilePic.jpeg" alt="Ritankar Jana" className="w-full h-full object-cover" />
           </div>
@@ -205,7 +205,7 @@ const AboutSection = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
