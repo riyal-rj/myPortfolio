@@ -5,7 +5,7 @@ import { ExternalLink, Github, Star, GitFork, FileText } from "lucide-react";
 import SkillMap from "./SkillMap";
 import LearningJourney from "./LearningJourney";
 
-const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showLearningJourney = false}) => {
+const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showLearningJourney = false }) => {
   const projects = [
     // ... keep existing code (all project data)
     {
@@ -107,7 +107,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       id: 10,
       name: "Stock News Scraper Microservice",
       description: "A FastAPI-based microservice that scrapes, filters, and summarizes stock market news for a specified company using SerpAPI, Playwright, and CrewAI. Built with a modular MVS architecture, it leverages MongoDB for persistent storage and integrates OpenAI GPT-4o for intelligent summarization.",
-      tech: ["FastAPI", "Python", "MongoDB", "Playwright", "CrewAI", "OpenAI", "SerpAPI",  "Uvicorn"],
+      tech: ["FastAPI", "Python", "MongoDB", "Playwright", "CrewAI", "OpenAI", "SerpAPI", "Uvicorn"],
       githubUrl: "https://github.com/riyal-rj/newsScrapper",
       liveUrl: "",
       stars: 1,
@@ -124,6 +124,17 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       stars: 2,
       forks: 1,
       featured: false
+    },
+    {
+      id: 9,
+      name: "AI-Auto-Email-Reply-Generator",
+      description: "A full-stack project that integrates Google Gemini's LLM with a sleek React frontend and a Chrome extension. It lets users generate intelligent replies to emails or chats, directly from the browser—boosting productivity and saving time.",
+      tech: ["Spring Boot", "Gemini API", "React", "TailwindCSS", "ShadCN", "Chrome Extension"],
+      githubUrl: "https://github.com/riyal-rj/email-generator",
+      liveUrl: "", // replace with actual if hosted
+      featured: true,
+      stars: 70,
+      forks: 18,
     }
   ];
 
@@ -188,33 +199,33 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
                           <GitFork className="w-3 h-3 sm:w-4 sm:h-4" />
                           <span className="text-xs sm:text-sm">{project.forks}</span>
                         </div>
-                         <div className="flex gap-2 flex-wrap -mr-2">
-                        <Button size="sm" variant="outline" asChild className="h-8 px-3 bg-purple-500 text-white">
-                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                            <Github className="w-3 h-3 sm:w-4 sm:h-4" />
-                            {/* <span className="hidden sm:inline ml-1">Code</span> */}
-                          </a>
-                        </Button>
-                        {project.liveUrl && (
-                          <Button size="sm" asChild className="h-8 px-3 bg-green-500">
-                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
-                              {/* <span className="hidden sm:inline ml-1">Live</span> */}
+                        <div className="flex gap-2 flex-wrap -mr-2">
+                          <Button size="sm" variant="outline" asChild className="h-8 px-3 bg-purple-500 text-white">
+                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                              <Github className="w-3 h-3 sm:w-4 sm:h-4" />
+                              {/* <span className="hidden sm:inline ml-1">Code</span> */}
                             </a>
                           </Button>
-                        )}
-                        {project.reportUrl && (
-                          <Button size="sm" variant="outline" asChild className="h-8 px-3 bg-blue-600 text-white">
-                            <a href={project.reportUrl} target="_blank" rel="noopener noreferrer">
-                              <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
-                              {/* <span className="hidden sm:inline ml-1">Report</span> */}
-                            </a>
-                          </Button>
-                        )}
-                      </div>
+                          {project.liveUrl && (
+                            <Button size="sm" asChild className="h-8 px-3 bg-green-500">
+                              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                                {/* <span className="hidden sm:inline ml-1">Live</span> */}
+                              </a>
+                            </Button>
+                          )}
+                          {project.reportUrl && (
+                            <Button size="sm" variant="outline" asChild className="h-8 px-3 bg-blue-600 text-white">
+                              <a href={project.reportUrl} target="_blank" rel="noopener noreferrer">
+                                <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
+                                {/* <span className="hidden sm:inline ml-1">Report</span> */}
+                              </a>
+                            </Button>
+                          )}
+                        </div>
                       </div>
 
-                     
+
                     </div>
                   </div>
                 </CardContent>
