@@ -114,7 +114,9 @@ const ProjectsShowcase = () => {
     stars: 25,
     forks: 5,
     gradient: "from-gray-400 to-gray-600",
-  }
+  },
+ 
+
 ];
 
 
