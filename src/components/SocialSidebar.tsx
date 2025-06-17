@@ -71,7 +71,7 @@ const SocialSidebar = () => {
 
   const quickActions = [
     { icon: FileText, label: "Resume", url: "/resume.pdf" },
-    { icon: Calendar, label: "Schedule", url: "https://calendly.com/ritankar-jana-official" },
+    // { icon: Calendar, label: "Schedule", url: "https://calendly.com/ritankar-jana-official" },
   ];
 
   return (
@@ -165,7 +165,7 @@ const SocialSidebar = () => {
             { icon: FaGithub, url: "https://github.com/riyal-rj" },
             { icon: FaLinkedin, url: "https://linkedin.com/in/riyal-rj" },
             { icon: FaTwitter, url: "https://x.com/jana_ritankar" },
-            { icon: FaInstagram, url: "https://www.instagram.com/jana_ritankar/" },
+            // { icon: FaInstagram, url: "https://www.instagram.com/jana_ritankar/" },
             { icon: SiLeetcode, url: "https://leetcode.com/u/logiknest-RJ/" },
             { icon: Mail, url: "mailto:ritankar.jana.official@gmail.com" },
             {icon:File, url: "/resume.pdf" },

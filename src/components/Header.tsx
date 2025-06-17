@@ -2,6 +2,7 @@
 import { Moon, Sun, Github, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ThemeProvider";
+import { SiLeetcode } from "react-icons/si";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -29,6 +30,11 @@ const Header = () => {
           </Button>
           <Button variant="ghost" size="sm" asChild>
             <a href="#contact">Contact</a>
+          </Button>
+          <Button variant="ghost" size="sm" asChild>
+            <a href="https://leetcode.com/ritankarjana/" target="_blank">
+              <SiLeetcode className="h-5 w-5" />
+            </a>
           </Button>
           <Button
             variant="ghost"

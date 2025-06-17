@@ -3,7 +3,7 @@ import { MapPin, Calendar, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-
+import { FaLinkedin } from "react-icons/fa";
 const ProfileSection = () => {
   const [currentRole, setCurrentRole] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -94,7 +94,7 @@ const ProfileSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Follow
+                    <FaLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
                   </a>
                 </Button>
               </motion.div>

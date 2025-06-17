@@ -13,14 +13,14 @@ const ContactSection = () => {
       url: "mailto:ritankar.jana.official@gmail.com",
       color: "text-red-500"
     },
-    {
-      icon: Calendar,
-      title: "Schedule a Call",
-      description: "Book a 30-min chat",
-      action: "Open Calendar",
-      url: "https://calendly.com/ritankar-jana-official",
-      color: "text-blue-500"
-    },
+    // {
+    //   icon: Calendar,
+    //   title: "Schedule a Call",
+    //   description: "Book a 30-min chat",
+    //   action: "Open Calendar",
+    //   url: "https://calendly.com/ritankar-jana-official",
+    //   color: "text-blue-500"
+    // },
   ];
 
   return (
