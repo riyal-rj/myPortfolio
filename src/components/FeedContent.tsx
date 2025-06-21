@@ -5,6 +5,8 @@ import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import GitHubStats from "@/components/GitHubStats";
 import { AnimatePresence, motion } from "framer-motion";
+import SkillMap from "./SkillMap";
+import LearningJourney from "./LearningJourney";
 
 interface FeedContentProps {
   activeTab: string;
@@ -16,7 +18,7 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
       case "Home":
         return (
           <div className="space-y-0">
-            <ProjectsSection showFeaturedOnly={true} showSkillMap={false} showLearningJourney={true} />
+            <LearningJourney/>
             <div className="mb-4">
               <GitHubStats />
             </div>
@@ -25,11 +27,13 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
       case "Projects":
         return (
           <div className="space-y-0">
-            <ProjectsSection showFeaturedOnly={false} showSkillMap={true} showLearningJourney={false} />
+            <ProjectsSection showFeaturedOnly={false} showSkillMap={false} showLearningJourney={false} />
           </div>
         );
       case "Sneak Peek":
         return <BlogSection />;
+      case "Skills":
+        return <SkillMap/>;
       case "About Me":
         return <AboutSection />;
       case "Contact":

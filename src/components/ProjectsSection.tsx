@@ -7,7 +7,7 @@ import LearningJourney from "./LearningJourney";
 
 const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showLearningJourney = false }) => {
   const projects = [
-    // ... keep existing code (all project data)
+    // Featured projects first
     {
       id: 1,
       name: "Stokis",
@@ -32,6 +32,52 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       featured: true,
     },
     {
+      id: 5,
+      name: "TriNayan",
+      description: "AI-based currency detection using YOLOv8 and Vision Transformers. Built for RBI's HaRBInger-2024 Hackathon.",
+      tech: ["YOLOv8", "Vision Transformers", "OpenCV", "Python", "Streamlit"],
+      githubUrl: "https://github.com/riyal-rj/identifier",
+      liveUrl: "",
+      featured: true,
+      stars: 30,
+      forks: 8,
+    },
+    {
+      id: 9,
+      name: "GradgyHub",
+      description: "It is a modern e-commerce platform dedicated to selling electronic products. Built with a React frontend and an Express backend, it offers a seamless user experience and robust backend functionality. This project incorporates advanced technologies like Redis for caching and Cloudinary for image uploads to ensure scalability and performance",
+      tech: ["React", "Tailwind CSS", "Cloudinary", "Express", "Redis", "MongoDB", "Node.js", "Stripe", "Mongoose", "Axios", "JWT"],
+      githubUrl: "https://github.com/riyal-rj/gadgyHub",
+      liveUrl: "",
+      stars: 20,
+      forks: 10,
+      featured: true,
+    },
+    {
+      id: 10,
+      name: "Stock News Scraper Microservice",
+      description: "A FastAPI-based microservice that scrapes, filters, and summarizes stock market news for a specified company using SerpAPI, Playwright, and CrewAI. Built with a modular MVS architecture, it leverages MongoDB for persistent storage and integrates OpenAI GPT-4o for intelligent summarization.",
+      tech: ["FastAPI", "Python", "MongoDB", "Playwright", "CrewAI", "OpenAI", "SerpAPI", "Uvicorn"],
+      githubUrl: "https://github.com/riyal-rj/newsScrapper",
+      liveUrl: "",
+      stars: 1,
+      forks: 0,
+      featured: true
+    },
+    {
+      id: 9,
+      name: "AI-Auto-Email-Reply-Generator",
+      description: "A full-stack project that integrates Google Gemini's LLM with a sleek React frontend and a Chrome extension. It lets users generate intelligent replies to emails or chats, directly from the browser—boosting productivity and saving time.",
+      tech: ["Spring Boot", "Gemini API", "React", "TailwindCSS", "ShadCN", "Chrome Extension"],
+      githubUrl: "https://github.com/riyal-rj/email-generator",
+      liveUrl: "",
+      featured: true,
+      stars: 70,
+      forks: 18,
+    },
+
+    // Non-featured projects follow
+    {
       id: 3,
       name: "Netflix Clone",
       description: "A video streaming platform inspired by Netflix with JWT auth, responsive design, and dynamic recommendations.",
@@ -50,17 +96,6 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       liveUrl: "",
       stars: 50,
       forks: 12,
-    },
-    {
-      id: 5,
-      name: "TriNayan",
-      description: "AI-based currency detection using YOLOv8 and Vision Transformers. Built for RBI's HaRBInger-2024 Hackathon.",
-      tech: ["YOLOv8", "Vision Transformers", "OpenCV", "Python", "Streamlit"],
-      githubUrl: "https://github.com/riyal-rj/identifier",
-      liveUrl: "",
-      featured: true,
-      stars: 30,
-      forks: 8,
     },
     {
       id: 6,
@@ -93,28 +128,6 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       forks: 2,
     },
     {
-      id: 9,
-      name: "GradgyHub",
-      description: "It is a modern e-commerce platform dedicated to selling electronic products. Built with a React frontend and an Express backend, it offers a seamless user experience and robust backend functionality. This project incorporates advanced technologies like Redis for caching and Cloudinary for image uploads to ensure scalability and performance",
-      tech: ["React", "Tailwind CSS", "Cloudinary", "Express", "Redis", "MongoDB", "Node.js", "Stripe", "Mongoose", "Axios", "JWT"],
-      githubUrl: "https://github.com/riyal-rj/gadgyHub",
-      liveUrl: "",
-      stars: 20,
-      forks: 10,
-      featured: true,
-    },
-    {
-      id: 10,
-      name: "Stock News Scraper Microservice",
-      description: "A FastAPI-based microservice that scrapes, filters, and summarizes stock market news for a specified company using SerpAPI, Playwright, and CrewAI. Built with a modular MVS architecture, it leverages MongoDB for persistent storage and integrates OpenAI GPT-4o for intelligent summarization.",
-      tech: ["FastAPI", "Python", "MongoDB", "Playwright", "CrewAI", "OpenAI", "SerpAPI", "Uvicorn"],
-      githubUrl: "https://github.com/riyal-rj/newsScrapper",
-      liveUrl: "",
-      stars: 1,
-      forks: 0,
-      featured: true
-    },
-    {
       id: 11,
       name: "GitRepView",
       description: "A GitHub-like application designed to fetch and display public repositories of any GitHub user. Built with a modern UI, it allows users to explore repo details such as stars, forks, and descriptions. Note: This app is read-only — users cannot upload or create files.",
@@ -124,19 +137,9 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       stars: 2,
       forks: 1,
       featured: false
-    },
-    {
-      id: 9,
-      name: "AI-Auto-Email-Reply-Generator",
-      description: "A full-stack project that integrates Google Gemini's LLM with a sleek React frontend and a Chrome extension. It lets users generate intelligent replies to emails or chats, directly from the browser—boosting productivity and saving time.",
-      tech: ["Spring Boot", "Gemini API", "React", "TailwindCSS", "ShadCN", "Chrome Extension"],
-      githubUrl: "https://github.com/riyal-rj/email-generator",
-      liveUrl: "", // replace with actual if hosted
-      featured: true,
-      stars: 70,
-      forks: 18,
     }
   ];
+
 
   // Filter projects based on showFeaturedOnly prop
   const displayedProjects = showFeaturedOnly
@@ -170,9 +173,14 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
                         <h3 className="font-semibold text-base sm:text-lg flex flex-col sm:flex-row sm:items-center gap-2">
                           <span className="break-words">{project.name}</span>
                           {project.featured && (
-                            <Badge variant="secondary" className="text-xs w-fit">
+                            <Badge
+                              variant="secondary"
+                              className="text-xs w-fit bg-blue-100 text-blue-800 px-2 py-1 rounded-md font-medium tracking-wide shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in"
+                            >
                               Featured
                             </Badge>
+
+
                           )}
                         </h3>
                       </div>
