@@ -169,21 +169,27 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
                 <CardContent className="p-4 sm:p-6">
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                        <h3 className="font-semibold text-base sm:text-lg flex flex-col sm:flex-row sm:items-center gap-2">
-                          <span className="break-words">{project.name}</span>
-                          {project.featured && (
+                      <div className="flex justify-between items-start">
+                        <h3 className="font-semibold text-base sm:text-lg break-words">{project.name}</h3>
+
+                        {project.featured && (
+                          <>
+                            {/* Show badge on medium and above */}
                             <Badge
                               variant="secondary"
-                              className="text-xs w-fit bg-blue-100 text-blue-800 px-2 py-1 rounded-md font-medium tracking-wide shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in"
+                              className="hidden sm:inline-block text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-md font-medium tracking-wide shadow-sm transition-shadow duration-300"
                             >
                               Featured
                             </Badge>
 
-
-                          )}
-                        </h3>
+                            {/* Show star icon on mobile */}
+                            <div className="inline-block sm:hidden bg-blue-100 text-blue-800 px-2 py-1 rounded-md shadow-sm">
+                              <Star className="w-3 h-3" />
+                            </div>
+                          </>
+                        )}
                       </div>
+
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {project.description}
                       </p>
