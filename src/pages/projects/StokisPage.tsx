@@ -71,8 +71,12 @@ const StokisPage = () => {
                             <h1 className="text-2xl sm:text-4xl font-bold">Stokis - Stock Trends Outlook using Key
                                 Indicators and Sentiment</h1>
                             <div className="flex gap-2">
-                                <Badge variant="secondary">AI-Powered</Badge>
-                                <Badge variant="outline">Full Stack</Badge>
+                                <Badge
+                                    variant="secondary"
+                                    className="hidden sm:inline-block text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-md font-medium tracking-wide shadow-sm transition-shadow duration-300"
+                                >
+                                    Featured
+                                </Badge>
                                 <Badge variant="outline">Finance </Badge>
                             </div>
                         </div>
@@ -93,19 +97,20 @@ const StokisPage = () => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                        <Button asChild className="w-full sm:w-auto">
+                        <Button size="sm" asChild className="h-8 px-3 bg-green-500">
                             <a href="https://stokis-client-dashboard.vercel.app/" target="_blank" rel="noopener noreferrer">
                                 <ExternalLink className="w-4 h-4 mr-2" />
                                 Live Demo
                             </a>
                         </Button>
-                        <Button variant="outline" asChild className="w-full sm:w-auto">
-                            <a href="https://github.com/Ankit-AP-Paul/Stock-Price-Prediction-and-Forecasting" target="_blank" rel="noopener noreferrer">
+                        <Button size="sm" variant="outline" asChild className="h-8 px-3 bg-purple-500 text-white">
+                            <a href="https://github.com/riyal-rj/Stock-Price-Prediction-and-Forecasting" target="_blank" rel="noopener noreferrer">
                                 <Github className="w-4 h-4 mr-2" />
                                 View Code
                             </a>
                         </Button>
-                        <Button variant="outline" asChild className="w-full sm:w-auto">
+
+                        <Button size="sm" variant="outline" asChild className="h-8 px-3 bg-blue-600 text-white">
                             <a href="https://btech-final-year-project-2k25.vercel.app/" target="_blank" rel="noopener noreferrer">
                                 <FileText className="w-4 h-4 mr-2" />
                                 Project Report

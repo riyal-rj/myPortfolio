@@ -67,7 +67,12 @@ const TriNayanPage = () => {
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                             <h1 className="text-2xl sm:text-4xl font-bold">TriNayan - AI Currency Detection System</h1>
                             <div className="flex gap-2">
-                                <Badge variant="secondary">Featured</Badge>
+                                <Badge
+                                    variant="secondary"
+                                    className="hidden sm:inline-block text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-md font-medium tracking-wide shadow-sm transition-shadow duration-300"
+                                >
+                                    Featured
+                                </Badge>
                                 <Badge variant="outline">Hackathon</Badge>
                             </div>
                         </div>
@@ -88,7 +93,7 @@ const TriNayanPage = () => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                        <Button variant="outline" asChild className="w-full sm:w-auto">
+                        <Button size="sm" variant="outline" asChild className="h-8 px-3 bg-purple-500 text-white">
                             <a href="https://github.com/riyal-rj/identifier" target="_blank" rel="noopener noreferrer">
                                 <Github className="w-4 h-4 mr-2" />
                                 View Code
