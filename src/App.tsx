@@ -10,7 +10,7 @@ import GradgyHubPage from "./pages/projects/GradgyHubPage";
 import TriNayanPage from "./pages/projects/TriNayanPage";
 import NewsScrapperPage from "./pages/projects/NewsScrapperPage";
 import EmailAIAssistantPage from "./pages/projects/EmailAIAssistantPage";
-import AdvAuthPage from "./pages/projects/advAuthPage";
+import AdvAuthPage from "./pages/projects/AdvAuthPage";
 
 const queryClient = new QueryClient();
 
