@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink, Github, Star, GitFork, Target, Zap, TrendingUp, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const AuthSystemPage = () => {
+const AdvAuthPage = () => {
     const [zoomedImage, setZoomedImage] = useState(null);
 
     const projectImages = [
@@ -178,4 +178,4 @@ const AuthSystemPage = () => {
     );
 };
 
-export default AuthSystemPage;
+export default AdvAuthPage;
