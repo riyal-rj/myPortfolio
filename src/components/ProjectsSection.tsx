@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Star, GitFork, FileText } from "lucide-react";
 import SkillMap from "./SkillMap";
 import LearningJourney from "./LearningJourney";
-
+import { Link } from "react-router-dom";
 const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showLearningJourney = false }) => {
   const projects = [
     // Featured projects first
     {
       id: 1,
-      name: "Stokis",
+      name: "Stokis -Stock Trends Outlook using Key Indicators and Sentiment ",
       description: "AI-powered stock market prediction and sentiment analysis tool built as a final year project. Combines FinBERT-based news sentiment with stock price forecasting via CNN-BiLSTM.",
       tech: ["Next.js", "FastAPI", "FinBERT", "CNN-BiLSTM", "MongoDB", "Tailwind CSS", "Huggingface", "Trandformers"],
       githubUrl: "https://github.com/Ankit-AP-Paul/Stock-Price-Prediction-and-Forecasting",
@@ -19,6 +19,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       reportUrl: "https://btech-final-year-project-2k25.vercel.app/",
       stars: 25,
       forks: 4,
+      detailUrl: "/projects/stokis"
     },
     {
       id: 2,
@@ -30,6 +31,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       stars: 17,
       forks: 2,
       featured: true,
+      detailUrl: "/projects/adv-auth"
     },
     {
       id: 5,
@@ -41,6 +43,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       featured: true,
       stars: 30,
       forks: 8,
+      detailUrl: "/projects/trinayan"
     },
     {
       id: 9,
@@ -52,6 +55,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       stars: 20,
       forks: 10,
       featured: true,
+      detailUrl: "/projects/gradgyhub"
     },
     {
       id: 10,
@@ -62,7 +66,8 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       liveUrl: "",
       stars: 1,
       forks: 0,
-      featured: true
+      featured: true,
+      detailUrl: "/projects/news-scrapper"
     },
     {
       id: 9,
@@ -74,6 +79,7 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
       featured: true,
       stars: 70,
       forks: 18,
+      detailUrl: "/projects/email-ai"
     },
 
     // Non-featured projects follow
@@ -170,7 +176,19 @@ const ProjectsSection = ({ showFeaturedOnly = false, showSkillMap = false, showL
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <div className="flex justify-between items-start">
-                        <h3 className="font-semibold text-base sm:text-lg break-words">{project.name}</h3>
+                        <h3 className="font-semibold text-base sm:text-lg break-words">
+                           {project.detailUrl ? (
+                            <Link 
+                              to={project.detailUrl} 
+                              className="break-words hover:text-primary transition-colors cursor-pointer group-hover:underline"
+                            >
+                              {project.name}
+                            </Link>
+                          ) : (
+                            <span className="break-words">{project.name}</span>
+                            )}
+                        </h3>
+                        
 
                         {project.featured && (
                           <>
