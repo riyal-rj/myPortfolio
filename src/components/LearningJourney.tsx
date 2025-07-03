@@ -31,7 +31,7 @@ const LearningJourney = () => {
           description: 'Mastering annotations, REST APIs, and security',
           emoji: '/logos/spring.svg',
           links: [
-            { label: 'Spring Docs', url: '#' },
+            { label: 'Spring Docs', url: 'https://www.baeldung.com/spring-boot' },
           ]
         },
         {
@@ -42,7 +42,7 @@ const LearningJourney = () => {
           description: 'Designing scalable systems & object-oriented models',
           emoji: '/logos/system.png',
           links: [
-            { label: 'System Design Primer', url: '#' }
+            { label: 'System Design Primer', url: 'https://github.com/riyal-rj/awesome-low-level-design' }
           ]
         },
         {
