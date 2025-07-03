@@ -49,15 +49,15 @@ const LearningJourney = () => {
           id: '16',
           title: 'AWS Cloud',
           category: 'Cloud Tech',
-          progress: 0,
-          description: 'EC2, S3, Lambda, IAM, and cloud architecture basics',
+          progress: 30,
+          description: 'EC2, S3, DynamoDB, IAM, ELB, and cloud architecture basics',
           emoji: '/logos/aws.png'
         },
         {
           id: '14',
           title: 'Go Language',
           category: 'Languages',
-          progress: 0,
+          progress: 10,
           description: 'Goroutines and microservices',
           emoji: '/logos/golang.svg'
         },
