@@ -8,7 +8,7 @@ const AboutSection = () => {
     {
       degree: "B.Tech in Computer Science and Engineering",
       institution: "Academy of Technology",
-      period: "2021 - Present",
+      period: "2021, October- 2025, July",
       description:
         "Started as the quiet kid in the back, but college flipped the script. 🌋 From compiler crashes to canteen banter, I found my tribe in the last three benches. 💬 Coding algorithms and cracking jokes — those moments shaped me as much as the degree. Friendship, growth, and a whole lot of laughs? Nailed it. 🚀",
     },
@@ -153,7 +153,7 @@ const AboutSection = () => {
               <span className="font-semibold">Ritankar Jana</span>
               <span className="text-muted-foreground text-sm">@jana_ritankar</span>
               <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">June , 2025</span>
+              <span className="text-muted-foreground text-sm">July , 2025</span>
             </div>
             <div className="space-y-4">
               <h3 className="font-bold text-lg">Education 🎓</h3>
