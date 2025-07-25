@@ -4,8 +4,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MessageCircle, Heart, Repeat2, Download } from "lucide-react";
 
 const AboutSection = () => {
+  const Experience=[
+      {
+        logo:"/logo/image.webp",
+        title: "Software Engineer Technical Support",
+        company: "Soefia Education Incorporated",
+        location: "Boston, Massachusetts, United States",
+        workingMode: "Remote",
+        period: "June 2025 - Present",
+        description: ""
+      }
+    ]
   const education = [
     {
+      logo:"/logo/png-clipart-academy-of-technology-asansol-engineering-college-maulana-abul-kalam-azad-university-of-technology-hooghly-institute-of-technology-technology-blue-angle.png",
       degree: "B.Tech in Computer Science and Engineering",
       institution: "Academy of Technology",
       period: "2021, October- 2025, July",
@@ -13,6 +25,7 @@ const AboutSection = () => {
         "Started as the quiet kid in the back, but college flipped the script. 🌋 From compiler crashes to canteen banter, I found my tribe in the last three benches. 💬 Coding algorithms and cracking jokes — those moments shaped me as much as the degree. Friendship, growth, and a whole lot of laughs? Nailed it. 🚀",
     },
     {
+      logo:"/logo/wwa_cossipore_english_school_logo.jpg",
       degree: "ISC - Class XI to XII",
       institution: "W.W.A Cossipore English School",
       period: "2018 - 2020",
@@ -20,6 +33,7 @@ const AboutSection = () => {
         "Scored 89.5% while geeking out on Physics, Chemistry, and Math. 📐 Biology? We kept a polite distance. 😎 Math was my playground — logic puzzles that felt like games. Physics sparked cosmic curiosity, and Organic Chemistry? Doodling molecules was my jam. 🧬 CS sealed the deal, blending logic with creativity. ✨",
     },
     {
+      logo:"/logo/wwa_cossipore_english_school_logo.jpg",
       degree: "LKG to Class X (ICSE)",
       institution: "W.W.A Cossipore English School",
       period: "2006 - 2018",
@@ -60,7 +74,7 @@ const AboutSection = () => {
               </div>
               <div className="space-y-3 text-sm leading-relaxed max-w-2xl mx-auto">
                 <p className="text-gray-800 dark:text-gray-200 font-medium transition-transform duration-300 hover:scale-105">
-                  Yo, I’m Ritankar Jana! 👋 Final-year B.Tech CSE student at Academy of Technology, rocking a 8.99 GPA. My playground? The wild world of Generative AI and software dev. 🌟
+                  Yo, I’m Ritankar Jana! 👋 Final-year B.Tech CSE student at Academy of Technology, rocking a 8.92 CGPA. My playground? The wild world of Generative AI and software dev. 🌟
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 italic hover:text-indigo-500 transition-colors duration-200">
                   Not a pro coder (yet), but I’m wired for learning. Think of me as a neural net with a killer learning rate — fast enough to grow, slow enough to avoid overfitting. 🚀
@@ -128,15 +142,38 @@ const AboutSection = () => {
             </div>
             <div className="space-y-4">
               <h3 className="font-bold text-lg">Work Experience 💼</h3>
-              <div className="space-y-4">
-                {[1, 2, 3].map((_, i) => (
-                  <div key={i} className="animate-pulse space-y-2 p-3 border border-border rounded-lg bg-muted">
-                    <div className="h-4 bg-gray-300 rounded w-1/3"></div>
-                    <div className="h-3 bg-gray-300 rounded w-1/4"></div>
-                    <div className="h-3 bg-gray-300 rounded w-2/3"></div>
-                  </div>
+                <div className="space-y-4">
+                {Experience.map((exp, index) => (
+                  <Card key={index} className="border-l-4 border-l-blue-500">
+                  <CardContent className="p-4">
+                    <div className="space-y-2">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12">
+                      <img 
+                        src={exp.logo} 
+                        alt={exp.company} 
+                        className="w-full h-full object-contain rounded-md"
+                      />
+                      </div>
+                      <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-semibold">{exp.title}</h4>
+                        <Badge variant="outline" className="text-xs">{exp.period}</Badge>
+                      </div>
+                      <p className="text-sm font-medium text-blue-500">{exp.company}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {exp.location} · {exp.workingMode}
+                      </p>
+                      {exp.description && (
+                        <p className="text-sm text-muted-foreground mt-2">{exp.description}</p>
+                      )}
+                      </div>
+                    </div>
+                    </div>
+                  </CardContent>
+                  </Card>
                 ))}
-              </div>
+                </div>
             </div>
           </div>
         </div>
@@ -160,16 +197,27 @@ const AboutSection = () => {
               <div className="space-y-4">
                 {education.map((edu, index) => (
                   <Card key={index} className="border-l-4 border-l-purple-500">
-                    <CardContent className="p-4">
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-semibold">{edu.degree}</h4>
-                          <Badge variant="outline" className="text-xs">{edu.period}</Badge>
-                        </div>
-                        <p className="text-sm font-medium text-purple-500">{edu.institution}</p>
-                        <p className="text-sm text-muted-foreground">{edu.description}</p>
+                  <CardContent className="p-4">
+                    <div className="space-y-2">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12">
+                      <img 
+                        src={edu.logo} 
+                        alt={edu.institution} 
+                        className="w-full h-full object-contain rounded-md"
+                      />
                       </div>
-                    </CardContent>
+                      <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-semibold">{edu.degree}</h4>
+                        <Badge variant="outline" className="text-xs">{edu.period}</Badge>
+                      </div>
+                      <p className="text-sm font-medium text-purple-500">{edu.institution}</p>
+                      <p className="text-sm text-muted-foreground">{edu.description}</p>
+                      </div>
+                    </div>
+                    </div>
+                  </CardContent>
                   </Card>
                 ))}
               </div>
