@@ -4,17 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MessageCircle, Heart, Repeat2, Download } from "lucide-react";
 
 const AboutSection = () => {
-  const Experience=[
-      {
-        logo:"/logo/image.webp",
-        title: "Software Engineer Technical Support",
-        company: "Soefia Education Incorporated",
-        location: "Boston, Massachusetts, United States",
-        workingMode: "Remote",
-        period: "June 2025 - Present",
-        description: ""
-      }
-    ]
+
   const education = [
     {
       logo:"/logo/png-clipart-academy-of-technology-asansol-engineering-college-maulana-abul-kalam-azad-university-of-technology-hooghly-institute-of-technology-technology-blue-angle.png",
@@ -128,7 +118,7 @@ const AboutSection = () => {
       </div>
 
       {/* Experience Section */}
-      <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
+      {/* <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
         <div className="flex items-start space-x-3">
           <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
             <img src="/profilePic.jpeg" alt="Ritankar Jana" className="w-full h-full object-cover" />
@@ -177,7 +167,7 @@ const AboutSection = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Education Section */}
       <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
