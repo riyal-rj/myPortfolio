@@ -82,17 +82,17 @@ const SkillMap = () => {
 
     // Planning (Languages)
     { id: 'planning', type: 'skillNode', position: { x: 300, y: 50 }, data: { label: 'Languages', iconComponent: Code, description: 'Choosing programming languages to meet project requirements and performance needs.' } },
-    { id: 'python', type: 'skillNode', position: { x: 300, y: 200 }, data: { label: 'Python', iconUrl: '/logos/python.svg', iconComponent: DiPython, level: 'Expert', description: 'A versatile, high-level language used for web development, AI/ML, data analysis, and automation.' } },
+    { id: 'python', type: 'skillNode', position: { x: 300, y: 200 }, data: { label: 'Python', iconUrl: '/logos/python.svg', iconComponent: DiPython, level: 'Intermediate', description: 'A versatile, high-level language used for web development, AI/ML, data analysis, and automation.' } },
     { id: 'java', type: 'skillNode', position: { x: 300, y: 350 }, data: { label: 'Java', iconUrl: '/logos/java.svg', iconComponent: DiJava, level: 'Expert', description: 'A robust, object-oriented language for enterprise applications, Android development, and large-scale systems.' } },
-    { id: 'javascript', type: 'skillNode', position: { x: 300, y: 500 }, data: { label: 'JavaScript', iconUrl: '/logos/javascript.svg', iconComponent: DiJavascript, level: 'Expert', description: 'The primary language for web development, enabling dynamic and interactive user interfaces.' } },
-    { id: 'typescript', type: 'skillNode', position: { x: 300, y: 650 }, data: { label: 'TypeScript', iconUrl: '/logos/typescript.svg', iconComponent: SiTypescript, level: 'Intermediate', description: 'A typed superset of JavaScript that enhances code scalability and maintainability.' } },
+    { id: 'javascript', type: 'skillNode', position: { x: 300, y: 500 }, data: { label: 'JavaScript', iconUrl: '/logos/javascript.svg', iconComponent: DiJavascript, level: 'Intermediate', description: 'The primary language for web development, enabling dynamic and interactive user interfaces.' } },
+    { id: 'typescript', type: 'skillNode', position: { x: 300, y: 650 }, data: { label: 'TypeScript', iconUrl: '/logos/typescript.svg', iconComponent: SiTypescript, level: 'Beginner', description: 'A typed superset of JavaScript that enhances code scalability and maintainability.' } },
 
     // Requirement Analysis (Frameworks)
     { id: 'req-analysis', type: 'skillNode', position: { x: 600, y: 50 }, data: { label: 'Web Frameworks', iconComponent: Server, description: 'Selecting frameworks to streamline development of scalable web applications.' } },
     { id: 'react', type: 'skillNode', position: { x: 600, y: 170 }, data: { label: 'React', iconUrl: '/logos/react.svg', iconComponent: DiReact, level: 'Intermediate', description: 'A JavaScript library for building fast, component-based user interfaces.' } },
     { id: 'nodejs', type: 'skillNode', position: { x: 600, y: 290 }, data: { label: 'Node.js', iconUrl: '/logos/nodejs.svg', iconComponent: DiNodejs, level: 'Intermediate', description: 'A JavaScript runtime for building scalable server-side applications.' } },
     { id: 'springboot', type: 'skillNode', position: { x: 600, y: 410 }, data: { label: 'Spring Boot', iconUrl: '/logos/spring.svg', iconComponent: SiSpringboot, level: 'Beginner', description: 'A Java framework for creating production-ready, microservices-based applications.' } },
-    { id: 'nextjs', type: 'skillNode', position: { x: 600, y: 530 }, data: { label: 'Next.js', iconUrl: '/logos/nextjs.png', iconComponent: SiNextdotjs, level: 'Intermediate', description: 'A React framework for server-side rendering, static sites, and optimized web apps.' } },
+    { id: 'nextjs', type: 'skillNode', position: { x: 600, y: 530 }, data: { label: 'Next.js', iconUrl: '/logos/nextjs.png', iconComponent: SiNextdotjs, level: 'Beginner', description: 'A React framework for server-side rendering, static sites, and optimized web apps.' } },
     {id:"express", type: 'skillNode', position: { x: 600, y: 650 }, data: { label: 'Express.js', iconUrl: '/logos/express-js.png', iconComponent: SiExpress, level: 'Intermediate', description: 'A minimal and flexible Node.js web application framework for building APIs.' } },
 
     // Design & Prototyping (Editors)
@@ -114,7 +114,7 @@ const SkillMap = () => {
     // Functional Software (DevOps)
     { id: 'functional-sw', type: 'skillNode', position: { x: 900, y: 800 }, data: { label: 'Functional Software', iconComponent: GitBranch, description: 'Implementing version control and CI/CD for reliable software delivery.' } },
     { id: 'docker', type: 'skillNode', position: { x: 900, y: 900 }, data: { label: 'Docker', iconUrl: '/logos/docker.svg', iconComponent: DiDocker, level: 'Beginner', description: 'A platform for containerizing applications for consistent deployment.' } },
-    { id: 'git', type: 'skillNode', position: { x: 900, y: 1000 }, data: { label: 'Git', iconUrl: '/logos/git.svg', iconComponent: DiGit, level: 'Expert', description: 'A distributed version control system for tracking code changes.' } },
+    { id: 'git', type: 'skillNode', position: { x: 900, y: 1000 }, data: { label: 'Git', iconUrl: '/logos/git.svg', iconComponent: DiGit, level: 'Intermediate', description: 'A distributed version control system for tracking code changes.' } },
     { id: 'postman', type: 'skillNode', position: { x: 900, y: 1100 }, data: { label: 'Postman', iconUrl: '/logos/postman.png', iconComponent: SiPostman, level: 'Intermediate', description: 'A tool for designing, testing, and documenting APIs.' } },
 
     // Deployment (Databases and Platforms)
@@ -122,7 +122,7 @@ const SkillMap = () => {
     { id: 'mongodb', type: 'skillNode', position: { x: 600, y: 900 }, data: { label: 'MongoDB', iconUrl: '/logos/mongodb.svg', iconComponent: DiMongodb, level: 'Intermediate', description: 'A NoSQL database for handling unstructured data in scalable applications.' } },
     { id: 'mysql', type: 'skillNode', position: { x: 600, y: 1000 }, data: { label: 'MySQL', iconUrl: '/logos/mysql.svg', iconComponent: DiMysql, level: 'Intermediate', description: 'A relational database for structured data and SQL queries.' } },
     { id: 'redis', type: 'skillNode', position: { x: 600, y: 1100 }, data: { label: 'Redis', iconUrl: '/logos/redis.svg', iconComponent: SiRedis, level: 'Beginner', description: 'An in-memory database for caching and real-time data processing.' } },
-    { id: 'vercel', type: 'skillNode', position: { x: 600, y: 1200 }, data: { label: 'Vercel', iconUrl: '/logos/vercel.png', iconComponent: SiVercel, level: 'Intermediate', description: 'A platform for deploying and scaling web applications with ease.' } },
+    { id: 'vercel', type: 'skillNode', position: { x: 600, y: 1200 }, data: { label: 'Vercel', iconUrl: '/logos/vercel.png', iconComponent: SiVercel, level: 'Beginner', description: 'A platform for deploying and scaling web applications with ease.' } },
     { id: 'github', type: 'skillNode', position: { x: 600, y: 1300 }, data: { label: 'GitHub', iconUrl: '/logos/github.png', iconComponent: SiGithub, level: 'Intermediate', description: 'A platform for code hosting, collaboration, and CI/CD integration.' } },
     { id: 'convex', type: 'skillNode', position: { x: 600, y: 1400 }, data: { label: 'Convex', iconUrl: '/logos/convex.png', iconComponent: SiHuggingface, level: 'Beginner', description: 'A backend-as-a-service platform for real-time, reactive applications.' } },
   ];
