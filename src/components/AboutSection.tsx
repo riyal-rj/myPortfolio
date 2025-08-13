@@ -1,250 +1,172 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { MessageCircle, Heart, Repeat2, Download } from "lucide-react";
+import { Download, Camera, Code2, Gamepad2 } from "lucide-react";
+import ExperienceCard from "../components/cards/ExperienceCard";
+import EducationCard from "../components/cards/EducationCard";
+import SectionCard from "./cards/SectionCard";
 
 const AboutSection = () => {
-
   const education = [
     {
-      logo:"/logo/png-clipart-academy-of-technology-asansol-engineering-college-maulana-abul-kalam-azad-university-of-technology-hooghly-institute-of-technology-technology-blue-angle.png",
+      logo: "/logo/png-clipart-academy-of-technology-asansol-engineering-college-maulana-abul-kalam-azad-university-of-technology-hooghly-institute-of-technology-technology-blue-angle.png",
       degree: "B.Tech in Computer Science and Engineering",
       institution: "Academy of Technology",
-      period: "2021, October- 2025, July",
+      period: "2021, October - 2025, July",
+      score: "8.92 CGPA",
+      scoreType: "cgpa",
       description:
         "Started as the quiet kid in the back, but college flipped the script. 🌋 From compiler crashes to canteen banter, I found my tribe in the last three benches. 💬 Coding algorithms and cracking jokes — those moments shaped me as much as the degree. Friendship, growth, and a whole lot of laughs? Nailed it. 🚀",
     },
     {
-      logo:"/logo/wwa_cossipore_english_school_logo.jpg",
+      logo: "/logo/wwa_cossipore_english_school_logo.jpg",
       degree: "ISC - Class XI to XII",
       institution: "W.W.A Cossipore English School",
       period: "2018 - 2020",
+      score: "89.5%",
+      scoreType: "percentage",
       description:
         "Scored 89.5% while geeking out on Physics, Chemistry, and Math. 📐 Biology? We kept a polite distance. 😎 Math was my playground — logic puzzles that felt like games. Physics sparked cosmic curiosity, and Organic Chemistry? Doodling molecules was my jam. 🧬 CS sealed the deal, blending logic with creativity. ✨",
     },
     {
-      logo:"/logo/wwa_cossipore_english_school_logo.jpg",
+      logo: "/logo/wwa_cossipore_english_school_logo.jpg",
       degree: "LKG to Class X (ICSE)",
       institution: "W.W.A Cossipore English School",
       period: "2006 - 2018",
+      score: "90.8%",
+      scoreType: "percentage",
       description:
-        "W.W.A CES was my second home. From LKG scribbles to Class 10 Java sparks, I grew up here. 💻 That first line of code in Class 9? Pure magic. Quizzes, IT fests, and stage moments fueled my curiosity. 🧠 It wasn’t just school — it was where I discovered tech and myself. 🌟",
+        "W.W.A CES was my second home. From LKG scribbles to Class 10 Java sparks, I grew up here. 💻 That first line of code in Class 9? Pure magic. Quizzes, IT fests, and stage moments fueled my curiosity. 🧠 It wasn't just school — it was where I discovered tech and myself. 🌟",
     },
   ];
 
-  const achievements = [
-    "1. Jack-of-all-trades? Nailed quizzes, hackathons, and open-source sprints. 🎯",
-    "2. Rocked the TCS ITWiz 2017 regional stage — my first tech spotlight moment. 🏆",
-    "3. Led Kodenza 2019, our interschool coding hackathon — organizing taught me more than any textbook. 🧠",
-    "4. Built 'TriNayan' for RBI’s HaRBInger-2k24 — AI-powered currency detection to solve real-world problems. 💡",
-    "5. Thrived in the chaos of Smart India Hackathon 2024 — code, ideas, and adrenaline. 🛠️",
-    "6. Dipped my toes in open source — doodling with Hugging Face and loving the learning curve. 🌱",
-    "7. Snagged Wipro TalentNext’s Full Stack Java Developer cert — a badge, a milestone, a vibe. 📜",
+  const experience = [
+    {
+      logo: "/logo/image.webp",
+      title: "Software Engineer Technical Support",
+      company: "Soefia Education Incorporated",
+      location: "Boston, Massachusetts, United States",
+      workingMode: "Remote",
+      period: "July 2025 - Aug 2025",
+      description: `Assisted in deploying a multi-tenant architecture on AWS, contributing to the configuration of ECS tasks, creation of S3 buckets, setup of AWS Amplify namespaces, and secure management of credentials using AWS Secrets Manager.
+
+• Enhanced backend system's resilience by identifying and resolving edge cases in APIs through rigorous unit testing using pytest.
+
+• Performed functional testing and systematically reported bugs and system failures, enabling the development team to resolve issues efficiently and enhance product quality.`,
+    },
   ];
 
-  return (
-    <div className="space-y-4">
-      {/* About Me Section */}
-      <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
-        <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
-            <img src="/profilePic.jpeg" alt="Ritankar Jana" className="w-full h-full object-cover" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center space-x-2 mb-2">
-              <span className="font-semibold">Ritankar Jana</span>
-              <span className="text-muted-foreground text-sm">@jana_ritankar</span>
-              <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">June , 2025</span>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-bold text-lg mb-3">About Me 👨‍💻</h3>
-              <div className="rounded-lg overflow-hidden border border-border">
-                <img src="RITANKAR JANA CASUAL PHOTO.jpg" alt="Captured moment by Ritankar" className="w-100 h-90 object-cover" />
-              </div>
-              <div className="space-y-3 text-sm leading-relaxed max-w-2xl mx-auto">
-                <p className="text-gray-800 dark:text-gray-200 font-medium transition-transform duration-300 hover:scale-105">
-                  Yo, I’m Ritankar Jana! 👋 Final-year B.Tech CSE student at Academy of Technology, rocking a 8.92 CGPA. My playground? The wild world of Generative AI and software dev. 🌟
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 italic hover:text-indigo-500 transition-colors duration-200">
-                  Not a pro coder (yet), but I’m wired for learning. Think of me as a neural net with a killer learning rate — fast enough to grow, slow enough to avoid overfitting. 🚀
-                </p>
-                <p className="text-gray-800 dark:text-gray-200 font-medium transition-transform duration-300 hover:scale-105">
-                  I don’t just code — I dissect tech. Unraveling logic, design patterns, and architecture to build software that’s scalable and timeless is my jam. 💻✨
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 hover:text-green-500 transition-colors duration-200">
-                  Off the keyboard, I’m a rookie footballer chasing the ball with pure joy. ⚽️ It’s less about skill, more about the vibe and camaraderie. 🏃‍♂️
-                </p>
-                <p className="text-gray-800 dark:text-gray-200 font-medium transition-transform duration-300 hover:scale-105">
-                  Photography’s my soul food. 📸 Armed with my Canon 200D Mark II, I hunt sunsets 🌅 and fleeting emotions, weaving stories without words. 🎨
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 italic hover:text-blue-500 transition-colors duration-200">
-                  Love AI 🤖, photography 📸, coding 💻, or just random football kicks ⚽️? Hit me up — let’s spark ideas and build something epic! 🎶
-                </p>
-              </div>
 
-              <div className="flex justify-center items-center gap-2 py-4">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="flex items-center gap-2 text-gray-800 dark:text-gray-200 hover:bg-indigo-500 hover:text-white transition-colors duration-300"
-                  asChild
-                >
-                  <a href="/resume.pdf" download="Ritankar_Jana_Resume.pdf">
-                    <Download className="w-4 h-4" />
-                    Grab My Resume
-                  </a>
-                </Button>
-              </div>
-              <div className="flex items-center justify-start pt-3 border-t border-border/50">
-                {/* <div className="flex items-center space-x-6 sm:space-x-8">
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-blue-500">
-                    <MessageCircle className="w-4 h-4 mr-1" />
-                    <span className="text-xs">28</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-green-500">
-                    <Repeat2 className="w-4 h-4 mr-1" />
-                    <span className="text-xs">15</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-red-500">
-                    <Heart className="w-4 h-4 mr-1" />
-                    <span className="text-xs">67</span>
-                  </Button>
-                </div> */}
+  return (
+    <div className="max-w-4xl mx-auto space-y-8">
+      <div >
+      {/* Header with floating elements */}
+
+
+      {/* About Me Section */}
+      <SectionCard title="About Me" icon="👨‍💻">
+        <div className="space-y-6">
+          {/* Main photo with enhanced styling */}
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-primary rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+            <div className="relative rounded-2xl overflow-hidden shadow-card">
+              <img
+                src="RITANKAR JANA CASUAL PHOTO.jpg"
+                alt="Ritankar Jana"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <p className="text-sm font-medium">Captured in a moment ✨</p>
               </div>
             </div>
           </div>
+
+          {/* About text with better typography */}
+          <div className="grid gap-4 text-base leading-relaxed">
+            <div className="space-y-4">
+              <p className="text-foreground font-medium transition-smooth hover:text-primary p-4 rounded-lg hover:bg-accent/30">
+                Yo, I'm Ritankar Jana! 👋 Final-year B.Tech CSE student at Academy of Technology, rocking a 8.92 CGPA. My playground? The wild world of Generative AI and software dev. 🌟
+              </p>
+
+              <p className="text-muted-foreground italic p-4 rounded-lg hover:bg-accent/20 transition-smooth hover:text-accent-blue">
+                Not a pro coder (yet), but I'm wired for learning. Think of me as a neural net with a killer learning rate — fast enough to grow, slow enough to avoid overfitting. 🚀
+              </p>
+
+              <p className="text-foreground font-medium p-4 rounded-lg hover:bg-accent/30 transition-smooth hover:text-primary">
+                I don't just code — I dissect tech. Unraveling logic, design patterns, and architecture to build software that's scalable and timeless is my jam. 💻✨
+              </p>
+
+              <p className="text-muted-foreground p-4 rounded-lg hover:bg-accent/20 transition-smooth hover:text-accent-purple">
+                Off the keyboard, I'm a rookie footballer chasing the ball with pure joy. ⚽️ It's less about skill, more about the vibe and camaraderie. 🏃‍♂️
+              </p>
+
+              <p className="text-foreground font-medium p-4 rounded-lg hover:bg-accent/30 transition-smooth hover:text-primary">
+                Photography's my soul food. 📸 Armed with my Canon 200D Mark II, I hunt sunsets 🌅 and fleeting emotions, weaving stories without words. 🎨
+              </p>
+
+              <p className="text-muted-foreground italic p-4 rounded-lg hover:bg-accent/20 transition-smooth hover:text-accent-orange">
+                Love AI 🤖, photography 📸, coding 💻, or just random football kicks ⚽️? Hit me up — let's spark ideas and build something epic! 🎶
+              </p>
+            </div>
+          </div>
+
+          {/* Enhanced download button */}
+          <div className="flex justify-center"/>
         </div>
-      </div>
+      </SectionCard>
 
       {/* Experience Section */}
-      {/* <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
-        <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
-            <img src="/profilePic.jpeg" alt="Ritankar Jana" className="w-full h-full object-cover" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center space-x-2 mb-2">
-              <span className="font-semibold">Ritankar Jana</span>
-              <span className="text-muted-foreground text-sm">@jana_ritankar</span>
-              <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">June, 2025</span>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-bold text-lg">Work Experience 💼</h3>
-                <div className="space-y-4">
-                {Experience.map((exp, index) => (
-                  <Card key={index} className="border-l-4 border-l-blue-500">
-                  <CardContent className="p-4">
-                    <div className="space-y-2">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12">
-                      <img 
-                        src={exp.logo} 
-                        alt={exp.company} 
-                        className="w-full h-full object-contain rounded-md"
-                      />
-                      </div>
-                      <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <h4 className="font-semibold">{exp.title}</h4>
-                        <Badge variant="outline" className="text-xs">{exp.period}</Badge>
-                      </div>
-                      <p className="text-sm font-medium text-blue-500">{exp.company}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {exp.location} · {exp.workingMode}
-                      </p>
-                      {exp.description && (
-                        <p className="text-sm text-muted-foreground mt-2">{exp.description}</p>
-                      )}
-                      </div>
-                    </div>
-                    </div>
-                  </CardContent>
-                  </Card>
-                ))}
-                </div>
-            </div>
-          </div>
+      <SectionCard title="Work Experience" icon="💼">
+        <div className="space-y-6">
+          {experience.map((exp, index) => (
+            <ExperienceCard key={index} {...exp} />
+          ))}
         </div>
-      </div> */}
+      </SectionCard>
 
       {/* Education Section */}
-      <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
-        <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
-            <img src="/profilePic.jpeg" alt="Ritankar Jana" className="w-full h-full object-cover" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center space-x-2 mb-2">
-              <span className="font-semibold">Ritankar Jana</span>
-              <span className="text-muted-foreground text-sm">@jana_ritankar</span>
-              <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">July , 2025</span>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-bold text-lg">Education 🎓</h3>
-              <div className="space-y-4">
-                {education.map((edu, index) => (
-                  <Card key={index} className="border-l-4 border-l-purple-500">
-                  <CardContent className="p-4">
-                    <div className="space-y-2">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12">
-                      <img 
-                        src={edu.logo} 
-                        alt={edu.institution} 
-                        className="w-full h-full object-contain rounded-md"
-                      />
-                      </div>
-                      <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <h4 className="font-semibold">{edu.degree}</h4>
-                        <Badge variant="outline" className="text-xs">{edu.period}</Badge>
-                      </div>
-                      <p className="text-sm font-medium text-purple-500">{edu.institution}</p>
-                      <p className="text-sm text-muted-foreground">{edu.description}</p>
-                      </div>
-                    </div>
-                    </div>
-                  </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
+      <SectionCard title="Education" icon="🎓">
+        <div className="space-y-6">
+          {education.map((edu, index) => (
+            <EducationCard key={index} {...edu} />
+          ))}
         </div>
-      </div>
+      </SectionCard>
 
-      {/* Achievements Section */}
-      <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
-        {/* <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
-            <img src="/profilePic.jpeg" alt="Ritankar Jana" className="w-full h-full object-cover" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center space-x-2 mb-2">
-              <span className="font-semibold">Ritankar Jana</span>
-              <span className="text-muted-foreground text-sm">@jana_ritankar</span>
-              <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">1y ago</span>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-bold text-lg">Key Achievements 🎯</h3>
-              <div className="grid gap-2">
-                {achievements.map((achievement, index) => (
-                  <div key={index} className="flex items-center space-x-2 p-3 rounded hover:bg-accent/50">
-                    <span className="text-sm">{achievement}</span>
-                  </div>
-                ))}
+      {/* Achievements Section
+      <SectionCard title="Key Achievements" icon="🎯">
+        <div className="grid gap-4">
+          {achievements.map((achievement, index) => (
+            <div 
+              key={index} 
+              className="group flex items-start space-x-3 p-4 rounded-xl hover:bg-accent/20 transition-smooth card-hover"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm shrink-0 group-hover:scale-110 transition-transform">
+                {index + 1}
               </div>
-              <div className="flex items-center justify-start pt-3 border-t border-border/50">
-                
-              </div>
+              <p className="text-sm leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors">
+                {achievement}
+              </p>
             </div>
-          </div>
-        </div> */}
-      </div>
+          ))}
+        </div>
+      </SectionCard> */}
+
+      {/* Footer with connect section */}
+      {/* <div className="text-center py-8 space-y-4">
+        <div className="section-divider"></div>
+        <p className="text-muted-foreground">
+          Ready to build something amazing together? Let's connect! 🚀
+        </p>
+        <div className="flex justify-center gap-2 text-sm text-accent-blue">
+          <span>✨ Portfolio</span>
+          <span>•</span>
+          <span>🎯 Projects</span>
+          <span>•</span>
+          <span>📱 Contact</span>
+        </div>
+      <*/}
+      </div> 
     </div>
   );
 };
