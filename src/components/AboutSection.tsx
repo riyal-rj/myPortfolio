@@ -46,7 +46,7 @@ const AboutSection = () => {
       location: "Boston, Massachusetts, United States",
       workingMode: "Remote",
       period: "July 2025 - Aug 2025",
-      description: `Assisted in deploying a multi-tenant architecture on AWS, contributing to the configuration of ECS tasks, creation of S3 buckets, setup of AWS Amplify namespaces, and secure management of credentials using AWS Secrets Manager.
+      description: `• Assisted in deploying a multi-tenant architecture on AWS, contributing to the configuration of ECS tasks, creation of S3 buckets, setup of AWS Amplify namespaces, and secure management of credentials using AWS Secrets Manager.
 
 • Enhanced backend system's resilience by identifying and resolving edge cases in APIs through rigorous unit testing using pytest.
 
