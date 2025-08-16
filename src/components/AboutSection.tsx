@@ -10,7 +10,7 @@ const AboutSection = () => {
       logo: "/logo/png-clipart-academy-of-technology-asansol-engineering-college-maulana-abul-kalam-azad-university-of-technology-hooghly-institute-of-technology-technology-blue-angle.png",
       degree: "B.Tech in Computer Science and Engineering",
       institution: "Academy of Technology",
-      period: "2021, October - 2025, July",
+      period: "Oct 2021 - Jul 2025",
       score: "8.92 CGPA",
       scoreType: "cgpa",
       description:
@@ -155,7 +155,7 @@ const AboutSection = () => {
 
           {/* Experience Section with enhanced mobile responsiveness */}
           <div className="animate-[fadeInUp_0.8s_ease-out_0.4s_both]">
-            <SectionCard title="Work Experience" icon="💼">
+            <SectionCard title="Work Experience" icon="💼" month="July">
               <div className="space-y-4 sm:space-y-6">
                 {experience.map((exp, index) => (
                   <div 

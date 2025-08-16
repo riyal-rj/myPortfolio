@@ -5,9 +5,11 @@ interface SectionCardProps {
   icon?: string;
   children: ReactNode;
   className?: string;
+  month?: string;
+  year?: number
 }
 
-const SectionCard = ({ title, icon, children, className = "" }: SectionCardProps) => {
+const SectionCard = ({ title, icon, children, month="June",year=2025, className = "" }: SectionCardProps) => {
   return (
      <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
         <div className="flex items-start space-x-3">
@@ -19,7 +21,7 @@ const SectionCard = ({ title, icon, children, className = "" }: SectionCardProps
               <span className="font-semibold">Ritankar Jana</span>
               <span className="text-muted-foreground text-sm">@jana_ritankar</span>
               <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">June , 2025</span>
+              <span className="text-muted-foreground text-sm">{month} , {year}</span>
             </div>
       <div className="space-y-6">
         <h3 className="font-bold text-xl md:text-2xl flex items-center gap-2 text-gradient-primary">
