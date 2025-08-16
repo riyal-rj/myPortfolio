@@ -54,119 +54,140 @@ const AboutSection = () => {
     },
   ];
 
-
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      <div >
-      {/* Header with floating elements */}
+    <div className="w-full min-h-screen">
+      {/* Enhanced container with better mobile padding */}
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12">
+        <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-12">
+          
+          {/* About Me Section with enhanced mobile layout */}
+          <div className="group animate-[fadeInUp_0.8s_ease-out]">
+            <SectionCard title="About Me" icon="👨‍💻">
+              <div className="space-y-4 sm:space-y-6 md:space-y-8">
+                
+                {/* Enhanced photo section with mobile optimization */}
+                <div className="relative group/photo overflow-hidden">
+                  {/* Animated background gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-2xl opacity-40 group-hover/photo:opacity-70 transition-all duration-700 animate-pulse"></div>
+                  
+                  {/* Photo container with mobile-first sizing */}
+                      <div className="relative rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 group-hover/photo:scale-[1.02] group-hover/photo:shadow-3xl">
+                    <div className="aspect-square w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto relative overflow-hidden">
+                      <img
+                        src="RITANKAR JANA CASUAL PHOTO.jpg"
+                        alt="Ritankar Jana"
+                        className="w-full h-full object-cover object-top transition-all duration-700 group-hover/photo:scale-110 group-hover/photo:brightness-110"
+                      />
+                      {/* Enhanced overlay with mobile-optimized positioning */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover/photo:opacity-60 transition-opacity duration-500"></div>
+                      
+                      {/* Photo caption with mobile responsiveness */}
+                      <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 text-white">
+                        <div className="backdrop-blur-sm bg-white/10 rounded-lg p-2 sm:p-3 border border-white/20">
+                          <p className="text-xs sm:text-sm font-medium opacity-90">
+                            Captured in a moment ✨
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
+                {/* Enhanced about text with mobile-optimized animations */}
+                <div className="grid gap-2 sm:gap-3 md:gap-4 text-sm sm:text-base leading-relaxed">
+                  <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                    
+                    {/* Individual text blocks with staggered animations and mobile optimization */}
+                    <div className="group/text animate-[slideInLeft_0.6s_ease-out_0.2s_both]">
+                      <p className="text-foreground font-medium transition-all duration-300 p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-900/20 dark:hover:to-indigo-900/20 hover:text-blue-600 dark:hover:text-blue-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-blue-200 dark:hover:border-blue-800">
+                        Yo, I'm Ritankar Jana! 👋 Final-year B.Tech CSE student at Academy of Technology, rocking a 8.92 CGPA. My playground? The wild world of Generative AI and software dev. 🌟
+                      </p>
+                    </div>
 
-      {/* About Me Section */}
-      <SectionCard title="About Me" icon="👨‍💻">
-        <div className="space-y-6">
-          {/* Main photo with enhanced styling */}
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-primary rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
-            <div className="relative rounded-2xl overflow-hidden shadow-card">
-              <img
-                src="RITANKAR JANA CASUAL PHOTO.jpg"
-                alt="Ritankar Jana"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              <div className="absolute bottom-4 left-4 text-white">
-                <p className="text-sm font-medium">Captured in a moment ✨</p>
+                    <div className="group/text animate-[slideInRight_0.6s_ease-out_0.4s_both]">
+                      <p className="text-muted-foreground italic p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-300 hover:text-purple-600 dark:hover:text-purple-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-purple-200 dark:hover:border-purple-800">
+                        Not a pro coder (yet), but I'm wired for learning. Think of me as a neural net with a killer learning rate — fast enough to grow, slow enough to avoid overfitting. 🚀
+                      </p>
+                    </div>
+
+                    <div className="group/text animate-[slideInLeft_0.6s_ease-out_0.6s_both]">
+                      <p className="text-foreground font-medium p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-300 hover:text-green-600 dark:hover:text-green-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-green-200 dark:hover:border-green-800">
+                        I don't just code — I dissect tech. Unraveling logic, design patterns, and architecture to build software that's scalable and timeless is my jam. 💻✨
+                      </p>
+                    </div>
+
+                    <div className="group/text animate-[slideInRight_0.6s_ease-out_0.8s_both]">
+                      <p className="text-muted-foreground p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 dark:hover:from-orange-900/20 dark:hover:to-red-900/20 transition-all duration-300 hover:text-orange-600 dark:hover:text-orange-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-orange-200 dark:hover:border-orange-800">
+                        Off the keyboard, I'm a rookie footballer chasing the ball with pure joy. ⚽️ It's less about skill, more about the vibe and camaraderie. 🏃‍♂️
+                      </p>
+                    </div>
+
+                    <div className="group/text animate-[slideInLeft_0.6s_ease-out_1s_both]">
+                      <p className="text-foreground font-medium p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-teal-50 hover:to-cyan-50 dark:hover:from-teal-900/20 dark:hover:to-cyan-900/20 transition-all duration-300 hover:text-teal-600 dark:hover:text-teal-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-teal-200 dark:hover:border-teal-800">
+                        Photography's my soul food. 📸 Armed with my Canon 200D Mark II, I hunt sunsets 🌅 and fleeting emotions, weaving stories without words. 🎨
+                      </p>
+                    </div>
+
+                    <div className="group/text animate-[slideInRight_0.6s_ease-out_1.2s_both]">
+                      <p className="text-muted-foreground italic p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 dark:hover:from-violet-900/20 dark:hover:to-purple-900/20 transition-all duration-300 hover:text-violet-600 dark:hover:text-violet-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-violet-200 dark:hover:border-violet-800">
+                        Love AI 🤖, photography 📸, coding 💻, or just random football kicks ⚽️? Hit me up — let's spark ideas and build something epic! 🎶
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Enhanced floating action buttons with mobile optimization */}
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 sm:pt-6">
+                  <div className="flex gap-2 sm:gap-3">
+                    {/* Download CV Button */}
+                    <Button 
+                      className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium animate-[bounceIn_0.8s_ease-out_1.4s_both]"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                      <Download className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:animate-bounce" />
+                      Download CV
+                    </Button>
+                  </div>
+                </div>
               </div>
-            </div>
+            </SectionCard>
           </div>
 
-          {/* About text with better typography */}
-          <div className="grid gap-4 text-base leading-relaxed">
-            <div className="space-y-4">
-              <p className="text-foreground font-medium transition-smooth hover:text-primary p-4 rounded-lg hover:bg-accent/30">
-                Yo, I'm Ritankar Jana! 👋 Final-year B.Tech CSE student at Academy of Technology, rocking a 8.92 CGPA. My playground? The wild world of Generative AI and software dev. 🌟
-              </p>
-
-              <p className="text-muted-foreground italic p-4 rounded-lg hover:bg-accent/20 transition-smooth hover:text-accent-blue">
-                Not a pro coder (yet), but I'm wired for learning. Think of me as a neural net with a killer learning rate — fast enough to grow, slow enough to avoid overfitting. 🚀
-              </p>
-
-              <p className="text-foreground font-medium p-4 rounded-lg hover:bg-accent/30 transition-smooth hover:text-primary">
-                I don't just code — I dissect tech. Unraveling logic, design patterns, and architecture to build software that's scalable and timeless is my jam. 💻✨
-              </p>
-
-              <p className="text-muted-foreground p-4 rounded-lg hover:bg-accent/20 transition-smooth hover:text-accent-purple">
-                Off the keyboard, I'm a rookie footballer chasing the ball with pure joy. ⚽️ It's less about skill, more about the vibe and camaraderie. 🏃‍♂️
-              </p>
-
-              <p className="text-foreground font-medium p-4 rounded-lg hover:bg-accent/30 transition-smooth hover:text-primary">
-                Photography's my soul food. 📸 Armed with my Canon 200D Mark II, I hunt sunsets 🌅 and fleeting emotions, weaving stories without words. 🎨
-              </p>
-
-              <p className="text-muted-foreground italic p-4 rounded-lg hover:bg-accent/20 transition-smooth hover:text-accent-orange">
-                Love AI 🤖, photography 📸, coding 💻, or just random football kicks ⚽️? Hit me up — let's spark ideas and build something epic! 🎶
-              </p>
-            </div>
+          {/* Experience Section with enhanced mobile responsiveness */}
+          <div className="animate-[fadeInUp_0.8s_ease-out_0.4s_both]">
+            <SectionCard title="Work Experience" icon="💼">
+              <div className="space-y-4 sm:space-y-6">
+                {experience.map((exp, index) => (
+                  <div 
+                    key={index}
+                    className="animate-[slideInUp_0.6s_ease-out_both] hover:animate-[pulse_2s_infinite]"
+                    style={{ animationDelay: `${0.6 + index * 0.2}s` }}
+                  >
+                    <ExperienceCard {...exp} />
+                  </div>
+                ))}
+              </div>
+            </SectionCard>
           </div>
 
-          {/* Enhanced download button */}
-          <div className="flex justify-center"/>
-        </div>
-      </SectionCard>
-
-      {/* Experience Section */}
-      <SectionCard title="Work Experience" icon="💼">
-        <div className="space-y-6">
-          {experience.map((exp, index) => (
-            <ExperienceCard key={index} {...exp} />
-          ))}
-        </div>
-      </SectionCard>
-
-      {/* Education Section */}
-      <SectionCard title="Education" icon="🎓">
-        <div className="space-y-6">
-          {education.map((edu, index) => (
-            <EducationCard key={index} {...edu} />
-          ))}
-        </div>
-      </SectionCard>
-
-      {/* Achievements Section
-      <SectionCard title="Key Achievements" icon="🎯">
-        <div className="grid gap-4">
-          {achievements.map((achievement, index) => (
-            <div 
-              key={index} 
-              className="group flex items-start space-x-3 p-4 rounded-xl hover:bg-accent/20 transition-smooth card-hover"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm shrink-0 group-hover:scale-110 transition-transform">
-                {index + 1}
+          {/* Education Section with staggered animations */}
+          <div className="animate-[fadeInUp_0.8s_ease-out_0.6s_both]">
+            <SectionCard title="Education" icon="🎓">
+              <div className="space-y-4 sm:space-y-6">
+                {education.map((edu, index) => (
+                  <div 
+                    key={index}
+                    className="animate-[slideInUp_0.6s_ease-out_both] hover:animate-[wobble_1s_ease-in-out]"
+                    style={{ animationDelay: `${0.8 + index * 0.3}s` }}
+                  >
+                    <EducationCard {...edu} />
+                  </div>
+                ))}
               </div>
-              <p className="text-sm leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors">
-                {achievement}
-              </p>
-            </div>
-          ))}
+            </SectionCard>
+          </div>
         </div>
-      </SectionCard> */}
-
-      {/* Footer with connect section */}
-      {/* <div className="text-center py-8 space-y-4">
-        <div className="section-divider"></div>
-        <p className="text-muted-foreground">
-          Ready to build something amazing together? Let's connect! 🚀
-        </p>
-        <div className="flex justify-center gap-2 text-sm text-accent-blue">
-          <span>✨ Portfolio</span>
-          <span>•</span>
-          <span>🎯 Projects</span>
-          <span>•</span>
-          <span>📱 Contact</span>
-        </div>
-      <*/}
-      </div> 
+      </div>
     </div>
   );
 };
