@@ -41,7 +41,7 @@ const AboutSection = () => {
   const experience = [
     {
       logo: "/logo/image.webp",
-      title: "Software Engineer Technical Support",
+      title: "Software Support Technical",
       company: "Soefia Education Incorporated",
       location: "Boston, Massachusetts, United States",
       workingMode: "Remote",
