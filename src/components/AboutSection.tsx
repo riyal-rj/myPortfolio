@@ -10,7 +10,7 @@ const AboutSection = () => {
       logo: "/logo/png-clipart-academy-of-technology-asansol-engineering-college-maulana-abul-kalam-azad-university-of-technology-hooghly-institute-of-technology-technology-blue-angle.png",
       degree: "B.Tech in Computer Science and Engineering",
       institution: "Academy of Technology",
-      period: "Oct 2021 - Jul 2025",
+      period: "2021 - 2025",
       score: "8.92 CGPA",
       scoreType: "cgpa",
       description:
