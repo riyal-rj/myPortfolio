@@ -3,6 +3,7 @@ import { Download, Camera, Code2, Gamepad2 } from "lucide-react";
 import ExperienceCard from "../components/cards/ExperienceCard";
 import EducationCard from "../components/cards/EducationCard";
 import SectionCard from "./cards/SectionCard";
+import { Link } from "react-router-dom";
 
 const AboutSection = () => {
   const education = [
@@ -59,6 +60,43 @@ const AboutSection = () => {
       {/* Enhanced container with better mobile padding */}
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12">
         <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-12">
+          
+
+
+           {/* Experience Section with enhanced mobile responsiveness */}
+          <div className="animate-[fadeInUp_0.8s_ease-out_0.4s_both]">
+            <SectionCard title="Work Experience" icon="💼" month="July">
+              <div className="space-y-4 sm:space-y-6">
+                {experience.map((exp, index) => (
+                  <div 
+                    key={index}
+                    className="animate-[slideInUp_0.6s_ease-out_both] hover:animate-[pulse_2s_infinite]"
+                    style={{ animationDelay: `${0.6 + index * 0.2}s` }}
+                  >
+                    <ExperienceCard {...exp} />
+                  </div>
+                ))}
+              </div>
+            </SectionCard>
+          </div>
+
+          {/* Education Section with staggered animations */}
+          <div className="animate-[fadeInUp_0.8s_ease-out_0.6s_both]">
+            <SectionCard title="Education" icon="🎓">
+              <div className="space-y-4 sm:space-y-6">
+                {education.map((edu, index) => (
+                  <div 
+                    key={index}
+                    className="animate-[slideInUp_0.6s_ease-out_both] hover:animate-[wobble_1s_ease-in-out]"
+                    style={{ animationDelay: `${0.8 + index * 0.3}s` }}
+                  >
+                    <EducationCard {...edu} />
+                  </div>
+                ))}
+              </div>
+            </SectionCard>
+          </div>
+
           
           {/* About Me Section with enhanced mobile layout */}
           <div className="group animate-[fadeInUp_0.8s_ease-out]">
@@ -146,46 +184,14 @@ const AboutSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                       <Download className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:animate-bounce" />
                       Download CV
+                      <Link to="/resume.pdf" target="_blank" rel="noopener noreferrer" className="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-300"/>
                     </Button>
                   </div>
                 </div>
               </div>
             </SectionCard>
           </div>
-
-          {/* Experience Section with enhanced mobile responsiveness */}
-          <div className="animate-[fadeInUp_0.8s_ease-out_0.4s_both]">
-            <SectionCard title="Work Experience" icon="💼" month="July">
-              <div className="space-y-4 sm:space-y-6">
-                {experience.map((exp, index) => (
-                  <div 
-                    key={index}
-                    className="animate-[slideInUp_0.6s_ease-out_both] hover:animate-[pulse_2s_infinite]"
-                    style={{ animationDelay: `${0.6 + index * 0.2}s` }}
-                  >
-                    <ExperienceCard {...exp} />
-                  </div>
-                ))}
-              </div>
-            </SectionCard>
-          </div>
-
-          {/* Education Section with staggered animations */}
-          <div className="animate-[fadeInUp_0.8s_ease-out_0.6s_both]">
-            <SectionCard title="Education" icon="🎓">
-              <div className="space-y-4 sm:space-y-6">
-                {education.map((edu, index) => (
-                  <div 
-                    key={index}
-                    className="animate-[slideInUp_0.6s_ease-out_both] hover:animate-[wobble_1s_ease-in-out]"
-                    style={{ animationDelay: `${0.8 + index * 0.3}s` }}
-                  >
-                    <EducationCard {...edu} />
-                  </div>
-                ))}
-              </div>
-            </SectionCard>
-          </div>
+         
         </div>
       </div>
     </div>
