@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { GitBranch, Star, Users, Activity, Calendar, TrendingUp, UserPlus, UserCheck } from "lucide-react";
+import GitHubContributionGraph from "./GithubContributionGraph";
 
 interface GitHubUser {
   login: string;
@@ -432,7 +433,7 @@ const GitHubStats = () => {
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-3 sm:gap-4 mb-6 sm:mb-8">
             {/* Contribution Overview */}
             <Card className="border border-border bg-background">
               <CardHeader className="pb-2 sm:pb-3">
@@ -473,39 +474,7 @@ const GitHubStats = () => {
             </Card>
 
             {/* Top Languages */}
-            <Card className="border border-border bg-background">
-              <CardHeader className="pb-2 sm:pb-3">
-                <CardTitle className="text-sm sm:text-base flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-blue-500" />
-                  Top Languages 💻
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 sm:space-y-3 pb-4">
-                {topLanguages.length > 0 ? (
-                  topLanguages.map((language, index) => (
-                    <div key={language.name} className="space-y-1">
-                      <div className="flex items-center justify-between text-xs sm:text-sm">
-                        <div className="flex items-center gap-2 min-w-0 flex-1">
-                          <div 
-                            className="w-3 h-3 rounded-full flex-shrink-0" 
-                            style={{ backgroundColor: language.color || '#888' }}
-                          ></div>
-                          <span className="font-medium truncate">{language.name}</span>
-                        </div>
-                        <span className="text-muted-foreground flex-shrink-0 ml-2">
-                          {language.percentage.toFixed(1)}%
-                        </span>
-                      </div>
-                      <Progress value={language.percentage} className="h-1.5" />
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-center text-xs sm:text-sm text-muted-foreground py-4">
-                    No language data available
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+            <GitHubContributionGraph/>
             <div className="h-8 sm:h-12" />
           </div>
         </div>

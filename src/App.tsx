@@ -11,6 +11,7 @@ import TriNayanPage from "./pages/projects/TriNayanPage";
 import NewsScrapperPage from "./pages/projects/NewsScrapperPage";
 import EmailAIAssistantPage from "./pages/projects/EmailAIAssistantPage";
 import AdvAuthPage from "./pages/projects/AdvAuthPage";
+import WinstonBlogPage from "./pages/blogs/winstonLogBlog";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/projects/news-scrapper" element={<NewsScrapperPage />} />
           <Route path="/projects/email-ai" element={<EmailAIAssistantPage/>}/>
           <Route path="/projects/adv-auth" element={<AdvAuthPage/>}/>
+          <Route path="/blog/winston-logging-nodejs" element={<WinstonBlogPage />} />"
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,12 +1,13 @@
 import React from "react";
 import ProjectsSection from "@/components/ProjectsSection";
-import BlogSection from "@/components/BlogSection";
+import SneakPeak from "@/components/BlogSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import GitHubStats from "@/components/GitHubStats";
 import { AnimatePresence, motion } from "framer-motion";
 import SkillMap from "./SkillMap";
 import LearningJourney from "./LearningJourney";
+import BlogSection from "./Blogs";
 
 interface FeedContentProps {
   activeTab: string;
@@ -31,11 +32,13 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
           </div>
         );
       case "Sneak Peek":
-        return <BlogSection />;
+        return <SneakPeak />;
       case "Skills":
         return <SkillMap/>;
       case "About Me":
         return <AboutSection />;
+      case "Blog":
+        return <BlogSection/>
       case "Contact":
         return <ContactSection />;
       default:
