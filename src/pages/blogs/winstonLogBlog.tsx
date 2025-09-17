@@ -1,972 +1,712 @@
-import React, { useState, useEffect } from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft,
-  Github,
-  ExternalLink,
-  Calendar,
-  Clock,
-  X,
+  FileText,
   Code,
   Zap,
   Shield,
   Settings,
-  Target,
-  ChevronRight,
-  Play,
-  Copy,
-  Check,
+  BarChart3,
+  ExternalLink,
 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { FaGithub } from "react-icons/fa";
 
-const WinstonBlogPage: React.FC = () => {
-  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
-  const [copiedCode, setCopiedCode] = useState<string | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-    let timestamp,level,label,message;
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-    };
+const WinstonLoggingPage = () => {
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="border-b border-border p-4">
+        <div className="max-w-4xl mx-auto flex items-center gap-4">
+          <Button variant="ghost" size="sm" asChild>
+            <Link to="/">
+              <ArrowLeft className="w-4 h-4 text-blue-500" />
+              Back to Home
+            </Link>
+          </Button>
+        </div>
+      </div>
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      <div className="max-w-4xl mx-auto p-4 sm:p-6 space-y-6 sm:space-y-8">
+        <div className="space-y-4">
+          <div className="mb-12">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="bg-purple-100 text-purple-800 border border-purple-200 px-3 py-1 rounded-full text-sm font-medium">
+                Backend Development
+              </span>
+              <span className="border border-green-300 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                Node Js
+              </span>
+              <span className="border border-orange-300 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">
+                Winston
+              </span>
+              <span className="border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                Logging
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 bg-clip-text text-transparent mb-4">
+              Winston Logging: Helping Node.js
+            </h1>
+            <p className="text-xl white leading-relaxed">
+              A comprehensive guide to Winston, the popular universal logging
+              library for Node.js. Learn how to implement flexible, extensible,
+              and powerful logging solutions for your applications.
+            </p>
+            <div className="flex items-center gap-4 mt-6 text-sm text-indigo-600">
+              <span className="font-medium">By Ritankar Jana</span>
+              <div className="h-4 w-px bg-indigo-300"></div>
+              <span className="font-medium">15 min read</span>
+              <div className="h-4 w-px bg-indigo-300"></div>
+              <span className="font-medium">September 2024</span>
+            </div>
+          </div>
+        </div>
 
-  const copyToClipboard = async (code: string, id: string) => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopiedCode(id);
-      setTimeout(() => setCopiedCode(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy code:', err);
-    }
-  };
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <FileText className="w-5 h-5 text-primary" />
+              Introduction to Winston
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              <span className="text-blue-600 font-semibold">Winston</span> is a
+              popular, universal logging library for Node.js. It is designed to
+              be <span className="text-green-600 font-medium">simple</span>,{" "}
+              <span className="text-green-600 font-medium">flexible</span>, and{" "}
+              <span className="text-green-600 font-medium">extensible</span>,
+              making it a powerful tool for managing application logs in both
+              development and production environments.
+            </p>
+          </CardContent>
+        </Card>
 
-  const codeSnippet1 = `import winston from 'winston';
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Zap className="w-5 h-5 text-yellow-500" />
+              Why Winston is Helpful
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div>
+                    <h4 className="font-semibold text-blue-600">
+                      Flexibility & Extensibility
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Transport-based architecture allows sending logs to
+                      various destinations like console, files, databases, or
+                      third-party services.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <div>
+                    <h4 className="font-semibold text-green-600">
+                      Customizable Log Levels
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Uses logging levels (error, warn, info) to categorize
+                      message severity and filter output.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                  <div>
+                    <h4 className="font-semibold text-purple-600">
+                      Log Formatting
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Control output format - plain text, JSON, or custom
+                      formats for parsing and analysis.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <div>
+                    <h4 className="font-semibold text-red-600">
+                      Error Handling
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Configure to handle uncaught exceptions, ensuring critical
+                      errors are always logged.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Code className="w-5 h-5 text-green-500" />
+              Basic Winston Setup
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              Here's a basic example of Winston with multiple transports and
+              levels:
+            </p>
+            <div className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+              <pre className="text-sm">
+                {`import winston from 'winston';
 
 const logger = winston.createLogger({
-  level: "warn",
-  format: winston.format.json(),
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: "logs/error.log", level: "error" }),
-    new winston.transports.File({ filename: "logs/combined.log" })
-  ]
+    level: "warn",
+    format: winston.format.json(),
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({
+            filename: "logs/error.log", 
+            level: "error"
+        }),
+        new winston.transports.File({
+            filename: "logs/combined.log"
+        })
+    ]
 });
 
 logger.warn("Test warning log");
 logger.error("Test error log");
-logger.info("Test info log");   // discarded
-logger.debug("Test debug log"); // discarded`;
+logger.info("Test info log");      // Won't be logged (below warn level)
+logger.debug("Test debug log");    // Won't be logged (below warn level)`}
+              </pre>
+            </div>
+          </CardContent>
+        </Card>
 
-  const codeSnippetFormats = `import winston from 'winston';
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Settings className="w-5 h-5 text-blue-500" />
+              Multiple Transports
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              <span className="text-blue-600 font-semibold">Transports</span>{" "}
+              are the destinations for your logs. Winston allows multiple
+              transports with fine-grained control:
+            </p>
+            <div className="space-y-3">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h4 className="font-semibold text-blue-600">
+                  Console Transport
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  Sends all logs to the console output
+                </p>
+                <code className="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                  new winston.transports.Console()
+                </code>
+              </div>
+              <div className="border-l-4 border-red-500 pl-4">
+                <h4 className="font-semibold text-red-600">
+                  Error File Transport
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  Creates error.log with only error-level messages
+                </p>
+                <code className="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                  filename: "logs/error.log", level: "error"
+                </code>
+              </div>
+              <div className="border-l-4 border-green-500 pl-4">
+                <h4 className="font-semibold text-green-600">
+                  Combined File Transport
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  Creates combined.log with all logs that pass the main level
+                  filter
+                </p>
+                <code className="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                  filename: "logs/combined.log"
+                </code>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-const { createLogger, format, transports } = winston;
-const { combine, timestamp, label, printf, simple, json, cli, prettyPrint } = format;
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <BarChart3 className="w-5 h-5 text-purple-500" />
+              Logging Levels
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              Winston uses the following default logging levels, ordered by
+              severity:
+            </p>
+            <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <div className="flex justify-between items-center p-2 bg-red-100 dark:bg-red-900/20 rounded">
+                  <span className="font-semibold text-red-700 dark:text-red-400">
+                    error
+                  </span>
+                  <span className="text-red-600 dark:text-red-500">
+                    0 (highest)
+                  </span>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-orange-100 dark:bg-orange-900/20 rounded">
+                  <span className="font-semibold text-orange-700 dark:text-orange-400">
+                    warn
+                  </span>
+                  <span className="text-orange-600 dark:text-orange-500">
+                    1
+                  </span>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-blue-100 dark:bg-blue-900/20 rounded">
+                  <span className="font-semibold text-blue-700 dark:text-blue-400">
+                    info
+                  </span>
+                  <span className="text-blue-600 dark:text-blue-500">2</span>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-green-100 dark:bg-green-900/20 rounded">
+                  <span className="font-semibold text-green-700 dark:text-green-400">
+                    http
+                  </span>
+                  <span className="text-green-600 dark:text-green-500">3</span>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-purple-100 dark:bg-purple-900/20 rounded">
+                  <span className="font-semibold text-purple-700 dark:text-purple-400">
+                    verbose
+                  </span>
+                  <span className="text-purple-600 dark:text-purple-500">
+                    4
+                  </span>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-indigo-100 dark:bg-indigo-900/20 rounded">
+                  <span className="font-semibold text-indigo-700 dark:text-indigo-400">
+                    debug
+                  </span>
+                  <span className="text-indigo-600 dark:text-indigo-500">
+                    5
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-4 rounded-lg">
+              <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                <span className="font-semibold">Pro Tip:</span> Set level to{" "}
+                <code className="bg-yellow-200 dark:bg-yellow-800 px-1 rounded">
+                  info
+                </code>{" "}
+                in development and{" "}
+                <code className="bg-yellow-200 dark:bg-yellow-800 px-1 rounded">
+                  warn
+                </code>{" "}
+                in production to reduce log noise.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
-const myFormat = printf(({ level, message, label, timestamp }) => {
-  return "${timestamp} [${label}] ${level}: ${message}";
-});
+        <Card>
+          <CardHeader>
+            <CardTitle>Winston Formats</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              Winston comes with several built-in formats for different use
+              cases:
+            </p>
+            <div className="space-y-4">
+              <div className="border rounded-lg p-4">
+                <h4 className="font-semibold text-blue-600 mb-2">
+                  Simple Format
+                </h4>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Prints the log level, a tab, and the message.
+                </p>
+                <div className="bg-gray-900 text-green-400 p-2 rounded text-sm font-mono">
+                  info:&nbsp;&nbsp;&nbsp;&nbsp;This is a simple log message.
+                </div>
+              </div>
 
-const customLogger = createLogger({
-  format: combine(
-    label({ label: 'right meow!' }),
-    timestamp(),
-    myFormat
-  ),
-  transports: [new transports.Console()],
-});
+              <div className="border rounded-lg p-4">
+                <h4 className="font-semibold text-green-600 mb-2">
+                  JSON Format
+                </h4>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Outputs the log as a JSON object.
+                </p>
+                <div className="bg-gray-900 text-green-400 p-2 rounded text-sm font-mono">
+                  {"{"}"level":"info","message":"This is a JSON log message."
+                  {"}"}
+                </div>
+              </div>
 
-customLogger.info('This is a custom formatted log message.');`;
+              <div className="border rounded-lg p-4">
+                <h4 className="font-semibold text-purple-600 mb-2">
+                  Custom printf Format
+                </h4>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Create any format using printf with timestamps and labels.
+                </p>
+                <div className="bg-gray-900 text-green-400 p-2 rounded text-sm font-mono">
+                  2025-09-12T12:00:00.000Z [right meow!] info: Custom message
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-  const codeSnippetChild = `const demoLog = { name: "Ritankar", role: "Software Developer" };
+        <Card>
+          <CardHeader>
+            <CardTitle>Child Loggers and Custom JSON</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              <span className="text-purple-600 font-semibold">
+                Child loggers
+              </span>{" "}
+              inherit parent configuration but add their own specific metadata.
+            </p>
+            <div className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+              <pre className="text-sm">
+                {`const demoLog = {name: "Ritankar", role: "Software Developer"};
 
+// Create child logger with metadata
 const childLogger = logger.child(demoLog);
-childLogger.info('This is a log from the child logger');`;
 
-  const codeSnippetError = `import { createLogger, format, transports } from "winston";
-const { combine, errors, timestamp, json, prettyPrint } = format;
+// Every log from child includes the metadata automatically
+childLogger.info('This is a log from the child logger');
+
+// You can also pass custom JSON to any log
+logger.info('Custom log', demoLog);`}
+              </pre>
+            </div>
+            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4 rounded-lg">
+              <p className="text-sm text-blue-800 dark:text-blue-200">
+                <span className="font-semibold">Use Case:</span> Perfect for
+                adding context like user session data, request IDs, or
+                service-specific information.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Shield className="w-5 h-5 text-red-500" />
+              Error Logging with Stack Traces
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              Winston can capture detailed error information including stack
+              traces:
+            </p>
+            <div className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+              <pre className="text-sm">
+                {`import { errors } from 'winston';
 
 const logger = createLogger({
-  format: combine(errors({ stack: true }), timestamp(), json(), prettyPrint()),
-  transports: [new transports.Console(), new transports.File({ filename: "logs/combined.log" })],
+  format: combine(
+    errors({ stack: true }),  // Enable stack traces
+    timestamp(),
+    json(),
+    prettyPrint()
+  ),
+  transports: [
+    new transports.Console(),
+    new transports.File({filename: "logs/combined.log"})
+  ],
 });
 
-const demoLog = { name: "Ritankar", role: "Software Developer" };
-const childLogger = logger.child(demoLog);
-childLogger.info('This is a test info log in json format with timestamp from child Logger', new Error("Test Error"));`;
-
-  const CodeBlock = ({ code, id, title }: { code: string; id: string; title?: string }) => (
-    <div className="group relative">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
-      <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl border border-slate-700/50 overflow-hidden">
-        {title && (
-          <div className="flex items-center justify-between px-4 py-3 bg-slate-800/50 border-b border-slate-700/50">
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              </div>
-              <span className="text-sm font-medium text-slate-300 ml-2">{title}</span>
+// Log an error with full stack trace
+childLogger.info('Operation failed', new Error("Test Error"));`}
+              </pre>
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => copyToClipboard(code, id)}
-              className="h-8 text-slate-400 hover:text-white hover:bg-slate-700/50"
-            >
-              {copiedCode === id ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-            </Button>
-          </div>
-        )}
-        <pre className="p-6 overflow-auto text-sm text-slate-100 leading-relaxed">
-          <code className="language-javascript">{code}</code>
-        </pre>
-      </div>
-    </div>
-  );
-
-  const FeatureCard = ({ icon: Icon, title, description, gradient }: any) => (
-    <div className="group relative">
-      <div className={`absolute inset-0 ${gradient} rounded-xl blur-xl opacity-0 group-hover:opacity-20 transition-all duration-500`} />
-      <Card className="relative bg-white/5 backdrop-blur-sm border-white/10 hover:border-white/20 transition-all duration-300 group-hover:transform group-hover:scale-105">
-        <CardContent className="p-6">
-          <div className="flex items-start gap-4">
-            <div className={`p-3 rounded-lg ${gradient.replace('bg-gradient-to-r', 'bg-gradient-to-br')}`}>
-              <Icon className="w-6 h-6 text-white" />
-            </div>
-            <div className="space-y-2 flex-1">
-              <h3 className="font-semibold text-lg">{title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
-      {/* Progress bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-slate-800 z-50">
-        <div 
-          className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
-
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/3 -left-20 w-60 h-60 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-2000" />
-      </div>
-
-      {zoomedImage && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
-          <button
-            className="absolute top-5 right-5 text-white hover:text-red-400 transition-colors duration-200"
-            onClick={() => setZoomedImage(null)}
-            aria-label="Close image"
-          >
-            <X className="w-8 h-8" />
-          </button>
-          <img
-            src={zoomedImage}
-            alt="zoomed"
-            className="max-w-full max-h-full rounded-xl shadow-2xl"
-          />
-        </div>
-      )}
-
-      {/* Navigation */}
-      <div className="border-b border-white/10 bg-black/20 backdrop-blur-lg sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
-          <Button variant="ghost" size="sm" className="text-white hover:bg-white/10">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Portfolio
-          </Button>
-          <div className="flex items-center gap-4">
-            <Badge variant="outline" className="border-blue-500/30 text-blue-300 bg-blue-500/10">
-              Advanced Tutorial
-            </Badge>
-            <Badge variant="outline" className="border-purple-500/30 text-purple-300 bg-purple-500/10">
-              12 min read
-            </Badge>
-          </div>
-        </div>
-      </div>
-
-      <article className="max-w-6xl mx-auto p-4 sm:p-6 space-y-12 relative">
-        {/* Hero Section */}
-        <header className="text-center space-y-8 py-12">
-          <div className="flex items-center justify-center gap-3 text-sm text-slate-400">
-            <Calendar className="w-4 h-4" />
-            <span>September 15, 2025</span>
-            <span>•</span>
-            <Clock className="w-4 h-4" />
-            <span>12 min read</span>
-          </div>
-
-          <div className="space-y-6">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
-              Winston Logging
-            </h1>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-slate-300 leading-tight">
-              Powering Production-Ready Node.js Applications
-            </h2>
-          </div>
-
-          <p className="text-lg sm:text-xl text-slate-400 leading-relaxed max-w-4xl mx-auto">
-            Transform your Node.js applications with Winston's universal, flexible logging architecture — 
-            designed to make logs structured, searchable, and enterprise-ready.
-          </p>
-
-          {/* Author section */}
-          <div className="flex items-center justify-center gap-6 pt-8">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-blue-500/30">
-                <img
-                  src="/profilePic.jpeg"
-                  alt="author"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="text-left">
-                <div className="font-semibold text-white">Ritankar Jana</div>
-                <div className="text-slate-400 text-sm">Full Stack Developer & Tech Writer</div>
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4 rounded-lg">
+              <h5 className="font-semibold text-red-700 dark:text-red-400 mb-2">
+                Sample Error Output:
+              </h5>
+              <div className="bg-gray-900 text-green-400 p-2 rounded text-xs font-mono">
+                {`{
+  "name": "Ritankar",
+  "role": "Software Developer", 
+  "level": "info",
+  "message": "Operation failed Test Error",
+  "stack": "Error: Test Error\\n    at file:///app/index.js:23:92...",
+  "timestamp": "2025-09-12T18:10:19.910Z"
+}`}
               </div>
             </div>
+          </CardContent>
+        </Card>
 
-            <div className="h-12 w-px bg-slate-700" />
-
-            <div className="flex flex-wrap gap-2">
-              {["Node.js", "Winston", "Observability", "Logging", "Backend"].map((t) => (
-                <Badge key={t} variant="secondary" className="bg-slate-800/50 text-slate-300 border-slate-700/50 hover:bg-slate-700/50 transition-all duration-200">
-                  {t}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        </header>
-
-        {/* Why Winston Section */}
-        <section className="space-y-8">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Why Choose Winston?
-            </h2>
-            <p className="text-slate-400 text-lg max-w-3xl mx-auto">
-              Winston elevates logging from basic console outputs to a sophisticated, production-grade system
+        <Card>
+          <CardHeader>
+            <CardTitle>Managing Multiple Service Loggers</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              For larger applications, separate logs by service using Winston's{" "}
+              <span className="text-blue-600 font-semibold">
+                global container
+              </span>
+              :
             </p>
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-green-600 mb-2">
+                  logger.js (Setup)
+                </h4>
+                <div className="bg-gray-900 text-gray-100 p-3 rounded text-xs overflow-x-auto">
+                  <pre>
+                    {`winston.loggers.add('orderLogger', {
+  format: combine(timestamp(), json()),
+  transports: [
+    new transports.Console(),
+    new transports.File({ 
+      filename: "logs/orders.log" 
+    })
+  ],
+  defaultMeta: {service: 'order'}
+});`}
+                  </pre>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-semibold text-blue-600 mb-2">
+                  index.js (Usage)
+                </h4>
+                <div className="bg-gray-900 text-gray-100 p-3 rounded text-xs overflow-x-auto">
+                  <pre>
+                    {`require('./logger.js');
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <FeatureCard
-              icon={Settings}
-              title="Flexibility & Extensibility"
-              description="Transport-based architecture supports console, files, databases, and third-party services. Configure multiple transports simultaneously for comprehensive logging coverage."
-              gradient="bg-gradient-to-r from-blue-500 to-cyan-500"
-            />
-            <FeatureCard
-              icon={Target}
-              title="Intelligent Log Levels"
-              description="Fine-grained control with built-in severity levels (error, warn, info, debug). Set thresholds to filter noise and focus on what matters in different environments."
-              gradient="bg-gradient-to-r from-purple-500 to-pink-500"
-            />
-            <FeatureCard
-              icon={Code}
-              title="Advanced Formatting"
-              description="Transform log output with JSON, custom printf, or structured formats. Essential for parsing, searching, and analyzing logs in production systems."
-              gradient="bg-gradient-to-r from-emerald-500 to-teal-500"
-            />
-            <FeatureCard
-              icon={Shield}
-              title="Enterprise Error Handling"
-              description="Built-in support for uncaught exceptions and promise rejections. Ensure critical application errors are always captured and properly logged."
-              gradient="bg-gradient-to-r from-orange-500 to-red-500"
-            />
-          </div>
-        </section>
+const orderLogger = winston
+  .loggers.get('orderLogger');
 
-        {/* Getting Started */}
-        <section className="space-y-8">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Play className="w-6 h-6 text-blue-400" />
-              <h2 className="text-3xl font-bold text-white">Getting Started</h2>
+orderLogger.info('Order processed');
+orderLogger.error('Order failed');`}
+                  </pre>
+                </div>
+              </div>
             </div>
-            <ChevronRight className="w-5 h-5 text-slate-500" />
-            <span className="text-slate-400">Basic Configuration</span>
-          </div>
-
-          <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-            <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-3 text-white">
-                <Zap className="w-5 h-5 text-yellow-400" />
-                Quick Setup Guide
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-slate-300 mb-6 leading-relaxed">
-                Create a production-ready logger with multiple transports, JSON formatting, and intelligent level filtering in just a few lines of code.
+            <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-4 rounded-lg">
+              <p className="text-sm text-green-800 dark:text-green-200">
+                <span className="font-semibold">Benefits:</span> Organized logs
+                by service (orders.log, customers.log, payments.log) with
+                automatic service metadata.
               </p>
-              <CodeBlock code={codeSnippet1} id="basic-setup" title="winston-setup.js" />
-            </CardContent>
-          </Card>
-        </section>
+            </div>
+          </CardContent>
+        </Card>
 
-        {/* Logging Levels */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-            Understanding Log Levels
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-              <CardHeader>
-                <CardTitle className="text-white">Default Winston Levels</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <CodeBlock 
-                    code={`{
-  error: 0,    // System errors, exceptions
-  warn: 1,     // Warning conditions  
-  info: 2,     // General information
-  http: 3,     // HTTP request logs
-  verbose: 4,  // Detailed information
-  debug: 5,    // Debug information
-  silly: 6     // Everything and anything
-}`} 
-                    id="levels" 
-                    title="winston-levels.js" 
-                  />
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-              <CardHeader>
-                <CardTitle className="text-white">Level Filtering Logic</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-600/30">
-                  <p className="text-slate-300 text-sm mb-3">
-                    With logger level set to <code className="text-amber-300">"warn"</code>:
-                  </p>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center gap-3">
-                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                      <code className="text-red-300">logger.error()</code>
-                      <span className="text-slate-400">✓ Logged</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <code className="text-yellow-300">logger.warn()</code>
-                      <span className="text-slate-400">✓ Logged</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-3 h-3 rounded-full bg-slate-500"></div>
-                      <code className="text-slate-400">logger.info()</code>
-                      <span className="text-slate-500">✗ Filtered</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-3 h-3 rounded-full bg-slate-500"></div>
-                      <code className="text-slate-400">logger.debug()</code>
-                      <span className="text-slate-500">✗ Filtered</span>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Custom Formats */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Advanced Formatting
-          </h2>
-          
-          <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-white">
-                <Code className="w-5 h-5 text-purple-400" />
-                Custom Format Creation
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-slate-300 mb-6 leading-relaxed">
-                Create sophisticated log formats with timestamps, labels, and custom printf patterns for enhanced readability and parsing.
-              </p>
-              <CodeBlock code={codeSnippetFormats} id="formats" title="custom-formats.js" />
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Transport Configuration */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
-            Transport Architecture
-          </h2>
-
-          <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-            <CardContent className="p-8">
-              <p className="text-slate-300 mb-8 text-lg leading-relaxed">
-                Transports define where your logs are delivered. Winston's flexible architecture allows you to route different log levels to different destinations simultaneously.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-600/30">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-green-500/20 rounded-lg">
-                      <Target className="w-5 h-5 text-green-400" />
-                    </div>
-                    <h3 className="font-semibold text-white">Console Transport</h3>
-                  </div>
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    Real-time log output to terminal. Perfect for development and debugging with colored output and immediate feedback.
-                  </p>
-                  <code className="text-xs text-green-300 mt-3 block">winston.transports.Console()</code>
-                </div>
-
-                <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-600/30">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-blue-500/20 rounded-lg">
-                      <Shield className="w-5 h-5 text-blue-400" />
-                    </div>
-                    <h3 className="font-semibold text-white">Error File Transport</h3>
-                  </div>
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    Dedicated error logging to persistent storage. Captures only critical issues for focused troubleshooting.
-                  </p>
-                  <code className="text-xs text-blue-300 mt-3 block">level: "error"</code>
-                </div>
-
-                <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-600/30">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-purple-500/20 rounded-lg">
-                      <Settings className="w-5 h-5 text-purple-400" />
-                    </div>
-                    <h3 className="font-semibold text-white">Combined Logs</h3>
-                  </div>
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    Comprehensive logging destination capturing all events. Essential for audit trails and system monitoring.
-                  </p>
-                  <code className="text-xs text-purple-300 mt-3 block">combined.log</code>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Child Loggers */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
-            Contextual Logging with Child Loggers
-          </h2>
-          
-          <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-            <CardHeader>
-              <CardTitle className="text-white">Structured Context & Metadata</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-slate-300 mb-6 leading-relaxed">
-                Child loggers automatically merge metadata into every log entry, perfect for request tracing, user context, and service identification.
-              </p>
-              <CodeBlock code={codeSnippetChild} id="child-logger" title="child-logger.js" />
-              
-              <div className="mt-6 p-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg border border-blue-500/20">
-                <p className="text-blue-200 text-sm">
-                  <strong>Pro Tip:</strong> Use child loggers for request-scoped logging by attaching requestId, userId, 
-                  or session data. This creates automatic correlation across your entire request lifecycle.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Error Handling */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
-            Production Error Handling
-          </h2>
-          
-          <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-white">
-                <Shield className="w-5 h-5 text-red-400" />
-                Stack Trace Preservation
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-slate-300 mb-6 leading-relaxed">
-                Combine error formatting with timestamps and structured output to preserve complete stack traces for debugging.
-              </p>
-              <CodeBlock code={codeSnippetError} id="error-handling" title="error-handling.js" />
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Performance Profiling */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-            Performance Profiling
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-              <CardHeader>
-                <CardTitle className="text-white">Built-in Profiler</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <p className="text-slate-300 leading-relaxed">
-                  Winston includes a sophisticated profiler for measuring execution time, essential for identifying performance bottlenecks.
-                </p>
-                
-                <div className="space-y-4">
-                  <div className="p-4 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
-                    <h4 className="font-semibold text-emerald-300 mb-2">Development Benefits</h4>
-                    <p className="text-slate-400 text-sm">Identify slow operations and optimization opportunities during development cycles.</p>
-                  </div>
-                  
-                  <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                    <h4 className="font-semibold text-blue-300 mb-2">Production Monitoring</h4>
-                    <p className="text-slate-400 text-sm">Track critical operation performance and ensure SLA compliance in production.</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-              <CardHeader>
-                <CardTitle className="text-white">Profiler Implementation</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CodeBlock 
-                  code={`const winston = require('winston');
-const orderLogger = winston.loggers.get('orderLogger');
-
-// Start timing
-const profiler = orderLogger.startTimer();
+        <Card>
+          <CardHeader>
+            <CardTitle>Code Profiling</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              Winston includes a simple profiler to measure code execution time:
+            </p>
+            <div className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+              <pre className="text-sm">
+                {`// Start the timer
+const profiler = logger.startTimer();
 
 // Your operation here
 setTimeout(() => {
-    // Log duration automatically
-    profiler.done({ 
-        message: 'Database query completed',
-        operation: 'user-lookup',
-        userId: '12345'
-    });
+    // End timer and log duration
+    profiler.done({ message: 'Database query completed' });
 }, 2000);
 
-// Output: 
-// {
-//   "message": "Database query completed", 
-//   "level": "info",
+// Output: { 
+//   "message": "Database query completed",
+//   "level": "info", 
 //   "durationMs": 2007,
-//   "operation": "user-lookup",
-//   "userId": "12345",
-//   "timestamp": "2025-09-15T10:30:42.597Z"
-// }`} 
-                  id="profiler" 
-                  title="profiler-example.js" 
-                />
-              </CardContent>
-            </Card>
-          </div>
-        </section>
+//   "timestamp": "2025-09-12T18:41:42.597Z" 
+// }`}
+              </pre>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-3 rounded">
+                <h5 className="font-semibold text-blue-700 dark:text-blue-400 mb-1">
+                  Development Use
+                </h5>
+                <p className="text-xs text-blue-600 dark:text-blue-300">
+                  Identify slow operations and performance bottlenecks
+                </p>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 p-3 rounded">
+                <h5 className="font-semibold text-purple-700 dark:text-purple-400 mb-1">
+                  Production Use
+                </h5>
+                <p className="text-xs text-purple-600 dark:text-purple-300">
+                  Monitor critical operations and ensure SLA compliance
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-        {/* Best Practices */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-            Production Best Practices
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="bg-gradient-to-br from-green-900/20 to-emerald-900/20 backdrop-blur border-green-500/20">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Target className="w-6 h-6 text-green-400" />
-                  <h3 className="font-semibold text-green-300">Smart Level Management</h3>
+        <Card>
+          <CardHeader>
+            <CardTitle>Best Practices</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <div>
+                    <h5 className="font-semibold text-green-600">
+                      Environment-based Levels
+                    </h5>
+                    <p className="text-sm text-muted-foreground">
+                      Use <code>info</code> in development, <code>warn</code> in
+                      production
+                    </p>
+                  </div>
                 </div>
-                <ul className="space-y-2 text-slate-300 text-sm">
-                  <li>• Development: <code className="text-green-300">info</code> level</li>
-                  <li>• Staging: <code className="text-yellow-300">warn</code> level</li>
-                  <li>• Production: <code className="text-red-300">error</code> level</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 backdrop-blur border-blue-500/20">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Settings className="w-6 h-6 text-blue-400" />
-                  <h3 className="font-semibold text-blue-300">Centralized Logging</h3>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div>
+                    <h5 className="font-semibold text-blue-600">
+                      Structured Logging
+                    </h5>
+                    <p className="text-sm text-muted-foreground">
+                      Use JSON format for better parsing and analysis
+                    </p>
+                  </div>
                 </div>
-                <ul className="space-y-2 text-slate-300 text-sm">
-                  <li>• Ship JSON logs to ELK Stack</li>
-                  <li>• Use Grafana Loki for queries</li>
-                  <li>• Implement Datadog integration</li>
-                  <li>• Enable real-time alerting</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur border-purple-500/20">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Code className="w-6 h-6 text-purple-400" />
-                  <h3 className="font-semibold text-purple-300">Context Enhancement</h3>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                  <div>
+                    <h5 className="font-semibold text-purple-600">
+                      Service Separation
+                    </h5>
+                    <p className="text-sm text-muted-foreground">
+                      Use separate loggers for different services/modules
+                    </p>
+                  </div>
                 </div>
-                <ul className="space-y-2 text-slate-300 text-sm">
-                  <li>• Attach requestId to every log</li>
-                  <li>• Include userId for user actions</li>
-                  <li>• Add service/component metadata</li>
-                  <li>• Use correlation IDs</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                  <div>
+                    <h5 className="font-semibold text-orange-600">
+                      Error Stack Traces
+                    </h5>
+                    <p className="text-sm text-muted-foreground">
+                      Always enable stack traces for error logs
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <div>
+                    <h5 className="font-semibold text-red-600">Log Rotation</h5>
+                    <p className="text-sm text-muted-foreground">
+                      Implement log rotation to manage file sizes
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-teal-500 rounded-full mt-2"></div>
+                  <div>
+                    <h5 className="font-semibold text-teal-600">
+                      Performance Monitoring
+                    </h5>
+                    <p className="text-sm text-muted-foreground">
+                      Use profiling for critical operations
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-        {/* Multiple Loggers */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-            Enterprise Logger Management
-          </h2>
-          
-          <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-white">
-                <Settings className="w-5 h-5 text-indigo-400" />
-                Service-Specific Loggers
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-slate-300 mb-6 leading-relaxed">
-                Organize logging across microservices with Winston's global container system. Each service gets dedicated configuration and output destinations.
+        <Card>
+          <CardHeader>
+            <CardTitle>Conclusion</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground leading-relaxed">
+              Winston provides a{" "}
+              <span className="text-blue-600 font-semibold">
+                comprehensive logging solution
+              </span>{" "}
+              for Node.js applications. Its transport-based architecture,
+              customizable formats, and powerful features like child loggers and
+              profiling make it an excellent choice for both development and
+              production environments. By following the patterns shown in this
+              guide, you can implement robust logging that will help you
+              monitor, debug, and maintain your applications effectively.
+            </p>
+          </CardContent>
+        </Card>
+        <section className="mt-12">
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-xl font-semibold mb-4">Explore Further</h3>
+              <p className="text-muted-foreground mb-6">
+                Want to dive deeper into Winston Logging? Check out my
+                implementation or explore the official documentation.
               </p>
-              <CodeBlock 
-                code={`import winston from 'winston';
-const { combine, errors, timestamp, json, prettyPrint } = winston.format;
-
-// Register service-specific loggers
-winston.loggers.add('orderService', {
-  format: combine(errors({ stack: true }), timestamp(), json(), prettyPrint()),
-  transports: [
-    new winston.transports.File({ filename: 'logs/orders.log' }),
-    new winston.transports.Console({ level: 'warn' })
-  ],
-  defaultMeta: { service: 'Order Service', version: '2.1.0' }
-});
-
-winston.loggers.add('paymentService', {
-  format: combine(errors({ stack: true }), timestamp(), json()),
-  transports: [
-    new winston.transports.File({ filename: 'logs/payments.log' }),
-    new winston.transports.File({ filename: 'logs/audit.log', level: 'info' })
-  ],
-  defaultMeta: { service: 'Payment Service', compliance: 'PCI-DSS' }
-});
-
-// Use anywhere in your application
-const orderLogger = winston.loggers.get('orderService');
-const paymentLogger = winston.loggers.get('paymentService');
-
-orderLogger.info('Order placed successfully', { 
-  orderId: 'ORD-12345', 
-  customerId: 'CUST-67890',
-  amount: 299.99 
-});
-
-paymentLogger.warn('Payment retry attempted', { 
-  transactionId: 'TXN-98765', 
-  attempt: 2, 
-  gateway: 'stripe' 
-});`} 
-                id="multiple-loggers" 
-                title="service-loggers.js" 
-              />
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild className="flex-1">
+                  <a
+                    href="https://github.com/riyal-rj/winston-logging"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <FaGithub className="w-4 h-4" />
+                    View My Code Repository
+                  </a>
+                </Button>
+                <Button variant="outline" asChild className="flex-1">
+                  <a
+                    href="https://betterstack.com/community/guides/logging/how-to-install-setup-and-use-winston-and-morgan-to-log-node-js-applications/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Official Documentation
+                  </a>
+                </Button>
+                <Button asChild className="flex-1">
+                  <a
+                    href="https://github.com/winstonjs/winston"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <FaGithub className="w-4 h-4" />
+                    Official Code Repository
+                  </a>
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </section>
-
-        {/* Advanced Configuration */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-rose-400 to-orange-400 bg-clip-text text-transparent">
-            Advanced Configuration Patterns
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-              <CardHeader>
-                <CardTitle className="text-white">Environment-Based Config</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CodeBlock 
-                  code={`import winston from 'winston';
-
-const isDevelopment = process.env.NODE_ENV === 'development';
-const isProduction = process.env.NODE_ENV === 'production';
-
-const logger = winston.createLogger({
-  level: isDevelopment ? 'debug' : 'warn',
-  format: winston.format.combine(
-    winston.format.errors({ stack: true }),
-    winston.format.timestamp(),
-    isDevelopment 
-      ? winston.format.colorize() 
-      : winston.format.json()
-  ),
-  transports: [
-    new winston.transports.Console({
-      format: isDevelopment 
-        ? winston.format.simple() 
-        : winston.format.json()
-    }),
-    ...(isProduction ? [
-      new winston.transports.File({ 
-        filename: 'logs/error.log', 
-        level: 'error' 
-      }),
-      new winston.transports.File({ 
-        filename: 'logs/combined.log' 
-      })
-    ] : [])
-  ],
-  exceptionHandlers: isProduction ? [
-    new winston.transports.File({ 
-      filename: 'logs/exceptions.log' 
-    })
-  ] : []
-});
-
-export default logger;`} 
-                  id="env-config" 
-                  title="logger-config.js" 
-                />
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur border-slate-700/50">
-              <CardHeader>
-                <CardTitle className="text-white">Custom Transport Example</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CodeBlock 
-                  code={`import winston from 'winston';
-import Transport from 'winston-transport';
-
-class SlackTransport extends Transport {
-  constructor(opts) {
-    super(opts);
-    this.webhookUrl = opts.webhookUrl;
-    this.channel = opts.channel || '#alerts';
-  }
-
-  log(info, callback) {
-    // Only send critical errors to Slack
-    if (info.level === 'error') {
-      const payload = {
-        channel: this.channel,
-        text: \`🚨 *Error Alert*\`,
-        attachments: [{
-          color: 'danger',
-          fields: [{
-            title: 'Message',
-            value: info.message,
-            short: false
-          }, {
-            title: 'Timestamp',
-            value: info.timestamp,
-            short: true
-          }]
-        }]
-      };
-
-      // Send to Slack webhook
-      fetch(this.webhookUrl, {
-        method: 'POST',
-        body: JSON.stringify(payload)
-      }).catch(console.error);
-    }
-    
-    callback();
-  }
-}
-
-const logger = winston.createLogger({
-  transports: [
-    new winston.transports.Console(),
-    new SlackTransport({
-      webhookUrl: process.env.SLACK_WEBHOOK_URL,
-      channel: '#production-alerts'
-    })
-  ]
-});`} 
-                  id="custom-transport" 
-                  title="custom-transport.js" 
-                />
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Performance Tips */}
-        <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">
-            Performance Optimization
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-gradient-to-br from-teal-900/20 to-cyan-900/20 backdrop-blur border-teal-500/20">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Zap className="w-6 h-6 text-teal-400" />
-                  <h3 className="font-semibold text-teal-300">Async Logging</h3>
-                </div>
-                <p className="text-slate-300 text-sm mb-4">
-                  Use async transports to prevent blocking your application's main thread during log operations.
-                </p>
-                <code className="text-xs text-teal-300 bg-slate-800/50 p-2 rounded block">
-                  handleExceptions: false,<br/>
-                  handleRejections: false
-                </code>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-blue-900/20 to-indigo-900/20 backdrop-blur border-blue-500/20">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Target className="w-6 h-6 text-blue-400" />
-                  <h3 className="font-semibold text-blue-300">Log Rotation</h3>
-                </div>
-                <p className="text-slate-300 text-sm mb-4">
-                  Implement log rotation to manage disk space and maintain performance in production.
-                </p>
-                <code className="text-xs text-blue-300 bg-slate-800/50 p-2 rounded block">
-                  maxsize: 5242880, // 5MB<br/>
-                  maxFiles: 5
-                </code>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur border-purple-500/20">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Shield className="w-6 h-6 text-purple-400" />
-                  <h3 className="font-semibold text-purple-300">Memory Management</h3>
-                </div>
-                <p className="text-slate-300 text-sm mb-4">
-                  Configure proper buffer sizes and flush intervals to optimize memory usage.
-                </p>
-                <code className="text-xs text-purple-300 bg-slate-800/50 p-2 rounded block">
-                  {`stream: { highWaterMark: 16 },<br/>
-                  flush: true`}
-                </code>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Conclusion */}
-        <section className="space-y-8 py-12">
-          <div className="text-center space-y-6">
-            <h2 className="text-4xl font-bold text-white">
-              Ready for Production
-            </h2>
-            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
-              Winston transforms your Node.js applications from basic logging to enterprise-grade observability. 
-              Start with structured JSON logs, implement intelligent level filtering, and scale to centralized monitoring.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <Card className="bg-gradient-to-br from-emerald-900/20 to-teal-900/20 backdrop-blur border-emerald-500/20 text-center">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Target className="w-8 h-8 text-emerald-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-emerald-300 mb-3">Start Smart</h3>
-                <p className="text-slate-300 text-sm">Begin with info level in development, warn in production</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 backdrop-blur border-blue-500/20 text-center">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Settings className="w-8 h-8 text-blue-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-blue-300 mb-3">Scale Thoughtfully</h3>
-                <p className="text-slate-300 text-sm">Ship JSON to ELK Stack, Loki, or Datadog for analysis</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur border-purple-500/20 text-center">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Code className="w-8 h-8 text-purple-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-purple-300 mb-3">Add Context</h3>
-                <p className="text-slate-300 text-sm">Use child loggers for requestId, userId correlation</p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <Github className="w-5 h-5 mr-3" />
-              Complete Example Repository
-            </Button>
-
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-300"
-            >
-              <ExternalLink className="w-5 h-5 mr-3" />
-              Winston Documentation
-            </Button>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="border-t border-slate-700/50 pt-12 pb-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-500/30">
-                <img
-                  src="/profilePic.jpeg"
-                  alt="author"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <div className="font-semibold text-white">Ritankar Jana</div>
-                <div className="text-slate-400 text-sm">Full Stack Developer & Tech Writer</div>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-6 text-slate-400 text-sm">
-              <span>© 2025 All rights reserved</span>
-              <span>•</span>
-              <span>Built with React & Tailwind</span>
-            </div>
-          </div>
-        </footer>
-      </article>
+      </div>
     </div>
   );
 };
 
-export default WinstonBlogPage;
+export default WinstonLoggingPage;

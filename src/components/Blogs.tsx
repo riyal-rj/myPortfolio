@@ -15,7 +15,7 @@ const BlogSection = () => {
       title: "Demystifying gRPC",
       description:
         "A beginner-friendly explanation of gRPC—how it works, why it’s fast, and where it fits compared to REST APIs.",
-      slug: "demystifying-grpc",
+      slug: "grpc",
     },
   ];
 

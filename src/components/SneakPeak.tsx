@@ -5,7 +5,7 @@ import { Calendar, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { MdOutlineUpcoming } from "react-icons/md";
 import { useState, useEffect } from "react";
 
-const BlogSection = () => {
+const SneakPeak = () => {
   const upcomingWorks = [
     {
       title: "Real-Time Collaboration Platform with AI-Powered Features",
@@ -246,4 +246,4 @@ const BlogSection = () => {
   );
 };
 
-export default BlogSection;
+export default SneakPeak;

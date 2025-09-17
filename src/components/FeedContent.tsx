@@ -1,6 +1,6 @@
 import React from "react";
 import ProjectsSection from "@/components/ProjectsSection";
-import SneakPeak from "@/components/BlogSection";
+import SneakPeak from "@/components/SneakPeak";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import GitHubStats from "@/components/GitHubStats";
