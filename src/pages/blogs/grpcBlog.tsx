@@ -52,7 +52,7 @@ const GrpcPage = () => {
               <div className="h-4 w-px bg-indigo-300"></div>
               <span className="font-medium">15 min read</span>
               <div className="h-4 w-px bg-indigo-300"></div>
-              <span className="font-medium">September 2024</span>
+              <span className="font-medium">September, 2025</span>
             </div>
           </div>
 
