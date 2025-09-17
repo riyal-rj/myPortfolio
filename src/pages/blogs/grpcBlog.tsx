@@ -27,13 +27,16 @@ const GrpcPage = () => {
           <div className="mb-12">
             <div className="flex items-center gap-2 mb-4">
               <span className="bg-purple-100 text-purple-800 border border-purple-200 px-3 py-1 rounded-full text-sm font-medium">
-                Backend Development
+                Backend
               </span>
               <span className="border border-green-300 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
                 gRPC
               </span>
               <span className="border border-orange-300 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">
                 Microservices
+              </span>
+              <span className="border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                APIs
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 bg-clip-text text-transparent mb-4">

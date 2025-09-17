@@ -33,10 +33,10 @@ const WinstonLoggingPage = () => {
           <div className="mb-12">
             <div className="flex items-center gap-2 mb-4">
               <span className="bg-purple-100 text-purple-800 border border-purple-200 px-3 py-1 rounded-full text-sm font-medium">
-                Backend Development
+                Backend
               </span>
               <span className="border border-green-300 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
-                Node Js
+                NodeJs
               </span>
               <span className="border border-orange-300 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">
                 Winston
