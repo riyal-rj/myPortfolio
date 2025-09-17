@@ -37,7 +37,7 @@ const FeedContent = ({ activeTab }: FeedContentProps) => {
         return <SkillMap/>;
       case "About Me":
         return <AboutSection />;
-      case "Blog":
+      case "Blogs":
         return <BlogSection/>
       case "Contact":
         return <ContactSection />;
