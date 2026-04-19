@@ -8,7 +8,7 @@ interface TwitterHeaderProps {
   setActiveTab: (tab: string) => void;
 }
 
-const tabs = ["Home", "Projects", "Skills", "Sneak Peek", "Blogs", "About Me"];
+const tabs = ["Home", "About Me","Projects", "Skills", "Sneak Peek", "Blogs"];
 
 const TwitterHeader = ({ activeTab, setActiveTab }: TwitterHeaderProps) => {
   const { theme, setTheme } = useTheme();

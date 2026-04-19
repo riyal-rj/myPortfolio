@@ -19,7 +19,7 @@ const ProfileSection = () => {
 
   const techStack = [
     "Java", "JavaScript", "Python", "Node.js", "React",
-    "MongoDB", "Pytorch", "Transformer", "Git"
+    "SpringBoot", "Pytorch", "Transformer", "Git"
   ];
 
   useEffect(() => {
@@ -100,7 +100,9 @@ const ProfileSection = () => {
               </motion.div>
             </div>
             <p className="text-muted-foreground text-[11px] sm:text-sm mt-1">@riyal-RJ</p>
-
+            <p className="text-[11px] sm:text-sm mt-1 font-medium text-foreground">
+  Software Engineer Trainee@ CloudKaptan
+</p>
             <div className="mt-1.5 sm:mt-3 space-y-1.5 sm:space-y-2">
               <div className="h-4 sm:h-6 flex items-center">
                 <span className="text-xs sm:text-base font-medium">

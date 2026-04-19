@@ -1,23 +1,254 @@
 import { Button } from "@/components/ui/button";
-import { Download, Camera, Code2, Gamepad2, MapPin, Clock, Mail } from "lucide-react";
-import ExperienceCard from "../components/cards/ExperienceCard";
-import EducationCard from "../components/cards/EducationCard";
-import SectionCard from "./cards/SectionCard";
+import {
+  Download, Mail, Briefcase, GraduationCap, Sparkles,
+  Terminal, Globe2, ShieldCheck, Calendar, Trophy, MapPin
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 
+/* ─────────────────────────────────────────────
+   EXPERIENCE DATA
+   ───────────────────────────────────────────── */
+const experience = [
+  {
+    logo: "/logos/ck.jpg",
+    company: "CloudKaptan Consultancy Services",
+    location: "Kolkata, West Bengal, India",
+    roles: [
+      {
+        title: "CLM Expert",
+        mode: "On-site",
+        period: "Dec 2025 – Present",
+        current: true,
+        color: "blue",
+        groups: [
+          {
+            label: "Global CLM Strategy & Engineering",
+            bullets: [
+              "Spearheaded the Private Sale Agreement workflow for London stakeholders; conducted deep-dive business analysis to translate complex financial flows into high-efficiency automated systems.",
+              "Engineered sophisticated business logic using Custom XML and C# Expression Scripts, optimising multi-party approval chains and intricate financial conditions for Private Sale workstreams.",
+              "Led DocuSign CLM deployment across six international hubs — London, NY, Geneva, Milan, Hong Kong, Zurich — ensuring 100% regional compliance for Consignment and NDA workstreams.",
+              "Architected a Git-based versioning framework for CLM using GitHub for JSON configurations and C# scripts to enable traceable change management and collaborative CI/CD.",
+              "Established a scalable Environment Strategy (Dev/UAT/Prod), standardising testing protocols and migration paths for zero-downtime deployments.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Salesforce Developer",
+        mode: "On-site",
+        period: "Nov 2025 – Dec 2025",
+        current: false,
+        color: "purple",
+        groups: [
+          {
+            label: "Salesforce Development & Optimisation",
+            bullets: [
+              "Developed bulkified Apex trigger frameworks and optimised SOQL/SOSL queries to handle enterprise data volumes while adhering strictly to Salesforce Governor Limits.",
+              "Built custom Visualforce interfaces and Apex controllers supporting complex form handling, real-time validation, and automated CRM document generation.",
+              "Bridged declarative and programmatic solutions by integrating Record-Triggered/Screen Flows with Apex logic, maintaining 85%+ code coverage for deployment readiness.",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    logo: "/logo/image.webp",
+    company: "Soefia Education Incorporated",
+    location: "Boston, Massachusetts, United States",
+    roles: [
+      {
+        title: "Software Engineer (Intern)",
+        mode: "Remote",
+        period: "Jul 2025 – Aug 2025",
+        current: false,
+        color: "teal",
+        groups: [
+          {
+            label: "Cloud & Backend Engineering",
+            bullets: [
+              "Assisted in deploying a multi-tenant architecture on AWS — configuring ECS tasks, creating S3 buckets, setting up Amplify namespaces, and managing credentials securely via AWS Secrets Manager.",
+              "Enhanced backend resilience by identifying and resolving API edge cases through rigorous unit testing with pytest.",
+              "Performed functional testing and systematically reported bugs and system failures, enabling the team to resolve issues efficiently and improve product quality.",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+/* ─────────────────────────────────────────────
+   COLOR MAPS
+   ───────────────────────────────────────────── */
+const colorMap = {
+  blue: {
+    dot: "border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.45)]",
+    dotHover: "group-hover:border-blue-400",
+    badge: "border-blue-500/30 text-blue-400 bg-blue-500/10",
+    groupLabel: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    bullet: "bg-blue-400",
+    cardHover: "hover:border-blue-500/40",
+    connector: "bg-blue-500/30",
+  },
+  purple: {
+    dot: "border-purple-500 shadow-[0_0_10px_rgba(139,92,246,0.45)]",
+    dotHover: "group-hover:border-purple-400",
+    badge: "border-purple-500/30 text-purple-400 bg-purple-500/10",
+    groupLabel: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    bullet: "bg-purple-400",
+    cardHover: "hover:border-purple-500/40",
+    connector: "bg-purple-500/30",
+  },
+  teal: {
+    dot: "border-teal-500 shadow-[0_0_10px_rgba(20,184,166,0.45)]",
+    dotHover: "group-hover:border-teal-400",
+    badge: "border-teal-500/30 text-teal-400 bg-teal-500/10",
+    groupLabel: "bg-teal-500/10 text-teal-400 border-teal-500/20",
+    bullet: "bg-teal-400",
+    cardHover: "hover:border-teal-500/40",
+    connector: "bg-teal-500/30",
+  },
+};
+
+/* ─────────────────────────────────────────────
+   EXPERIENCE TIMELINE COMPONENT
+   ───────────────────────────────────────────── */
+const ExperienceTimeline = () => {
+  return (
+    <section className="space-y-12">
+      <div className="flex items-center gap-4">
+        <div className="h-px flex-grow bg-slate-800" />
+        <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-800 bg-slate-900/50 text-slate-300">
+          <Briefcase className="w-4 h-4" />
+          <span className="text-sm font-bold tracking-widest uppercase">Experience</span>
+        </div>
+        <div className="h-px flex-grow bg-slate-800" />
+      </div>
+
+      <div className="space-y-16">
+        {experience.map((company, ci) => (
+          <div key={ci}>
+            {/* Company header */}
+            <div className="flex items-center gap-4 mb-6 pl-12">
+              <div className="w-10 h-10 rounded-xl border border-slate-700 bg-slate-900 flex items-center justify-center overflow-hidden flex-shrink-0">
+                <img
+                  src={company.logo}
+                  alt={company.company}
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                    e.currentTarget.parentElement.innerHTML = `<span class="text-xs font-bold text-slate-400">${company.company.slice(0, 2).toUpperCase()}</span>`;
+                  }}
+                />
+              </div>
+              <div>
+                <p className="text-white font-bold text-base leading-tight">{company.company}</p>
+                <p className="text-slate-500 text-xs flex items-center gap-1 mt-0.5">
+                  <MapPin className="w-3 h-3" /> {company.location}
+                </p>
+              </div>
+            </div>
+
+            {/* Roles timeline */}
+            <div className="relative pl-12">
+              {/* Vertical track */}
+              <div className="absolute left-[15px] top-0 bottom-0 w-px">
+                <div className="h-full w-full bg-gradient-to-b from-blue-500 via-purple-500/60 to-slate-800/20 opacity-40" />
+              </div>
+
+              <div className="space-y-6">
+                {company.roles.map((role, ri) => {
+                  const c = colorMap[role.color] || colorMap.blue;
+                  return (
+                    <div key={ri} className="relative group">
+                      {/* Timeline dot */}
+                      <div
+                        className={`absolute -left-[33px] top-[18px] w-[14px] h-[14px] rounded-full bg-slate-950 border-2 z-10 transition-all duration-300 ${c.dot} ${c.dotHover} group-hover:scale-150`}
+                      />
+                      {/* Connector */}
+                      <div className={`absolute -left-[19px] top-[24px] w-[20px] h-px ${c.connector}`} />
+
+                      {/* Role card */}
+                      <div
+                        className={`border border-slate-800 ${c.cardHover} bg-slate-900/40 backdrop-blur-sm rounded-2xl p-5 transition-all duration-300 hover:bg-slate-900/60 hover:translate-x-1`}
+                      >
+                        {/* Top row */}
+                        <div className="flex items-start justify-between gap-3 flex-wrap mb-4">
+                          <div className="flex items-center gap-3 flex-wrap">
+                            <h3 className="text-white font-bold text-[15px] leading-tight">{role.title}</h3>
+                            {role.current && (
+                              <span className="text-[10px] font-bold tracking-widest uppercase text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2 py-0.5 rounded-full">
+                                Current
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className={`text-[11px] font-medium border px-2.5 py-1 rounded-lg flex items-center gap-1.5 ${c.badge}`}>
+                              <Calendar className="w-3 h-3" /> {role.period}
+                            </span>
+                            <span
+                              className={`text-[11px] font-medium border px-2.5 py-1 rounded-lg ${
+                                role.mode === "Remote"
+                                  ? "border-teal-500/30 text-teal-400 bg-teal-500/10"
+                                  : "border-slate-700 text-slate-400 bg-slate-800/50"
+                              }`}
+                            >
+                              {role.mode}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="h-px bg-slate-800 mb-4" />
+
+                        {/* Bullet groups */}
+                        <div className="space-y-4">
+                          {role.groups.map((group, gi) => (
+                            <div key={gi}>
+                              <span className={`text-[10px] font-bold tracking-widest uppercase border px-2.5 py-1 rounded-md inline-block mb-3 ${c.groupLabel}`}>
+                                {group.label}
+                              </span>
+                              <ul className="space-y-2.5">
+                                {group.bullets.map((b, bi) => (
+                                  <li key={bi} className="flex gap-3 text-slate-400 text-[13px] leading-relaxed">
+                                    <span className={`w-1.5 h-1.5 rounded-full mt-[7px] flex-shrink-0 ${c.bullet}`} />
+                                    <span>{b}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+/* ─────────────────────────────────────────────
+   MAIN ABOUT SECTION
+   ───────────────────────────────────────────── */
 const AboutSection = () => {
-   const contactMethods = [
+  const contactMethods = [
     {
       icon: Mail,
       title: "Email Me",
       description: "ritankar.jana.official@gmail.com",
       action: "Send Email",
       url: "mailto:ritankar.jana.official@gmail.com",
-      color: "text-red-500"
+      color: "text-red-500",
     },
   ];
+
   const education = [
     {
       logo: "/logo/png-clipart-academy-of-technology-asansol-engineering-college-maulana-abul-kalam-azad-university-of-technology-hooghly-institute-of-technology-technology-blue-angle.png",
@@ -51,302 +282,221 @@ const AboutSection = () => {
     },
   ];
 
-  const experience = [
-    {
-      logo: "/logo/image.webp",
-      title: "Software Engineer (Intern)",
-      company: "Soefia Education Incorporated",
-      location: "Boston, Massachusetts, United States",
-      workingMode: "Remote",
-      period: "July 2025 - Aug 2025",
-      description: `• Assisted in deploying a multi-tenant architecture on AWS, contributing to the configuration of ECS tasks, creation of S3 buckets, setup of AWS Amplify namespaces, and secure management of credentials using AWS Secrets Manager.
-
-• Enhanced backend system's resilience by identifying and resolving edge cases in APIs through rigorous unit testing using pytest.
-
-• Performed functional testing and systematically reported bugs and system failures, enabling the development team to resolve issues efficiently and enhance product quality.`,
-    },
-  ];
-
   return (
-    <div className="w-full min-h-screen">
-      {/* Enhanced container with better mobile padding */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12">
-        <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-12">
-          
+    <div className="w-full min-h-screen bg-[#030712] text-slate-200 selection:bg-blue-500/30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+        <div className="space-y-32">
 
+          {/* ── About Me ── */}
+          <section className="animate-[fadeIn_1s_ease-out]">
+            <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
 
-           {/* Experience Section with enhanced mobile responsiveness */}
-          <div className="animate-[fadeInUp_0.8s_ease-out_0.4s_both]">
-            <SectionCard title="Work Experience" icon="💼" month="July">
-              <div className="space-y-4 sm:space-y-6">
-                {experience.map((exp, index) => (
-                  <div 
-                    key={index}
-                    className="animate-[slideInUp_0.6s_ease-out_both] hover:animate-[pulse_2s_infinite]"
-                    style={{ animationDelay: `${0.6 + index * 0.2}s` }}
-                  >
-                    <ExperienceCard {...exp} />
+              {/* Left: Photo card + vibe card below */}
+              <div className="lg:col-span-4 flex flex-col gap-4">
+                <Card className="w-full border-slate-800 bg-slate-900/50 backdrop-blur-xl overflow-hidden group">
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <img
+                      src="RITANKAR JANA CASUAL PHOTO.jpg"
+                      alt="Ritankar Jana"
+                      className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
                   </div>
-                ))}
-              </div>
-            </SectionCard>
-          </div>
-
-          {/* Education Section with staggered animations */}
-          <div className="animate-[fadeInUp_0.8s_ease-out_0.6s_both]">
-            <SectionCard title="Education" icon="🎓">
-              <div className="space-y-4 sm:space-y-6">
-                {education.map((edu, index) => (
-                  <div 
-                    key={index}
-                    className="animate-[slideInUp_0.6s_ease-out_both] hover:animate-[wobble_1s_ease-in-out]"
-                    style={{ animationDelay: `${0.8 + index * 0.3}s` }}
-                  >
-                    <EducationCard {...edu} />
-                  </div>
-                ))}
-              </div>
-            </SectionCard>
-          </div>
-
-          
-          {/* About Me Section with enhanced mobile layout */}
-          <div className="group animate-[fadeInUp_0.8s_ease-out]">
-            <SectionCard title="About Me" icon="👨‍💻">
-              <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                
-                {/* Enhanced photo section with mobile optimization */}
-                <div className="relative group/photo overflow-hidden">
-                  {/* Animated background gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-2xl opacity-40 group-hover/photo:opacity-70 transition-all duration-700 animate-pulse"></div>
-                  
-                  {/* Photo container with mobile-first sizing */}
-                      <div className="relative rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 group-hover/photo:scale-[1.02] group-hover/photo:shadow-3xl">
-                    <div className="aspect-square w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto relative overflow-hidden">
-                      <img
-                        src="RITANKAR JANA CASUAL PHOTO.jpg"
-                        alt="Ritankar Jana"
-                        className="w-full h-full object-cover object-top transition-all duration-700 group-hover/photo:scale-110 group-hover/photo:brightness-110"
-                      />
-                      {/* Enhanced overlay with mobile-optimized positioning */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover/photo:opacity-60 transition-opacity duration-500"></div>
-                      
-                      {/* Photo caption with mobile responsiveness */}
-                      <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 text-white">
-                        <div className="backdrop-blur-sm bg-white/10 rounded-lg p-2 sm:p-3 border border-white/20">
-                          <p className="text-xs sm:text-sm font-medium opacity-90">
-                            Captured in a moment ✨
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Enhanced about text with mobile-optimized animations */}
-                <div className="grid gap-2 sm:gap-3 md:gap-4 text-sm sm:text-base leading-relaxed">
-                  <div className="space-y-2 sm:space-y-3 md:space-y-4">
-                    
-                    {/* Individual text blocks with staggered animations and mobile optimization */}
-                    <div className="group/text animate-[slideInLeft_0.6s_ease-out_0.2s_both]">
-                      <p className="text-foreground font-medium transition-all duration-300 p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-900/20 dark:hover:to-indigo-900/20 hover:text-blue-600 dark:hover:text-blue-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-blue-200 dark:hover:border-blue-800">
-                        Yo, I'm Ritankar Jana! 👋 Final-year B.Tech CSE student at Academy of Technology, rocking a 8.92 CGPA. My playground? The wild world of Generative AI and software dev. 🌟
-                      </p>
-                    </div>
-
-                    <div className="group/text animate-[slideInRight_0.6s_ease-out_0.4s_both]">
-                      <p className="text-muted-foreground italic p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-300 hover:text-purple-600 dark:hover:text-purple-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-purple-200 dark:hover:border-purple-800">
-                        Not a pro coder (yet), but I'm wired for learning. Think of me as a neural net with a killer learning rate — fast enough to grow, slow enough to avoid overfitting. 🚀
-                      </p>
-                    </div>
-
-                    <div className="group/text animate-[slideInLeft_0.6s_ease-out_0.6s_both]">
-                      <p className="text-foreground font-medium p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-300 hover:text-green-600 dark:hover:text-green-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-green-200 dark:hover:border-green-800">
-                        I don't just code — I dissect tech. Unraveling logic, design patterns, and architecture to build software that's scalable and timeless is my jam. 💻✨
-                      </p>
-                    </div>
-
-                    <div className="group/text animate-[slideInRight_0.6s_ease-out_0.8s_both]">
-                      <p className="text-muted-foreground p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 dark:hover:from-orange-900/20 dark:hover:to-red-900/20 transition-all duration-300 hover:text-orange-600 dark:hover:text-orange-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-orange-200 dark:hover:border-orange-800">
-                        Off the keyboard, I'm a rookie footballer chasing the ball with pure joy. ⚽️ It's less about skill, more about the vibe and camaraderie. 🏃‍♂️
-                      </p>
-                    </div>
-
-                    <div className="group/text animate-[slideInLeft_0.6s_ease-out_1s_both]">
-                      <p className="text-foreground font-medium p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-teal-50 hover:to-cyan-50 dark:hover:from-teal-900/20 dark:hover:to-cyan-900/20 transition-all duration-300 hover:text-teal-600 dark:hover:text-teal-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-teal-200 dark:hover:border-teal-800">
-                        Photography's my soul food. 📸 Armed with my Canon 200D Mark II, I hunt sunsets 🌅 and fleeting emotions, weaving stories without words. 🎨
-                      </p>
-                    </div>
-
-                    <div className="group/text animate-[slideInRight_0.6s_ease-out_1.2s_both]">
-                      <p className="text-muted-foreground italic p-3 sm:p-4 rounded-xl hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 dark:hover:from-violet-900/20 dark:hover:to-purple-900/20 transition-all duration-300 hover:text-violet-600 dark:hover:text-violet-400 hover:shadow-lg hover:transform hover:scale-[1.02] cursor-default border border-transparent hover:border-violet-200 dark:hover:border-violet-800">
-                        Love AI 🤖, photography 📸, coding 💻, or just random football kicks ⚽️? Hit me up — let's spark ideas and build something epic! 🎶
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Enhanced floating action buttons with mobile optimization */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 sm:pt-6">
-                  {/* <div className="flex gap-2 sm:gap-3"> */}
-                    {/* Download CV Button */}
-                    <Button 
-                      className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium animate-[bounceIn_0.8s_ease-out_1.4s_both]"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                      <Download className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:animate-bounce" />
-                      Download CV
-                      <Link to="/resume.pdf" target="_blank" rel="noopener noreferrer" className="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-300"/>
+                  <CardContent className="p-6">
+                    <h1 className="text-2xl font-bold text-white mb-1">Ritankar Jana</h1>
+                    <p className="text-blue-400 text-sm font-medium mb-4">Enterprise Solutions Architect</p>
+                    <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 rounded-xl py-6">
+                      <Link to="/resume.pdf" target="_blank">
+                        <Download className="mr-2 h-4 w-4" /> Download CV
+                      </Link>
                     </Button>
-                  {/* </div> */}
-                </div>
-              </div>
-            </SectionCard>
-          </div>
-      {/* Main Contact Post */}
-      <div className="border-b border-border p-4 sm:p-6 hover:bg-accent/50 transition-colors">
-        <div className="flex items-start space-x-3">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
-            <img
-              src="/profilePic.jpeg"
-              alt="Ritankar Jana"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center flex-wrap gap-x-2 gap-y-1 mb-2">
-              <span className="font-semibold text-sm sm:text-base">Ritankar Jana</span>
-              <span className="text-muted-foreground text-xs sm:text-sm">@jana_ritankar</span>
-              <span className="text-muted-foreground text-xs sm:text-sm">·</span>
-              <span className="text-muted-foreground text-xs sm:text-sm">Pinned</span>
-            </div>
-
-            <div className="space-y-3">
-              <div>
-                <h3 className="font-bold text-lg sm:text-xl mb-2 sm:mb-3">Let's Build Together! 🚀</h3>
-                <div className="space-y-2 text-xs sm:text-sm leading-relaxed">
-                  <p>
-                    Always excited to collaborate on interesting projects! Whether you have an idea you'd
-                    like to discuss, or just want to chat about tech,
-                    I'm here for it.
-                  </p>
-
-                  <p>
-                    Currently open to:
-                    <Badge variant="secondary" className="mx-1 text-[10px] sm:text-xs">Freelance</Badge>
-                    <Badge variant="secondary" className="mx-1 text-[10px] sm:text-xs">Consulting</Badge>
-                    <Badge variant="secondary" className="mx-1 text-[10px] sm:text-xs">Full-time</Badge>
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid gap-2 sm:gap-3">
-                {contactMethods.map((method, index) => {
-                  const IconComponent = method.icon;
-                  return (
-                    <Card key={index} className="hover:shadow-md transition-all">
-                      <CardContent className="p-3 sm:p-4">
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
-                          <div className="flex items-center space-x-2 sm:space-x-3">
-                            <IconComponent className={`w-4 h-4 sm:w-5 sm:h-5 ${method.color}`} />
-                            <div>
-                              <p className="font-medium text-sm sm:text-base">{method.title}</p>
-                              <p className="text-xs sm:text-sm text-muted-foreground truncate">{method.description}</p>
-                            </div>
-                          </div>
-                          <Button size="sm" variant="outline" asChild className="w-full sm:w-auto">
-                            <a href={method.url} target="_blank" rel="noopener noreferrer">
-                              {method.action}
-                            </a>
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Availability Status */}
-      <div className="border-b border-border p-6 hover:bg-accent/50 transition-colors">
-        <div className="flex items-start space-x-3">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
-            <img
-              src="/profilePic.jpeg"
-              alt="Ritankar Jana"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center space-x-2 mb-3">
-              <span className="font-semibold">Ritankar Jana</span>
-              <span className="text-muted-foreground text-sm">@jana_ritankar</span>
-              <span className="text-muted-foreground text-sm">·</span>
-              <span className="text-muted-foreground text-sm">2h</span>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="font-bold text-lg">Current Availability 📅</h3>
-
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <div>
-                    <p className="font-medium text-green-700 dark:text-green-300">Available for new projects</p>
-                    <p className="text-sm text-green-600 dark:text-green-400">Response time: Usually within 24 hours</p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <div className="flex items-center space-x-2 text-sm">
-                    <MapPin className="w-4 h-4 text-muted-foreground" />
-                    <span>Kolkata, India</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-sm">
-                    <Clock className="w-4 h-4 text-muted-foreground" />
-                    <span>Best time: 11 AM - 6 PM IST</span>
-                  </div>
-                </div>
-
-                <Card>
-                  <CardContent className="p-4">
-                    <h4 className="font-medium mb-2">What I'm looking for:</h4>
-                    <ul className="text-sm space-y-1 text-muted-foreground">
-                      <li>• Challenging full-stack projects</li>
-                      <li>• Open-source collaborations</li>
-                      <li>• Technical consulting opportunities</li>
-                      <li>• Speaking engagements</li>
-                      <li>• AI and ML projects</li>
-                      <li>• Research Paper Discussions</li>
-                    </ul>
                   </CardContent>
                 </Card>
+
+                {/* Personal Vibe — below photo */}
+                <div className="p-4 rounded-3xl border border-slate-800 bg-slate-900/30 hover:bg-slate-900/50 transition-all flex items-center gap-4">
+                  <div className="flex -space-x-2 flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800/80 flex items-center justify-center text-lg">
+                      ⚽
+                    </div>
+                    <div className="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800/80 flex items-center justify-center text-lg">
+                      📸
+                    </div>
+                  </div>
+                  <p className="text-xs text-slate-400 leading-relaxed italic">
+                    Off-clock? I'm chasing footballs ⚽ or hunting sunsets with my Canon 200D 📸.
+                  </p>
+                </div>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-border/50">
-                {/* <div className="flex items-center space-x-6">
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-blue-500">
-                    <MessageCircle className="w-4 h-4 mr-1" />
-                    <span className="text-xs">15</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-green-500">
-                    <Repeat2 className="w-4 h-4 mr-1" />
-                    <span className="text-xs">7</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-red-500">
-                    <Heart className="w-4 h-4 mr-1" />
-                    <span className="text-xs">23</span>
-                  </Button>
-                </div> */}
+              {/* Right: info grid */}
+              <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4 self-start">
+
+                {/* Row 1: Technical Profile — full width */}
+                <div className="md:col-span-2 p-6 rounded-3xl border border-slate-800 bg-slate-900/30 hover:bg-slate-900/50 transition-all group">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-2xl bg-blue-500/10 text-blue-400 group-hover:scale-110 transition-transform flex-shrink-0">
+                      <Terminal className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-2">Technical Profile</h3>
+                      <p className="text-slate-400 leading-relaxed">
+                        Hi, I'm Ritankar Jana 👋 — a B.Tech CSE graduate from AOT (CGPA: 8.92). Currently working at
+                        CloudKaptan, I focus on enterprise architecture and backend engineering, building scalable
+                        automated systems that translate complex business needs into robust production-ready solutions.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Row 2: Global Strategy + System Rigor */}
+                <div className="p-6 rounded-3xl border border-slate-800 bg-slate-900/30 hover:bg-slate-900/50 transition-all">
+                  <Globe2 className="w-6 h-6 text-emerald-400 mb-4" />
+                  <h3 className="font-bold text-white mb-2">Global Strategy</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed">
+                    Spearheading digital transformation for international clients by delivering scalable backend
+                    solutions and automation-driven workflows with enterprise-grade reliability.
+                  </p>
+                </div>
+
+                <div className="p-6 rounded-3xl border border-slate-800 bg-slate-900/30 hover:bg-slate-900/50 transition-all">
+                  <ShieldCheck className="w-6 h-6 text-purple-400 mb-4" />
+                  <h3 className="font-bold text-white mb-2">System Rigor</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed">
+                    I specialize in backend engineering — designing scalable systems, optimizing performance
+                    bottlenecks, and delivering enterprise-grade reliability.
+                  </p>
+                </div>
+
+                {/* Row 3: Learning Rate quote — full width */}
+                <div className="md:col-span-2 p-4 rounded-3xl border border-blue-500/20 bg-blue-600/10 hover:bg-blue-600/15 transition-all flex items-center justify-center text-center">
+                  <p className="text-sm font-medium text-blue-400 leading-relaxed">
+                    "A neural net with a killer learning rate." 🚀
+                  </p>
+                </div>
+
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </section>
+
+          {/* ── Experience Timeline ── */}
+          <ExperienceTimeline />
+
+          {/* ── Education ── */}
+          <section className="space-y-16">
+            <div className="flex items-center gap-4">
+              <div className="h-px flex-grow bg-slate-800" />
+              <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-800 bg-slate-900/50 text-slate-300">
+                <GraduationCap className="w-4 h-4" />
+                <span className="text-sm font-bold tracking-widest uppercase">Education Journey</span>
+              </div>
+              <div className="h-px flex-grow bg-slate-800" />
+            </div>
+
+            <div className="relative max-w-4xl mx-auto">
+              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-slate-800 opacity-30 hidden md:block" />
+
+              <div className="space-y-12">
+                {education.map((edu, index) => (
+                  <div
+                    key={index}
+                    className={`relative flex items-center justify-between md:justify-normal group ${
+                      index % 2 === 0 ? "md:flex-row-reverse" : ""
+                    }`}
+                  >
+                    <div className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-slate-950 border-2 border-blue-500 -translate-x-1/2 z-10 group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+
+                    <div className="w-full md:w-[45%] pl-16 md:pl-0">
+                      <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-sm hover:bg-slate-900/60 transition-all duration-300 hover:border-slate-700 shadow-xl group/card relative overflow-hidden">
+                        <div className="absolute top-0 right-0 px-4 py-1 bg-blue-600/20 text-blue-400 text-xs font-bold rounded-bl-xl border-l border-b border-blue-500/20">
+                          {edu.score}
+                        </div>
+                        <CardContent className="p-6">
+                          <div className="flex items-center gap-4 mb-4">
+                            <div className="w-12 h-12 rounded-xl bg-white/5 p-2 flex items-center justify-center border border-white/10">
+                              <img
+                                src={edu.logo}
+                                alt="Institution Logo"
+                                className="w-full h-full object-contain"
+                              />
+                            </div>
+                            <div>
+                              <h4 className="text-white font-bold text-lg leading-tight group-hover/card:text-blue-400 transition-colors">
+                                {edu.degree}
+                              </h4>
+                              <p className="text-slate-500 text-xs flex items-center gap-1 mt-1">
+                                <MapPin className="w-3 h-3" /> {edu.institution}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3 mb-4">
+                            <Badge
+                              variant="outline"
+                              className="text-[10px] border-slate-700 text-slate-400 py-0 flex items-center gap-1"
+                            >
+                              <Calendar className="w-3 h-3" /> {edu.period}
+                            </Badge>
+                            <Badge
+                              variant="outline"
+                              className="text-[10px] border-blue-500/30 text-blue-400 py-0 flex items-center gap-1"
+                            >
+                              <Trophy className="w-3 h-3" /> {edu.scoreType.toUpperCase()}
+                            </Badge>
+                          </div>
+                          <p className="text-slate-400 text-xs leading-relaxed italic border-l-2 border-slate-800 pl-3">
+                            {edu.description}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </div>
+
+                    <div className="hidden md:block w-[45%]" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ── Footer / Contact ── */}
+          {/* <section className="pt-12 border-t border-slate-800 space-y-6">
+            <h3 className="text-2xl font-bold text-white flex items-center gap-3">
+              Let's Build Together <Sparkles className="text-yellow-500 w-5 h-5" />
+            </h3>
+            <p className="text-slate-400 leading-relaxed">
+              Currently open to Full-time roles, Freelance, and Consulting.
+            </p>
+            {contactMethods.map((method, i) => (
+              <Button
+                key={i}
+                variant="outline"
+                className="w-full justify-start gap-4 border-slate-800 bg-slate-900/50 hover:bg-slate-800 h-14 rounded-2xl"
+                asChild
+              >
+                <a href={method.url}>
+                  <method.icon className={`w-5 h-5 ${method.color}`} />
+                  <div className="text-left">
+                    <p className="text-xs text-slate-500 font-bold uppercase">{method.title}</p>
+                    <p className="text-sm">{method.description}</p>
+                  </div>
+                </a>
+              </Button>
+            ))}
+            <div className="space-y-3 pt-2">
+              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest">Core Interests</h4>
+              <div className="flex flex-wrap gap-2">
+                {["Scalable Architecture", "Generative AI", "Global Rollouts", "DevOps CI/CD"].map((item) => (
+                  <Badge
+                    key={item}
+                    variant="outline"
+                    className="border-slate-800 text-slate-400 py-1.5 px-3 rounded-lg bg-slate-900/20"
+                  >
+                    {item}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </section> */}
+
         </div>
       </div>
     </div>
